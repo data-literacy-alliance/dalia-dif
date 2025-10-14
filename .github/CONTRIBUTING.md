@@ -8,8 +8,9 @@ This project uses the [GitHub Flow](https://guides.github.com/introduction/flow)
 model for code contributions. Follow these steps:
 
 1. [Create a fork](https://help.github.com/articles/fork-a-repo) of the upstream
-   repository at [`cthoyt/dalia-dif`](https://github.com/cthoyt/dalia-dif) on
-   your GitHub account (or in one of your organizations)
+   repository at
+   [`data-literacy-alliance/dalia-dif`](https://github.com/data-literacy-alliance/dalia-dif)
+   on your GitHub account (or in one of your organizations)
 2. [Clone your fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
    with `git clone https://github.com/<your namespace here>/dalia-dif.git`
 3. Make and commit changes to your fork with `git commit`
@@ -91,7 +92,7 @@ resolve conflicts against the main branch. After cloning, you should add the
 upstream repository with
 
 ```shell
-$ git remote add cthoyt https://github.com/cthoyt/dalia-dif.git
+$ git remote add data-literacy-alliance https://github.com/data-literacy-alliance/dalia-dif.git
 ```
 
 Then, you can merge upstream code into your branch. You can also use the GitHub

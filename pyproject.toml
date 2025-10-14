@@ -120,11 +120,10 @@ release = [
 # See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#urls
 # and also https://packaging.python.org/en/latest/specifications/well-known-project-urls/
 [project.urls]
-"Bug Tracker" = "https://github.com/cthoyt/dalia-dif/issues"
-Homepage = "https://github.com/cthoyt/dalia-dif"
-Repository = "https://github.com/cthoyt/dalia-dif.git"
-Documentation = "https://dalia_dif.readthedocs.io"
-Funding = "https://github.com/sponsors/cthoyt"
+"Bug Tracker" = "https://github.com/data-literacy-alliance/dalia-dif/issues"
+Homepage = "https://github.com/data-literacy-alliance/dalia-dif"
+Repository = "https://github.com/data-literacy-alliance/dalia-dif.git"
+Documentation = "https://dalia-dif.readthedocs.io"
 
 [project.scripts]
 dalia_dif = "dalia_dif.cli:main"
