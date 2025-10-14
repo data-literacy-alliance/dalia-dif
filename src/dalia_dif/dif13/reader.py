@@ -5,6 +5,8 @@ from collections import Counter
 from pathlib import Path
 from typing import TextIO
 
+import click
+import rdflib
 from pydantic_extra_types.language_code import ISO639_3
 from pydantic_metamodel.api import PredicateObject, RDFResource, Year
 from pystow.utils import safe_open_dict_reader
@@ -25,12 +27,14 @@ from .picklists import (
     RELATED_WORKS_RELATIONS,
     TARGET_GROUPS,
 )
-from ..namespace import DALIA_COMMUNITY, SPDX_LICENSE
+from ..namespace import DALIA_COMMUNITY, SPDX_LICENSE, bind
 from ..utils import cleanup_languages
 
 __all__ = [
     "parse_dif13_row",
     "read_dif13",
+    "write_dif13_jsonl",
+    "write_dif13_rdf",
 ]
 
 DELIMITER = " * "
@@ -47,8 +51,54 @@ COMMUNITY_RELATION_RE = re.compile(r"^(?P<name>.*)\s\((?P<relation>S|R|SR|RS)\)$
 UNPROCESSED: Counter[str] = Counter()
 
 
+def write_dif13_rdf(
+    oers: EducationalResourceDIF13 | list[EducationalResourceDIF13],
+    *,
+    path: Path | None = None,
+    format: str | None = None,
+) -> None:
+    """Write OERs as DIF v1.3 RDF."""
+    if isinstance(oers, EducationalResourceDIF13):
+        oers = [oers]
+    graph = rdflib.Graph()
+    bind(graph)
+    for er in oers:
+        graph += er.get_graph()
+    if format is None:
+        format = "turtle"
+    if path is None:
+        click.echo(graph.serialize(format=format))
+    else:
+        graph.serialize(path, format=format)
+
+
+def write_dif13_jsonl(
+    oers: EducationalResourceDIF13 | list[EducationalResourceDIF13], *, path: Path | None = None
+) -> None:
+    """Write OERs as DIF v1.3 JSON lines."""
+    if isinstance(oers, EducationalResourceDIF13):
+        oers = [oers]
+    lines = (o.model_dump_json(exclude_none=True, exclude_defaults=True) for o in oers)
+    if path is None:
+        for line in lines:
+            click.echo(line)
+    else:
+        with path.open("w") as file:
+            file.write("\n".join(lines))
+
+
 def read_dif13(path: str | Path | TextIO) -> list[EducationalResourceDIF13]:
     """Parse DALIA records."""
+    if isinstance(path, str) and (path.startswith("http://") or path.startswith("https://")):
+        from io import StringIO
+
+        import requests
+
+        with requests.get(path, timeout=5) as res:
+            sio = StringIO(res.text)
+            sio.name = path.split("/")[-1]
+            return read_dif13(sio)
+
     if isinstance(path, (str, Path)):
         file_name = Path(path).name
     else:
@@ -82,13 +132,13 @@ def parse_dif13_row(
         rv = EducationalResourceDIF13(
             uuid=uuid,
             title=title,
-            subtitle=subtitle,
+            subtitle=subtitle or None,
             authors=_process_authors(file_name, idx, row),
             license=_process_license(row),
             links=external_uris,
             supporting_communities=supporting_communities,
             recommending_communities=recommending_communities,
-            description=row.pop("Description").strip(),
+            description=row.pop("Description").strip() or None,
             disciplines=_process_disciplines(file_name, idx, row),
             file_formats=_process_formats(row),
             keywords=_pop_split(row, "Keywords"),
