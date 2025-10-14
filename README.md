@@ -35,6 +35,14 @@
 
 Tools for DALIA's data model for open educational resources.
 
+The DALIA Interaction Format (DIF) v1.3 is the data model and CSV-based
+input format for open educational resources (OERs) in the DALIA OER platform.
+
+This repository contains an implementation of the data model in Pydantic,
+a workflow for serializing to RDF based on [pydantic-metamodel](github.com/cthoyt/pydantic-metamodel), 
+a CSV reader, and a command line validator.
+
+
 ## 💪 Getting Started
 
 > TODO show in a very small amount of space the **MOST** useful thing your
@@ -55,7 +63,6 @@ $ dalia_dif --help
 
 ## 🚀 Installation
 
-<!-- Uncomment this section after your first ``tox -e finish``
 The most recent release can be installed from
 [PyPI](https://pypi.org/project/dalia_dif/) with uv:
 
@@ -68,7 +75,6 @@ or with pip:
 ```console
 $ python3 -m pip install dalia_dif
 ```
--->
 
 The most recent code and data can be installed directly from GitHub with uv:
 
@@ -101,24 +107,23 @@ The code in this package is licensed under the MIT License.
 Citation goes here!
 -->
 
-<!--
 ### 🎁 Support
 
 This project has been supported by the following organizations (in alphabetical order):
 
-- [Biopragmatics Lab](https://biopragmatics.github.io)
+- [NFDI4Chem](https://www.nfdi4chem.de)
+- [NFDI4Ing](https://nfdi4ing.de)
+- [NFDI4Culture](https://nfdi4culture.de)
 
--->
 
-<!--
 ### 💰 Funding
 
 This project has been supported by the following grants:
 
-| Funding Body  | Program                                                      | Grant Number |
-|---------------|--------------------------------------------------------------|--------------|
-| Funder        | [Grant Name (GRANT-ACRONYM)](https://example.com/grant-link) | ABCXYZ       |
--->
+| Funding Body                                                       | Program | Grant Number |
+|--------------------------------------------------------------------|---------|--------------|
+| German Federal Ministry of Research, Technology, and Space (BMFTR) |         | 16DWWQP07    |
+| EU Capacity Building and Resilience Facility                       |         | 16DWWQP07    |
 
 ### 🍪 Cookiecutter
 
