@@ -50,11 +50,13 @@ license-files = [
 requires-python = ">=3.10"
 dependencies = [
     "pydantic",
-    "pydantic-extra-types",
+    "pydantic-extra-types[pycountry]",
     "pydantic-metamodel",
     "pystow",
     "rdflib",
     "tqdm",
+    "curies",
+    "base32-crockford",
 ]
 
 # see https://peps.python.org/pep-0735/ and https://docs.astral.sh/uv/concepts/dependencies/#dependency-groups
