@@ -18,12 +18,12 @@ from .model import (
     OrganizationDIF13,
 )
 from .picklists import (
-    LOOKUP_DICT_LEARNING_RESOURCE_TYPE,
-    LOOKUP_DICT_MEDIA_TYPE,
-    LOOKUP_DICT_PROFICIENCY_LEVEL,
-    LOOKUP_DICT_RELATED_WORKS,
-    LOOKUP_DICT_TARGET_GROUP,
+    LEARNING_RESOURCE_TYPES,
+    MEDIA_TYPES,
+    PROFICIENCY_LEVELS,
     PROPRIETARY_LICENSE,
+    RELATED_WORKS_RELATIONS,
+    TARGET_GROUPS,
 )
 from ..namespace import DALIA_COMMUNITY, SPDX_LICENSE
 from ..utils import cleanup_languages
@@ -153,7 +153,7 @@ def _process_languages(row: dict[str, str]) -> list[ISO639_3]:
 
 
 def _process_proficiency_levels(row: dict[str, str]) -> list[URIRef]:
-    return [LOOKUP_DICT_PROFICIENCY_LEVEL[x.lower()] for x in _pop_split(row, "ProficiencyLevel")]
+    return [PROFICIENCY_LEVELS[x.lower()] for x in _pop_split(row, "ProficiencyLevel")]
 
 
 def _process_authors(
@@ -213,8 +213,8 @@ def _process_license(row: dict[str, str]) -> str | URIRef | None:
 def _process_target_groups(file_name: str, line: int, row: dict[str, str]) -> list[URIRef]:
     rv = []
     for g in _pop_split(row, "TargetGroup"):
-        if g.lower() in LOOKUP_DICT_TARGET_GROUP:
-            rv.append(LOOKUP_DICT_TARGET_GROUP[g.lower()])
+        if g.lower() in TARGET_GROUPS:
+            rv.append(TARGET_GROUPS[g.lower()])
         else:
             _log(file_name, line, f"unable to lookup target group: {g}")
     return rv
@@ -238,8 +238,8 @@ def _process_learning_resource_types(
         x = x.lower()
         if x.startswith("https://w3id.org/kim/hcrt/"):
             rv.append(URIRef(x))
-        elif x in LOOKUP_DICT_LEARNING_RESOURCE_TYPE:
-            rv.append(LOOKUP_DICT_LEARNING_RESOURCE_TYPE[x])
+        elif x in LEARNING_RESOURCE_TYPES:
+            rv.append(LEARNING_RESOURCE_TYPES[x])
         else:
             _log(file_name, line, f"unable to lookup learning resource type: {x}")
     return rv
@@ -248,8 +248,8 @@ def _process_learning_resource_types(
 def _process_media_types(file_name: str, line: int, row: dict[str, str]) -> list[URIRef]:
     rv = []
     for g in _pop_split(row, "MediaType"):
-        if g in LOOKUP_DICT_MEDIA_TYPE:
-            rv.append(LOOKUP_DICT_MEDIA_TYPE[g])
+        if g in MEDIA_TYPES:
+            rv.append(MEDIA_TYPES[g])
         else:
             _log(file_name, line, f"unable to lookup media type: {g}")
     return rv
@@ -310,7 +310,7 @@ def _process_related_works(
         related_work_substrings = related_work.split(":", maxsplit=1)
 
         relation = related_work_substrings[0].strip()
-        relation_uriref = LOOKUP_DICT_RELATED_WORKS.get(relation, None)
+        relation_uriref = RELATED_WORKS_RELATIONS.get(relation, None)
         if not relation_uriref:
             _log(file_name, line, f'unknown related work relation "{relation}"')
             continue

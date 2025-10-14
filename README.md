@@ -50,6 +50,76 @@ CSV files (both local and remote).
 $ dalia_dif validate https://raw.githubusercontent.com/NFDI4BIOIMAGE/training/refs/heads/main/docs/export/DALIA_training_materials.csv
 ```
 
+Using the data model:
+
+```python
+from pydantic_metamodel.api import PredicateObject
+
+from dalia_dif.dif13.model import AuthorDIF13, EducationalResourceDIF13, OrganizationDIF13
+from dalia_dif.dif13.picklists import (
+    MEDIA_TYPES,
+    PROFICIENCY_LEVELS,
+    RELATED_WORKS_RELATIONS,
+    TARGET_GROUPS,
+    LEARNING_RESOURCE_TYPES,
+)
+from dalia_dif.namespace import HSFS
+
+resource = EducationalResourceDIF13(
+    uuid="b37ddf6e-f136-4230-8418-faf18c4c34d2",
+    title="Chemotion ELN Instruction Videos",
+    description="Chemotion ELN Instruction Videos Chemotion[1] is an open source "
+                "system for storing and managing experiments and molecular data in "
+                "chemistry and its related sciences.",
+    links=["https://doi.org/10.5281/zenodo.7634481"],
+    authors=[
+        AuthorDIF13(given_name="Fabian", family_name="Fink", orcid="0000-0002-1863-2087"),
+        AuthorDIF13(given_name="Salim", family_name="Benjamaa", orcid="0000-0001-6215-6834"),
+        AuthorDIF13(given_name="Nicole", family_name="Parks", orcid="0000-0002-6243-2840"),
+        AuthorDIF13(
+            given_name="Alexander", family_name="Hoffmann", orcid="0000-0002-9647-8839"
+        ),
+        AuthorDIF13(
+            given_name="Sonja", family_name="Herres-Pawlis", orcid="0000-0002-4354-4353"
+        ),
+    ],
+    license="https://creativecommons.org/licenses/by/4.0",
+    supporting_communities=[],
+    recommending_communities=[OrganizationDIF13(name="NFDI4Chem", ror="05wwzbv21")],
+    disciplines=[
+        HSFS["n40"],  # chemistry
+    ],
+    file_formats=[
+        ".mp4",
+    ],
+    keywords=["research data management", "NFDI", "RDM", "FDM", "NFDI4Chem", "Chemotion"],
+    languages=["eng"],
+    learning_resource_types=[
+        LEARNING_RESOURCE_TYPES["tutorial"],
+    ],
+    media_types=[
+        MEDIA_TYPES["video"],
+    ],
+    proficiency_levels=[
+        PROFICIENCY_LEVELS["novice"],
+    ],
+    publication_date="2023-02-13",
+    target_groups=[
+        TARGET_GROUPS["student (ba)"],
+    ],
+    related_works=[
+        PredicateObject(
+            predicate=RELATED_WORKS_RELATIONS["isTranslationOf"],
+            object="https://id.dalia.education/learning-resource/20be255e-e2da-4f9c-90b3-5573d6a12619",
+        )
+    ],
+    file_size="703.2 MB",
+    version=None,
+)
+turtle_str = resource.model_dump_turtle()
+```
+
+
 ## 🚀 Installation
 
 The most recent release can be installed from

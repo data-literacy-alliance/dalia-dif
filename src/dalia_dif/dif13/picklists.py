@@ -6,16 +6,16 @@ from .predicates import RECOMMENDING_COMMUNITY_PRED, SUPPORTING_COMMUNITY_PRED
 from ..namespace import bibo, citedcat, hcrt, modalia
 
 __all__ = [
-    "LOOKUP_DICT_COMMUNITY_RELATION",
-    "LOOKUP_DICT_LEARNING_RESOURCE_TYPE",
-    "LOOKUP_DICT_MEDIA_TYPE",
-    "LOOKUP_DICT_PROFICIENCY_LEVEL",
-    "LOOKUP_DICT_RELATED_WORKS",
-    "LOOKUP_DICT_TARGET_GROUP",
+    "COMMUNITY_RELATIONS",
+    "LEARNING_RESOURCE_TYPES",
+    "MEDIA_TYPES",
+    "PROFICIENCY_LEVELS",
     "PROPRIETARY_LICENSE",
+    "RELATED_WORKS_RELATIONS",
+    "TARGET_GROUPS",
 ]
 
-LOOKUP_DICT_TARGET_GROUP = {
+TARGET_GROUPS = {
     "student (school)": modalia.StudentSchool,
     "student (ba)": modalia.BachelorStudent,
     "student (ma)": modalia.MastersStudent,
@@ -26,7 +26,7 @@ LOOKUP_DICT_TARGET_GROUP = {
     "researcher": modalia.Researcher,
     "content provider": modalia.ContentProvider,
 }
-LOOKUP_DICT_MEDIA_TYPE = {
+MEDIA_TYPES = {
     "audio": SDO.AudioObject,
     "video": SDO.VideoObject,
     "text": SDO.Text,
@@ -35,14 +35,14 @@ LOOKUP_DICT_MEDIA_TYPE = {
     "image": SDO.ImageObject,
     "multipart": modalia.Multipart,
 }
-LOOKUP_DICT_PROFICIENCY_LEVEL = {
+PROFICIENCY_LEVELS = {
     "novice": modalia.Novice,
     "advanced beginner": modalia.Beginner,
     "competent": modalia.Competent,
     "proficient": modalia.Proficient,
     "expert": modalia.Expert,
 }
-LOOKUP_DICT_RELATED_WORKS = {
+RELATED_WORKS_RELATIONS = {
     "isPartOf": modalia.isPartOf,
     "hasPart": SDO.hasPart,
     "isBasedOn": modalia.isBasedOn,
@@ -66,7 +66,7 @@ MEDIA_TYPE_EXCEPTIONS = {
     hcrt.video: "video",
 }
 
-LOOKUP_DICT_LEARNING_RESOURCE_TYPE: dict[str, URIRef] = {
+LEARNING_RESOURCE_TYPES: dict[str, URIRef] = {
     "educational game": hcrt.educational_game,
     "case study": hcrt.case_study,
     "experiment": hcrt.experiment,
@@ -139,7 +139,7 @@ LOOKUP_DICT_LEARNING_RESOURCE_TYPE: dict[str, URIRef] = {
     # "Youtube Channel": None,
 }
 
-LOOKUP_DICT_COMMUNITY_RELATION = {
+COMMUNITY_RELATIONS = {
     "S": SUPPORTING_COMMUNITY_PRED,
     "R": RECOMMENDING_COMMUNITY_PRED,
 }

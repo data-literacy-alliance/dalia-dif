@@ -15,14 +15,14 @@ from .rdf import (
 )
 from ..community import COMMUNITIES_PATH, LOOKUP_DICT_COMMUNITIES, MISSING_COMMUNITIES
 from ..picklists import (
-    LOOKUP_DICT_COMMUNITY_RELATION,
-    LOOKUP_DICT_LEARNING_RESOURCE_TYPE,
-    LOOKUP_DICT_MEDIA_TYPE,
-    LOOKUP_DICT_PROFICIENCY_LEVEL,
-    LOOKUP_DICT_RELATED_WORKS,
-    LOOKUP_DICT_TARGET_GROUP,
+    COMMUNITY_RELATIONS,
+    LEARNING_RESOURCE_TYPES,
     MEDIA_TYPE_EXCEPTIONS,
+    MEDIA_TYPES,
+    PROFICIENCY_LEVELS,
     PROPRIETARY_LICENSE,
+    RELATED_WORKS_RELATIONS,
+    TARGET_GROUPS,
 )
 from ..predicates import (
     DATE_PUBLISHED_PREDICATE,
@@ -86,7 +86,7 @@ def add_media_types_to_lr(g: Graph, lr_node: Node, media_types: str) -> None:
         if not (media_type := media_type.strip()):
             raise Exception("Empty media type")
 
-        media_type_uriref = LOOKUP_DICT_MEDIA_TYPE.get(media_type.lower(), None)
+        media_type_uriref = MEDIA_TYPES.get(media_type.lower(), None)
         if not media_type_uriref:
             raise Exception(f'Unknown media type "{media_type}"')
 
@@ -101,9 +101,7 @@ def add_proficiency_levels_to_lr(g: Graph, lr_node: Node, proficiency_levels: st
         if not (proficiency_level := proficiency_level.strip()):
             raise Exception("Empty proficiency level")
 
-        proficiency_level_uriref = LOOKUP_DICT_PROFICIENCY_LEVEL.get(
-            proficiency_level.lower(), None
-        )
+        proficiency_level_uriref = PROFICIENCY_LEVELS.get(proficiency_level.lower(), None)
         if not proficiency_level_uriref:
             raise Exception(f'Unknown proficiency level "{proficiency_level}"')
 
@@ -133,7 +131,7 @@ def add_target_groups_to_lr(g: Graph, lr_node: Node, target_groups: str) -> None
         if not (target_group := target_group.strip()):
             raise Exception("Empty target group")
 
-        target_group_uriref = LOOKUP_DICT_TARGET_GROUP.get(target_group.lower(), None)
+        target_group_uriref = TARGET_GROUPS.get(target_group.lower(), None)
         if not target_group_uriref:
             raise Exception(f'Unknown target group "{target_group}"')
 
@@ -163,7 +161,7 @@ def add_related_works_to_lr(g: Graph, lr_node: Node, related_works: str) -> None
         related_work_substrings = related_work.split(":", maxsplit=1)
 
         relation = related_work_substrings[0].strip()
-        relation_uriref = LOOKUP_DICT_RELATED_WORKS.get(relation, None)
+        relation_uriref = RELATED_WORKS_RELATIONS.get(relation, None)
         if not relation_uriref:
             raise Exception(f'Unknown related work relation "{relation}"')
 
@@ -288,9 +286,7 @@ def add_learning_resource_types_to_lr(
         if not (learning_resource_type := learning_resource_type.strip()):
             raise Exception("Empty learning resource type")
 
-        lr_type_uriref = LOOKUP_DICT_LEARNING_RESOURCE_TYPE.get(
-            learning_resource_type.lower(), None
-        )
+        lr_type_uriref = LEARNING_RESOURCE_TYPES.get(learning_resource_type.lower(), None)
         if not lr_type_uriref:
             # Try to find it in the HCRT vocabulary.
             hcrt_term = URIRef(learning_resource_type)
@@ -350,5 +346,5 @@ def add_communities_to_lr(
         community_uriref = DALIA_COMMUNITY[community_id]
 
         for relation_char in relation:
-            relation_uriref = LOOKUP_DICT_COMMUNITY_RELATION[relation_char]
+            relation_uriref = COMMUNITY_RELATIONS[relation_char]
             g.add((lr_node, relation_uriref, community_uriref))
