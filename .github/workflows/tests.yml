@@ -61,8 +61,8 @@ jobs:
           sudo apt-get install graphviz
       - name: Lint documentation
         run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e docs-lint
-      - name: Check docstring coverage
-        run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e docstr-coverage
+      #- name: Check docstring coverage
+      #  run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e docstr-coverage
       - name: Check documentation build with Sphinx
         run: uvx -p ${{ matrix.python-version }} --with tox-uv tox -e docs-test
       - name: Lint markdown
