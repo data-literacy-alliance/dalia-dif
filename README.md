@@ -63,7 +63,7 @@ from dalia_dif.dif13.picklists import (
     TARGET_GROUPS,
     LEARNING_RESOURCE_TYPES,
 )
-from dalia_dif.namespace import HSFS
+from dalia_dif.namespace import DALIA_COMMUNITY, HSFS
 
 resource = EducationalResourceDIF13(
     uuid="b37ddf6e-f136-4230-8418-faf18c4c34d2",
@@ -85,7 +85,9 @@ resource = EducationalResourceDIF13(
     ],
     license="https://creativecommons.org/licenses/by/4.0",
     supporting_communities=[],
-    recommending_communities=[OrganizationDIF13(name="NFDI4Chem", ror="05wwzbv21")],
+    recommending_communities=[
+        DALIA_COMMUNITY["bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf"],  # NFDI4Chem 
+    ],
     disciplines=[
         HSFS["n40"],  # chemistry
     ],
