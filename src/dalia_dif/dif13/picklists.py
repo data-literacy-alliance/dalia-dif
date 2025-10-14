@@ -1,0 +1,147 @@
+"""Picklists for DIF v1.3."""
+
+from rdflib import PROV, SDO, URIRef
+
+from .predicates import RECOMMENDING_COMMUNITY_PRED, SUPPORTING_COMMUNITY_PRED
+from ..namespace import bibo, citedcat, hcrt, modalia
+
+__all__ = [
+    "LOOKUP_DICT_COMMUNITY_RELATION",
+    "LOOKUP_DICT_LEARNING_RESOURCE_TYPE",
+    "LOOKUP_DICT_MEDIA_TYPE",
+    "LOOKUP_DICT_PROFICIENCY_LEVEL",
+    "LOOKUP_DICT_RELATED_WORKS",
+    "LOOKUP_DICT_TARGET_GROUP",
+    "PROPRIETARY_LICENSE",
+]
+
+LOOKUP_DICT_TARGET_GROUP = {
+    "student (school)": modalia.StudentSchool,
+    "student (ba)": modalia.BachelorStudent,
+    "student (ma)": modalia.MastersStudent,
+    "student (phd)": modalia.PhDStudent,
+    "data steward": modalia.DataSteward,
+    "teacher (school)": modalia.TeacherSchool,
+    "teacher (higher education)": modalia.TeacherHighEducation,
+    "researcher": modalia.Researcher,
+    "content provider": modalia.ContentProvider,
+}
+LOOKUP_DICT_MEDIA_TYPE = {
+    "audio": SDO.AudioObject,
+    "video": SDO.VideoObject,
+    "text": SDO.Text,
+    "presentation": SDO.PresentationDigitalDocument,
+    "code": modalia.Code,  # FIXME why not SDO.SoftwareSourceCode
+    "image": SDO.ImageObject,
+    "multipart": modalia.Multipart,
+}
+LOOKUP_DICT_PROFICIENCY_LEVEL = {
+    "novice": modalia.Novice,
+    "advanced beginner": modalia.Beginner,
+    "competent": modalia.Competent,
+    "proficient": modalia.Proficient,
+    "expert": modalia.Expert,
+}
+LOOKUP_DICT_RELATED_WORKS = {
+    "isPartOf": modalia.isPartOf,
+    "hasPart": SDO.hasPart,
+    "isBasedOn": modalia.isBasedOn,
+    "isNewerVersionOf": modalia.isNewVersionOf,
+    "isSupplementOf": citedcat.isSupplementTo,
+    "isSupplementTo": citedcat.isSupplementTo,
+    "isSupplementedBy": citedcat.isSupplementedBy,
+    "wasRevisionOf": PROV.wasRevisionOf,
+    "isDuplicateOf": modalia.isDuplicateOf,
+    "isTranslationOf": modalia.isTranslationOf,
+}
+
+
+# Entries that will be ignored during the mapping because they shall be used as media type.
+# Format: URI -> media type to be used instead
+MEDIA_TYPE_EXCEPTIONS = {
+    hcrt.audio: "audio",
+    hcrt.image: "image",
+    hcrt.slide: "presentation",
+    hcrt.text: "text",
+    hcrt.video: "video",
+}
+
+LOOKUP_DICT_LEARNING_RESOURCE_TYPE: dict[str, URIRef] = {
+    "educational game": hcrt.educational_game,
+    "case study": hcrt.case_study,
+    "experiment": hcrt.experiment,
+    "diagram": hcrt.diagram,
+    "course": hcrt.course,
+    "hcrt:diagram": hcrt.diagram,
+    "hcrt:educational_game": hcrt.educational_game,
+    "hcrt:case_study": hcrt.case_study,
+    "hcrt:experiment": hcrt.experiment,
+    # SDO
+    "podcastseries": SDO.PodcastSeries,
+    "schema:podcastseries": SDO.PodcastSeries,
+    "code": SDO.SoftwareSourceCode,
+    # BIBO
+    "article": bibo.Article,
+    "book": bibo.Book,
+    "report": bibo.Report,
+    "webpage": bibo.Webpage,
+    "thesis": bibo.Thesis,
+    "bibo:article": bibo.Article,
+    "bibo:book": bibo.Book,
+    "bibo:report": bibo.Report,
+    "bibo:webpage": bibo.Webpage,
+    "bibo:thesis": bibo.Thesis,
+    # Internal
+    "poster": modalia.Poster,
+    "lecture": modalia.Lecture,
+    "tutorial": modalia.Tutorial,
+    "codenotebook": modalia.CodeNotebook,
+    "bestpractices": modalia.BestPractices,
+    "cookbook": modalia.Cookbook,
+    "mo:poster": modalia.Poster,
+    "mo:lecture": modalia.Lecture,
+    "mo:tutorial": modalia.Tutorial,
+    "mo:codenotebook": modalia.CodeNotebook,
+    "mo:best-practices": modalia.BestPractices,
+    "mo:cookbook": modalia.Cookbook,
+    # added by charlie to clean up errors
+    "interview": modalia.Interview,
+    # Mappings provided by Petra and Abdel for MVP1
+    # "Video": None,
+    # "Presentation": None,
+    # "Website": bibo.Webpage,
+    # "Case studies and tutorials": hcrt.case_study,
+    # "Video (Serie)": None,
+    # "Conference proceeding": None,
+    # "free self-paced course": None,
+    # "Blogpost": None,
+    # "Conference paper": bibo.Article,
+    # "Figure": hcrt.diagram,
+    # "Git repository": None,
+    # "Jupyter Notebook": modalia.JupyterNotebook,
+    # "Project deliverable": bibo.Report,
+    # "Project milestone": bibo.Report,
+    # "Proposal": None,
+    # "Working paper": bibo.Article,
+    # "Best practices and guidelines": modalia.BestPractices,
+    # "Curriculum": None,
+    # "Guide": None,
+    # "Handbook": bibo.Book,
+    # "Image": None,
+    # "in person workshop": modalia.Workshop,
+    # "Journal article": bibo.Article,
+    # "Lesson (Self-Study Unit)": None,
+    # "Other": None,
+    # "Preprint": bibo.Article,
+    # "School": None,
+    # "Software": None,
+    # "Workflow": None,
+    # "Youtube Channel": None,
+}
+
+LOOKUP_DICT_COMMUNITY_RELATION = {
+    "S": SUPPORTING_COMMUNITY_PRED,
+    "R": RECOMMENDING_COMMUNITY_PRED,
+}
+
+PROPRIETARY_LICENSE = modalia.ProprietaryLicense

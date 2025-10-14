@@ -49,11 +49,12 @@ license-files = [
 
 requires-python = ">=3.10"
 dependencies = [
-    "more_itertools", # missing from itertools in stdlib
-    "tqdm", # progress bars
-    "click",
-    "more_click",
-    "typing-extensions",
+    "pydantic",
+    "pydantic-extra-types",
+    "pydantic-metamodel",
+    "pystow",
+    "rdflib",
+    "tqdm",
 ]
 
 # see https://peps.python.org/pep-0735/ and https://docs.astral.sh/uv/concepts/dependencies/#dependency-groups
@@ -218,6 +219,10 @@ ignore = [
 "docs/source/conf.py" = ["ERA001"]
 # Prints are okay in notebooks
 "notebooks/**/*.ipynb" = ["T201"]
+"tests/**/*.py" = ["D103", "D100", "D104", "E501", "ERA001", "S101"]
+"src/dalia_dif/dif13/legacy/**/*.py" = ["D103", "D100", "D104", "N802", "N816", "S101", "ERA001", "E501"]
+"src/dalia_dif/namespace/**/*.py" = ["D103", "D100", "D104", "N802", "N816", "S101", "ERA001", "E501"]
+"src/dalia_dif/dif13/picklists.py" = ["D103", "D100", "D104", "N802", "N816", "S101", "ERA001", "E501"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "pep257"
