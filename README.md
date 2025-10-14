@@ -86,7 +86,7 @@ resource = EducationalResourceDIF13(
     license="https://creativecommons.org/licenses/by/4.0",
     supporting_communities=[],
     recommending_communities=[
-        DALIA_COMMUNITY["bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf"],  # NFDI4Chem 
+        DALIA_COMMUNITY["bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf"],  # NFDI4Chem
     ],
     disciplines=[
         HSFS["n40"],  # chemistry
@@ -120,7 +120,6 @@ resource = EducationalResourceDIF13(
 )
 turtle_str = resource.model_dump_turtle()
 ```
-
 
 ## 🚀 Installation
 
