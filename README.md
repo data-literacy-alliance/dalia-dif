@@ -99,11 +99,22 @@ for more information on getting involved.
 
 The code in this package is licensed under the MIT License.
 
-<!--
 ### 📖 Citation
 
-Citation goes here!
--->
+An abstract describing the DIF has been published in the proceedings of the
+2<sup>nd</end> Conference on Research Data Infrastructure (CoRDI).
+
+```bibtex
+@misc{steiner2025,
+  author    = {Steiner, Petra C. and Geiger, Jonathan D. and Fuhrmans, Marc and Amer Desouki, Abdelmoneim and Hüppe, Henrika M.},
+  title     = {The Revised DALIA Interchange Format - New Picklists for Describing Open Educational Resources},
+  month     = aug,
+  year      = 2025,
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.16736170},
+  url       = {https://doi.org/10.5281/zenodo.16736170},
+}
+```
 
 ### 🎁 Support
 
