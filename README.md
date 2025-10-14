@@ -102,7 +102,7 @@ The code in this package is licensed under the MIT License.
 ### 📖 Citation
 
 An abstract describing the DIF has been published in the proceedings of the
-2<sup>nd</end> Conference on Research Data Infrastructure (CoRDI).
+2<sup>nd</sup> Conference on Research Data Infrastructure (CoRDI).
 
 ```bibtex
 @misc{steiner2025,
