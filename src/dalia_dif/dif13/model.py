@@ -157,7 +157,7 @@ class EducationalResourceDIF13(RDFInstanceBaseModel):
         Field(default_factory=list)
     )
     publication_date: Annotated[
-        Year | datetime.date | None, WithPredicate(DATE_PUBLISHED_PREDICATE)
+        Year | datetime.date | datetime.datetime | None, WithPredicate(DATE_PUBLISHED_PREDICATE)
     ] = None
     target_groups: Annotated[list[RDFResource] | None, WithPredicate(TARGET_GROUP_PREDICATE)] = (
         Field(default_factory=list)

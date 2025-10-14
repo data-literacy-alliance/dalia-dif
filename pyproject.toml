@@ -57,6 +57,7 @@ dependencies = [
     "tqdm",
     "curies",
     "base32-crockford",
+    "types-requests",
 ]
 
 # see https://peps.python.org/pep-0735/ and https://docs.astral.sh/uv/concepts/dependencies/#dependency-groups
