@@ -353,7 +353,7 @@ def barplot_counter(
     return rv
 
 
-def export_chart(graph: rdflib.Graph, path_2: Path) -> None:
+def export_chart(graph: rdflib.Graph, paths: Path | list[Path]) -> None:
     """Export the chart."""
     n_oers = count_oers(graph)
     click.secho(f"DALIA has {n_oers:,} OERs")
@@ -376,5 +376,8 @@ def export_chart(graph: rdflib.Graph, path_2: Path) -> None:
     )
 
     plt.tight_layout()
-    plt.savefig(path_2, dpi=300)
+    if not isinstance(paths, list):
+        paths = [paths]
+    for path in paths:
+        plt.savefig(path, dpi=300)
     plt.close()

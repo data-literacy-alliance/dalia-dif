@@ -35,6 +35,7 @@ from dalia_dif.namespace import DALIA_OER
 __all__ = [
     "dif13_to_sqlite_fti",
     "query_sqlite_fti",
+    "write_sqlite_fti",
 ]
 
 
@@ -93,6 +94,17 @@ def dif13_to_sqlite_fti(paths: str | Path | list[str | Path]) -> sqlite3.Connect
     else:
         raise TypeError(f"`paths` should be a path or list of paths. Got: ({type(paths)}) {paths}")
 
+    return graph_to_conn(graph)
+
+
+def graph_to_conn(graph: rdflib.Graph) -> sqlite3.Connection:
+    df = graph_to_df(graph)
+    conn = sqlite3.connect(":memory:")
+    _dif13_df_to_sqlite(df, conn)
+    return conn
+
+
+def graph_to_df(graph: rdflib.Graph) -> pd.DataFrame:
     titles = defaultdict(set)
     descriptions = defaultdict(set)
     keywords = defaultdict(set)
@@ -117,9 +129,7 @@ def dif13_to_sqlite_fti(paths: str | Path | list[str | Path]) -> sqlite3.Connect
         for uuid in set(titles).union(descriptions).union(keywords)
     ]
     df = pd.DataFrame(rows, columns=["uuid", "title", "description", "keywords"])
-    conn = sqlite3.connect(":memory:")
-    _dif13_df_to_sqlite(df, conn)
-    return conn
+    return df
 
 
 #: Query RDF encoded in DIF v1.3 for an OER's identifier, title, description, and keywords
@@ -130,7 +140,7 @@ SELECT
     ?description
     ?keyword
 WHERE {
-    ?oer a ec:EducationalResource .
+    ?oer a educor:EducationalResource .
     OPTIONAL { ?oer dcterms:title ?title . }
     OPTIONAL { ?oer dcterms:description ?description . }
     OPTIONAL { ?oer schema:keywords ?keyword . }
@@ -155,3 +165,10 @@ def _dif13_df_to_sqlite(df: pd.DataFrame, conn: sqlite3.Connection) -> None:
     with closing(conn.cursor()) as cursor:
         cursor.execute(query)
     df.to_sql("documents", conn, if_exists="append", index=False)
+
+
+def write_sqlite_fti(graph: rdflib.Graph, path: Path) -> None:
+    """Write a SQLite database with a full text index."""
+    df = graph_to_df(graph)
+    with closing(sqlite3.connect(path.as_posix())) as conn:
+        _dif13_df_to_sqlite(df, conn)
