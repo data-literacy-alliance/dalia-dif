@@ -2,7 +2,16 @@
 
 from rdflib import DCTERMS, OWL, SDO, URIRef
 
-from ..namespace import EDUCOR, FABIO, bibframe_lite_relation, fabio, metadata4ing, modalia, rec
+from ..namespace import (
+    EDUCOR,
+    FABIO,
+    bibframe_lite_relation,
+    citedcat,
+    fabio,
+    metadata4ing,
+    modalia,
+    rec,
+)
 
 EDUCATIONAL_RESOURCE_CLASS = EDUCOR["EducationalResource"]
 ORGANIZATION_CLASS = SDO.Organization
@@ -38,3 +47,6 @@ ORGANIZATION_ROR_PREDICATE = metadata4ing.hasRorId
 PERSON_FAMILY_NAME_PREDICATE = SDO.familyName
 PERSON_GIVEN_NAME_PREDICATE = SDO.givenName
 PERSON_ORCID_PREDICATE = metadata4ing.orcidId
+
+IS_SUPPLEMENTED_BY_PREDICATE = citedcat.isSupplementedBy
+NEW_VERSION_OF_PREDICATE = modalia.isNewVersionOf

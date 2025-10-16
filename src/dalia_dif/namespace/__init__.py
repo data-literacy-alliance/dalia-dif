@@ -2,7 +2,7 @@
 
 import curies
 import rdflib
-from rdflib import DCTERMS, RDF, SDO, Namespace
+from rdflib import DCTERMS, RDF, SDO, Graph, Namespace
 
 from .bibframe_lite_relation import BIBFRAME
 from .bibo import BIBO
@@ -41,6 +41,7 @@ __all__ = [
     "YOUTUBE_VIDEO",
     "ZENODO_RECORD",
     "bind",
+    "get_base_graph",
 ]
 
 DALIA_COMMUNITY = Namespace("https://id.dalia.education/community/")
@@ -94,3 +95,10 @@ def bind(graph: rdflib.Graph) -> None:
     """Add default namespaces to a graph."""
     for curie_prefix, uri_prefix in CONVERTER.bimap.items():
         graph.bind(curie_prefix, Namespace(uri_prefix))
+
+
+def get_base_graph() -> Graph:
+    """Get a graph with namespaces already bound."""
+    graph = Graph()
+    bind(graph)
+    return graph

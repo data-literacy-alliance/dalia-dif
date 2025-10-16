@@ -23,3 +23,18 @@ LOOKUP_DICT_COMMUNITIES = _read_mapping()
 del _read_mapping
 
 MISSING_COMMUNITIES: Counter[str] = Counter()
+
+
+def get_community_labels() -> dict[str, str]:
+    """Get community labels."""
+    with open(COMMUNITIES_PATH, newline="") as csvfile:
+        return {
+            row["ID"]: COMMUNITY_RELABELS.get(row["Title"], row["Title"])
+            for row in csv.DictReader(csvfile)
+        }
+
+
+COMMUNITY_RELABELS = {
+    "Nationale Forschungsdateninfrastruktur (NFDI)": "NFDI",
+    "HeFDI - Hessische Forschungsdateninfrastrukturen": "HeFDI",
+}

@@ -1,8 +1,8 @@
 import pytest
 
 from dalia_dif.dif13.legacy import constants as s
-from dalia_dif.dif13.legacy.constants import get_base_dalia_graph as graph
 from dalia_dif.dif13.legacy.learning_resource import parse_dif13_row_legacy
+from dalia_dif.namespace import get_base_graph as graph
 from tests.util import same_graphs
 
 
