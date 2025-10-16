@@ -1,9 +1,5 @@
 """Constants for DIF v1.3."""
 
-from rdflib import Graph
-
-from ...namespace import bind
-
 #
 # Headers in DIF
 #
@@ -29,10 +25,3 @@ DIF_HEADER_VERSION = "Version"
 
 #: separator used for list fields
 DIF_SEPARATOR = " * "
-
-
-def get_base_dalia_graph() -> Graph:
-    """Get a graph with namespaces already bound."""
-    graph = Graph()
-    bind(graph)
-    return graph

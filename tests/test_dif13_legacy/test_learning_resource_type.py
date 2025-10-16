@@ -5,7 +5,7 @@ from dalia_dif.dif13.legacy.components import (
     MEDIA_TYPE_EXCEPTIONS,
     add_learning_resource_types_to_lr,
 )
-from dalia_dif.dif13.legacy.constants import get_base_dalia_graph as graph
+from dalia_dif.namespace import get_base_graph as graph
 from tests.util import same_graphs
 
 

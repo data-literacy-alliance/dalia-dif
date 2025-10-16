@@ -29,9 +29,9 @@ from .components import (
     add_title_to_lr,
     add_version_to_lr,
 )
-from .constants import DIF_HEADER_ID, get_base_dalia_graph
+from .constants import DIF_HEADER_ID
 from ..predicates import EDUCATIONAL_RESOURCE_CLASS
-from ...namespace import DALIA_OER
+from ...namespace import DALIA_OER, get_base_graph
 
 __all__ = [
     "parse_dif13_row_legacy",
@@ -47,7 +47,7 @@ def read_dif13(filename: str | Path, *, sep: str = ",") -> tuple[bool, Graph]:
     :returns: A pair of a boolean "has error" and a RDFlib graph
     """
     has_error = False
-    collection_graph = get_base_dalia_graph()
+    collection_graph = get_base_graph()
 
     path = Path(filename).expanduser().resolve()
     with safe_open_dict_reader(path, delimiter=sep) as reader:

@@ -50,8 +50,8 @@ CSV files (both local and remote).
 $ dalia_dif validate https://raw.githubusercontent.com/NFDI4BIOIMAGE/training/refs/heads/main/docs/export/DALIA_training_materials.csv
 ```
 
-Serialize to RDF with `dalia_dif convert`. It guesses the format based on the file extension,
-right now `.ttl` and `.jsonl` are supported.
+Serialize to RDF with `dalia_dif convert`. It guesses the format based on the
+file extension, right now `.ttl` and `.jsonl` are supported.
 
 ```console
 $ dalia_dif convert -o output.ttl https://raw.githubusercontent.com/NFDI4BIOIMAGE/training/refs/heads/main/docs/export/DALIA_training_materials.csv

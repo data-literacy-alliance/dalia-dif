@@ -2,7 +2,12 @@
 
 from rdflib import PROV, SDO, URIRef
 
-from .predicates import RECOMMENDING_COMMUNITY_PRED, SUPPORTING_COMMUNITY_PRED
+from .predicates import (
+    IS_SUPPLEMENTED_BY_PREDICATE,
+    NEW_VERSION_OF_PREDICATE,
+    RECOMMENDING_COMMUNITY_PRED,
+    SUPPORTING_COMMUNITY_PRED,
+)
 from ..namespace import bibo, citedcat, hcrt, modalia
 
 __all__ = [
@@ -46,10 +51,10 @@ RELATED_WORKS_RELATIONS = {
     "isPartOf": modalia.isPartOf,
     "hasPart": SDO.hasPart,
     "isBasedOn": modalia.isBasedOn,
-    "isNewerVersionOf": modalia.isNewVersionOf,
+    "isNewerVersionOf": NEW_VERSION_OF_PREDICATE,
     "isSupplementOf": citedcat.isSupplementTo,
     "isSupplementTo": citedcat.isSupplementTo,
-    "isSupplementedBy": citedcat.isSupplementedBy,
+    "isSupplementedBy": IS_SUPPLEMENTED_BY_PREDICATE,
     "wasRevisionOf": PROV.wasRevisionOf,
     "isDuplicateOf": modalia.isDuplicateOf,
     "isTranslationOf": modalia.isTranslationOf,
