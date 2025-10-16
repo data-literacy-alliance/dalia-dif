@@ -1,8 +1,11 @@
+# mypy: disable-error-code="misc"
+
 """Summarize from RDF."""
 
 from collections import Counter, defaultdict
 from pathlib import Path
 from textwrap import dedent
+from typing import Any
 
 import click
 import matplotlib.axes
@@ -32,7 +35,8 @@ COUNT_OERS_SPARQL = dedent("""\
 
 def count_oers(graph: rdflib.Graph) -> int:
     """Count OERs."""
-    rv = int(str(next(iter(graph.query(COUNT_OERS_SPARQL)))[0]))
+    res = graph.query(COUNT_OERS_SPARQL)
+    rv = int(str(next(iter(res))[0]))  # type:ignore[index]
     return rv
 
 
@@ -53,11 +57,11 @@ def count_languages(graph: rdflib.Graph, *, upper: int = 4) -> tuple[Counter[str
     dd = defaultdict(list)
     for uuid, lang in res:
         dd[uuid].append(str(lang).removeprefix("http://lexvo.org/id/iso639-3/"))
-    combine = Counter(
+    combine: Counter[str] = Counter(
         ", ".join(sorted(v)) if len(v) < upper else f"eng + {len(v) - 1}" if "eng" in v else len(v)
         for v in dd.values()
     )
-    single = Counter(s for v in dd.values() for s in v)
+    single: Counter[str] = Counter(s for v in dd.values() for s in v)
     return combine, single
 
 
@@ -174,7 +178,7 @@ TARGET_GROUP_RENAMES = {
 }
 
 
-def _remap_target_group(x):
+def _remap_target_group(x: str) -> str:
     return TARGET_GROUP_RENAMES.get(x, x)
 
 
@@ -231,15 +235,17 @@ GET_DISCIPLINE_LABEL_SPARQL = dedent("""\
 
 def get_discipline_names() -> dict[str, str]:
     """Get discipline names (LUID to name map for HSFS)."""
-    dd = defaultdict(list)
+    dd: defaultdict[str, list[tuple[str | None, str]]] = defaultdict(list)
     for iri, label in get_discipline_graph().query(GET_DISCIPLINE_LABEL_SPARQL):
+        if not isinstance(label, rdflib.Literal):
+            raise ValueError
         luid = iri.removeprefix("https://w3id.org/kim/hochschulfaechersystematik/")
         dd[luid].append((label._language, DISCIPLINES_RENAMES.get(label._value, label._value)))
     return {k: min(v, key=_get_best_lang)[1] for k, v in dd.items()}
 
 
-def _get_best_lang(pair):
-    if pair[0] == "en":
+def _get_best_lang(pair: tuple[str | None, Any]) -> tuple[int, str]:
+    if pair[0] == "en" or pair[0] is None:
         return 0, ""
     elif pair[0] == "de":
         return 1, ""
@@ -293,7 +299,7 @@ def count_disciplines(graph: rdflib.Graph) -> Counter[str]:
     rv = Counter(
         names[CONVERTER.parse_uri(discipline, strict=True).identifier] for (discipline,) in res
     )
-    frv = Counter()
+    frv: Counter[str] = Counter()
     for k, v in rv.most_common():
         if v > 1:
             frv[k] = v

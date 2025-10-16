@@ -96,7 +96,7 @@ def dif13_to_sqlite_fti(paths: str | Path | list[str | Path]) -> sqlite3.Connect
     titles = defaultdict(set)
     descriptions = defaultdict(set)
     keywords = defaultdict(set)
-    for uri, title, description, keyword in list(
+    for uri, title, description, keyword in list(  # type:ignore[misc]
         graph.query(DIF13_DISCIPLINE_PREDICATE_SPARQL_QUERY)
     ):
         uuid = uri.removeprefix(str(DALIA_OER))
