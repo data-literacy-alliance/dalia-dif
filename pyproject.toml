@@ -93,7 +93,6 @@ format-docs = [
 doctests = [
     "xdoctest",
     "pygments",
-    ".[fti]",
 ]
 pyroma = [
     "pyroma",
