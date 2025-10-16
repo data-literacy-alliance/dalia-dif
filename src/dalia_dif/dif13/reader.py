@@ -27,12 +27,13 @@ from .picklists import (
     RELATED_WORKS_RELATIONS,
     TARGET_GROUPS,
 )
-from ..namespace import DALIA_COMMUNITY, SPDX_LICENSE, bind
+from ..namespace import DALIA_COMMUNITY, SPDX_LICENSE, bind, get_base_graph
 from ..utils import cleanup_languages
 
 __all__ = [
     "parse_dif13_row",
     "read_dif13",
+    "read_dif13_into_rdflib",
     "write_dif13_jsonl",
     "write_dif13_rdf",
 ]
@@ -112,6 +113,16 @@ def read_dif13(
             if (oer := parse_dif13_row(file_name, idx, record, error_accumulator=error_accumulator))
             is not None
         ]
+
+
+def read_dif13_into_rdflib(
+    path: str | Path | TextIO, *, error_accumulator: list[str] | None = None
+) -> rdflib.Graph:
+    """Read DALIA DIF v1.3 records into a RDFlib graph."""
+    graph = get_base_graph()
+    for record in read_dif13(path, error_accumulator=error_accumulator):
+        record.add_to_graph(graph)
+    return graph
 
 
 def parse_dif13_row(
