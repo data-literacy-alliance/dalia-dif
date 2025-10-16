@@ -1,8 +1,7 @@
 """Full-text indexing utilities.
 
-This module contains the functions for generating a full text index
-in SQLite from open educational resources encoded in RDF using the
-DIF v1.3 schema.
+This module contains the functions for generating a full text index in SQLite from open
+educational resources encoded in RDF using the DIF v1.3 schema.
 
 .. code-block:: python
 
@@ -42,8 +41,11 @@ __all__ = [
 def query_sqlite_fti(query: str, db: str | Path | sqlite3.Connection) -> list[str]:
     """Get UUIDs for documents matching the query.
 
-    :param query: The query string, like `chem`. Can also include wildcards like in `chem*`.
-    :param db: Either a path to a SQLite database file or an already-established connection
+    :param query: The query string, like `chem`. Can also include wildcards like in
+        `chem*`.
+    :param db: Either a path to a SQLite database file or an already-established
+        connection
+
     :returns: A list of UUIDs for OERs that match the query
     """
     sql = _get_fts_sql(query)
@@ -76,13 +78,16 @@ def dif13_to_sqlite_fti(paths: str | Path | list[str | Path]) -> sqlite3.Connect
     """Construct an in-memory SQLite database with a full-text index over OERs encoded in DIF v1.3.
 
     :param paths: The path or paths to turtle files encoding OERs in DIF v1.3
+
     :returns: An in-memory SQLite database object that can be queried
 
     Example usage:
 
-    >>> ttl_path = ...
-    >>> conn = dif13_to_sqlite_fti(ttl_path)
-    >>> uuids = query_sqlite_fti("chem*", conn)
+    .. code-block:: python
+
+        ttl_path = ...
+        conn = dif13_to_sqlite_fti(ttl_path)
+        uuids = query_sqlite_fti("chem*", conn)
     """
     graph = rdflib.Graph()
 

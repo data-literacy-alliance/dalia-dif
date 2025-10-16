@@ -44,6 +44,7 @@ def read_dif13(filename: str | Path, *, sep: str = ",") -> tuple[bool, Graph]:
 
     :param filename: The local filepath.
     :param sep: The seperator for the CSV file.
+
     :returns: A pair of a boolean "has error" and a RDFlib graph
     """
     has_error = False
