@@ -1,5 +1,6 @@
 """Command line interface for :mod:`dalia_dif`."""
 
+import sys
 from pathlib import Path
 
 import click
@@ -18,10 +19,36 @@ def main() -> None:
 @click.option("--dif-version", type=click.Choice(["1.3"]), default="1.3")
 @click.argument("location")
 def validate(location: str, dif_version: str) -> None:
-    """Validate a DIF file."""
+    """Validate a local/remote file or local folder of DIF-encoded CSVs."""
     from dalia_dif.dif13 import read_dif13
 
-    read_dif13(location)
+    fail = False
+    p = Path(location)
+    if p.exists() and p.is_dir():
+        p = p.expanduser().resolve()
+
+        click.echo(f"validating directory: {p}")
+        for path in p.glob("*.csv"):
+            click.secho(f"\n> {path.relative_to(p)}", fg="green")
+            errors: list[str] = []
+            read_dif13(path, error_accumulator=errors)
+            if errors:
+                fail = True
+                for error in errors:
+                    click.secho(error, fg="red")
+        if fail:
+            click.secho("validation failed", fg="red")
+            sys.exit(1)
+
+    else:
+        errors = []
+        read_dif13(location, error_accumulator=errors)
+        if errors:
+            for error in errors:
+                click.secho(error, fg="red")
+
+            click.secho("validation failed", fg="red")
+            sys.exit(1)
 
 
 @main.command()
