@@ -52,6 +52,29 @@ def validate(location: str, dif_version: str) -> None:
 
 
 @main.command()
+@click.argument("location", type=Path)
+def lint(location: Path) -> None:
+    """Lint CSV files in the curation directory."""
+    import uuid
+
+    import pandas as pd
+
+    from .dif13.constants import DIF_HEADER_ID
+
+    count = 0
+    for path in location.glob("*.csv"):
+        df = pd.read_csv(path, sep=",")
+        if DIF_HEADER_ID not in df.columns:
+            click.secho(f"missing column {DIF_HEADER_ID} in {path}")
+            new_columns = [DIF_HEADER_ID, *df.columns]
+            df[DIF_HEADER_ID] = df.index.map(lambda _: str(uuid.uuid4()))
+            df = df[new_columns]
+            df.to_csv(path, sep=",", index=False)
+        count += len(df)
+    click.echo(f"There are a total of {count:,} rows")
+
+
+@main.command()
 @click.option("--dif-version", type=click.Choice(["1.3"]), default="1.3")
 @click.option("--format")
 @click.option("-o", "--output", type=Path)
