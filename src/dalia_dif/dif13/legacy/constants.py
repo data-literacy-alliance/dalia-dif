@@ -1,9 +1,11 @@
 """Constants for DIF v1.3."""
 
+import click
+
 #: A single UUID to represent the resource under the ``dalia.oer`` prefix. Generate this UUID yourself.
 DIF_HEADER_ID = "DALIA_ID"
 #: A list of authors, separated by asterisks. Each author should be written with family names, then a comma, then
-#: given names. If an ORCID is available, then it can be added with a semicolon then inside curly braces like
+#: given names. If an ORCID is available, then it can be added with a colon ``:`` then inside curly braces like
 #: in the following example.
 #:
 #: For example, ``Kremer, Dominik : {https://orcid.org/0000-0003-1244-7363} * Geiger, Jonathan : {https://orcid.org/0000-0002-0452-7075}``
@@ -22,7 +24,7 @@ DIF_HEADER_AUTHORS = "Authors"
 DIF_HEADER_LICENSE = "License"
 #: The URL link to the OER. Ideally, this is a DOI or other persistent identifier, but it can be any URL that resolves
 DIF_HEADER_LINK = "Link"
-#: The title of the resource. Please write this in the same language mentioned in the "Language" column. If a semicolon ``:`` is present,
+#: The title of the resource. Please write this in the same language mentioned in the "Language" column. If a colon ``:`` is present,
 #: the first one will be used to split the title into a title and subtitle, which get put in different fields in DIF v1.3.
 DIF_HEADER_TITLE = "Title"
 #: A list of UUIDs corresponding to pre-curated communities in DALIA. If you would like to request a new one,
@@ -56,8 +58,10 @@ DIF_HEADER_PUBLICATION_DATE = "PublicationDate"
 #: The target audience (e.g., school students, bachelor's level students, data stewards, etc.). Choose
 #: from the keys in :data:`dalia_dif.dif13.picklist.TARGET_GROUPS``.
 DIF_HEADER_TARGET_GROUP = "TargetGroup"
-#: Links to related works. These are curated as an asterik-delimited list of predicate-value pairs like:
-#:
+#: Links to related works. These are curated as an asterisk-delimited list of predicate-value pairs like:
+#: ``isPartOf:https://doi.org/10.11588/heidicon/1738716`` where the first part of the string is a key from
+#: :data:`dalia_dif.dif13.picklist.RELATED_WORKS_RELATIONS`` followed by a colon, then the URL
+#: (ideally a DOI or other persistent identifier) to the target of the relation.
 DIF_HEADER_RELATED_WORK = "RelatedWork"
 #: The size, in megabytes (MB) of the file (e.g., ``0.142``). Use a maximum of 3 places after the decimal point. Do not write `MB`.
 DIF_HEADER_SIZE = "Size"
@@ -67,3 +71,43 @@ DIF_HEADER_VERSION = "Version"
 
 #: separator used for list fields
 DIF_SEPARATOR = " * "
+
+
+@click.command()
+def main():
+    """Create a curation guide based on this document."""
+    import sys
+    from textwrap import dedent
+
+    from sphinx.pycode import ModuleAnalyzer
+
+    analyzer = ModuleAnalyzer.for_file(__file__, "mymodule")
+    analyzer.analyze()
+
+    text = dedent("""\
+    # DALIA DIF v1.3 CSV Curation Guide
+
+    This guide contains an explanation of the headers that can
+    appear within a DIF v1.3 CSV file. Each has an explanation of what
+    data type goes in each (string, URI reference, date, etc.), whether
+    it's required or optional, and an explanation of how to curate values.
+    """)
+
+    # Get the extracted documentation
+    for (_, variable_name), docs_lines in analyzer.attr_docs.items():
+        if variable_name.startswith("DIF_HEADER"):
+            variable_value = getattr(sys.modules[__name__], variable_name)
+            docs = " ".join(docs_lines)
+            column_text = dedent(f"""
+                ## `{variable_value}`
+
+                {docs}
+            """)
+
+            text += column_text
+
+    click.echo(text)
+
+
+if __name__ == "__main__":
+    main()
