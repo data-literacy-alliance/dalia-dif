@@ -4,12 +4,6 @@ import click
 
 #: A single UUID to represent the resource under the ``dalia.oer`` prefix. Generate this UUID yourself.
 DIF_HEADER_ID = "DALIA_ID"
-#: A list of authors, separated by asterisks. Each author should be written with family names, then a comma, then
-#: given names. If an ORCID is available, then it can be added with a colon ``:`` then inside curly braces like
-#: in the following example.
-#:
-#: For example, ``Kremer, Dominik : {https://orcid.org/0000-0003-1244-7363} * Geiger, Jonathan : {https://orcid.org/0000-0002-0452-7075}``
-DIF_HEADER_AUTHORS = "Authors"
 #: The SPDX license describing the upstream resource's terms and conditions. Dashes, spaces, and capitalization
 #: are normalized.
 #:
@@ -24,14 +18,22 @@ DIF_HEADER_AUTHORS = "Authors"
 DIF_HEADER_LICENSE = "License"
 #: The URL link to the OER. Ideally, this is a DOI or other persistent identifier, but it can be any URL that resolves
 DIF_HEADER_LINK = "Link"
+#: The language of the OER, written as an ISO two-letter code (e.g., ``en`` for English, ``de`` for German)
+DIF_HEADER_LANGUAGE = "Language"
 #: The title of the resource. Please write this in the same language mentioned in the "Language" column. If a colon ``:`` is present,
 #: the first one will be used to split the title into a title and subtitle, which get put in different fields in DIF v1.3.
 DIF_HEADER_TITLE = "Title"
+#: A textual description of the resource. Please write this in the same language mentioned in the "Language" column
+DIF_HEADER_DESCRIPTION = "Description"
+#: A list of authors, separated by asterisks. Each author should be written with family names, then a comma, then
+#: given names. If an ORCID is available, then it can be added with a colon ``:`` then inside curly braces like
+#: in the following example.
+#:
+#: For example, ``Kremer, Dominik : {https://orcid.org/0000-0003-1244-7363} * Geiger, Jonathan : {https://orcid.org/0000-0002-0452-7075}``
+DIF_HEADER_AUTHORS = "Authors"
 #: A list of UUIDs corresponding to pre-curated communities in DALIA. If you would like to request a new one,
 #: please get in touch w/ charles.hoyt@ac.rwth-aachem.de.
 DIF_HEADER_COMMUNITY = "Community"
-#: A textual description of the resource. Please write this in the same language mentioned in the "Language" column
-DIF_HEADER_DESCRIPTION = "Description"
 #: The disciplines (e.g., chemistry, biology) covered by the resource encoded using
 #: URIs from the DINI-KIM Hochschulfächersystematik resource, like ``https://w3id.org/kim/hochschulfaechersystematik/n7``
 #: https://bioregistry.io/kim.hcrt
@@ -42,8 +44,6 @@ DIF_HEADER_FILE_FORMAT = "FileFormat"
 #: Free text keywords for the resource, delimited by an asterick (e.g., ``digital humanities * culture``).
 #: Please write keywords in the same language mentioned in the "Language" column
 DIF_HEADER_KEYWORDS = "Keywords"
-#: The language of the OER, written as an ISO two-letter code (e.g., ``en`` for English, ``de`` for German)
-DIF_HEADER_LANGUAGE = "Language"
 #: The learning resource type. Choose one of the keys in :data:`dalia_dif.dif13.picklist.LEARNING_RESOURCE_TYPES``.
 DIF_HEADER_LEARNING_RESOURCE_TYPE = "LearningResourceType"
 #: The media type says what modality the learning resource has (e.g., audio, video, text).
@@ -72,7 +72,10 @@ DIF_HEADER_VERSION = "Version"
 #: separator used for list fields
 DIF_SEPARATOR = " * "
 
+REQUIRED = {
+    DIF_HEADER_ID, DIF_HEADER_LINK, DIF_HEADER_TITLE, DIF_HEADER_LANGUAGE, DIF_HEADER_LICENSE
 
+}
 @click.command()
 def main():
     """Create a curation guide based on this document."""
@@ -98,8 +101,9 @@ def main():
         if variable_name.startswith("DIF_HEADER"):
             variable_value = getattr(sys.modules[__name__], variable_name)
             docs = " ".join(docs_lines)
+            required_text = " (required)" if variable_value in REQUIRED else ""
             column_text = dedent(f"""
-                ## `{variable_value}`
+                ## `{variable_value}`{required_text}
 
                 {docs}
             """)
