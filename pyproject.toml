@@ -38,7 +38,9 @@ classifiers = [
 keywords = [
     "snekpack", # please keep this keyword to credit the cookiecutter-snekpack template
     "cookiecutter",
-    # TODO add your own free-text keywords
+    "open educational resources",
+    "educational resources",
+    "training",
 ]
 
 # License Information.
@@ -49,6 +51,7 @@ license-files = [
 
 requires-python = ">=3.10"
 dependencies = [
+    "click",
     "pydantic",
     "pydantic-extra-types[pycountry]",
     "pydantic-metamodel",
@@ -115,6 +118,11 @@ release = [
 # see https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#dependencies-optional-dependencies
 [project.optional-dependencies]
 fti = [
+    "pandas",
+]
+export = [
+    "matplotlib",
+    "seaborn",
     "pandas",
 ]
 
