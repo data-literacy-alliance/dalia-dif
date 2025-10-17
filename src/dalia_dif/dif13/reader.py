@@ -144,8 +144,6 @@ def parse_dif13_row(
 
     title, _, subtitle = map(str.strip, row.pop("Title").partition(":"))
 
-    error_accumulator = []
-
     uuid = row.pop("DALIA_ID", None) or row.pop("uuid", None)
     if not uuid:
         _log(file_name, idx, "no UUID given", error_accumulator=error_accumulator)
