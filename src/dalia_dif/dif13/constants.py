@@ -7,10 +7,8 @@ DIF_HEADER_ID = "DALIA_ID"
 #: The SPDX license describing the upstream resource's terms and conditions. Dashes, spaces, and capitalization
 #: are normalized.
 #:
-#: .. warning::
-#:
-#:    Don't confuse this with the licensing of the metadata curated in the DIF, which is licensed
-#:    independently (we suggest CC0 for maximum reusability)
+#: Warning: don't confuse this with the licensing of the metadata curated in the DIF, which is licensed
+#: independently (we suggest CC0 for maximum reusability)
 #:
 #: This field also accepts the literal strings
 #: ``proprietary`` or ``unlicensed``. For example, videos on YouTube are often licensed with
@@ -104,13 +102,13 @@ def main():
     for (_, variable_name), docs_lines in analyzer.attr_docs.items():
         if variable_name.startswith("DIF_HEADER"):
             variable_value = getattr(sys.modules[__name__], variable_name)
-            docs = " ".join(docs_lines)
+            docs = "\n".join(docs_lines)
             required_text = " (required)" if variable_value in REQUIRED else ""
-            column_text = dedent(f"""
-                ### `{variable_value}`{required_text}
+            column_text = f"""
+### `{variable_value}`{required_text}
 
-                {docs}
-            """)
+{docs}
+            """
 
             text += column_text
 
