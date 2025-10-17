@@ -6,7 +6,6 @@ from pathlib import Path
 import click
 from rdflib import XSD, Graph, Literal, Node, URIRef
 
-from .constants import DIF_SEPARATOR
 from .rdf import (
     check_discipline_exists,
     check_resource_type_exists,
@@ -14,6 +13,7 @@ from .rdf import (
     get_license_uriref,
 )
 from ..community import COMMUNITIES_PATH, LOOKUP_DICT_COMMUNITIES, MISSING_COMMUNITIES
+from ..constants import DIF_SEPARATOR
 from ..picklists import (
     COMMUNITY_RELATIONS,
     LEARNING_RESOURCE_TYPES,

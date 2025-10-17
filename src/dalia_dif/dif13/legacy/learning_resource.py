@@ -8,7 +8,6 @@ from pystow.utils import safe_open_dict_reader
 from rdflib import RDF, Graph
 from tqdm import tqdm
 
-from . import constants
 from .authors import add_authors_to_lr
 from .components import (
     add_communities_to_lr,
@@ -30,6 +29,7 @@ from .components import (
     add_version_to_lr,
 )
 from .constants import DIF_HEADER_ID
+from .. import constants
 from ..predicates import EDUCATIONAL_RESOURCE_CLASS
 from ...namespace import DALIA_OER, get_base_graph
 
