@@ -41,6 +41,9 @@ workflow for serializing to RDF based on
 [pydantic-metamodel](https://github.com/cthoyt/pydantic-metamodel), a CSV
 reader, and a command line validator.
 
+A tutorial/guide for curating OERs in a tabular form (CSV) can be found
+[here](docs/curation.md).
+
 ## 💪 Getting Started
 
 The `dalia_dif` command line tool can be used from the console with to validate

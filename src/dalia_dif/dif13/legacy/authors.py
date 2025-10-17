@@ -6,7 +6,7 @@ import base32_crockford
 from rdflib import RDF, Graph
 from rdflib.term import BNode, Literal, Node, URIRef
 
-from .constants import DIF_SEPARATOR
+from ..constants import DIF_SEPARATOR
 from ..predicates import (
     AUTHOR_PREDICATE,
     AUTHOR_UNORDERED_PREDICATE,
