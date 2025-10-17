@@ -35,7 +35,7 @@ DIF_HEADER_DESCRIPTION = "Description"
 #: For example, `Kremer, Dominik : {https://orcid.org/0000-0003-1244-7363} * Geiger, Jonathan : {https://orcid.org/0000-0002-0452-7075}`
 DIF_HEADER_AUTHORS = "Authors"
 #: A list of UUIDs corresponding to pre-curated communities in DALIA. If you would like to request
-#: a new one, please get in touch w/ charles.hoyt@ac.rwth-aachem.de.
+#: a new one, please email charles.hoyt@ac.rwth-aachen.de.
 DIF_HEADER_COMMUNITY = "Community"
 #: The disciplines (e.g., chemistry, biology) covered by the resource encoded using
 #: URIs from the DINI-KIM Hochschulfächersystematik resource, like
@@ -43,7 +43,7 @@ DIF_HEADER_COMMUNITY = "Community"
 #:
 #: See https://w3id.org/kim/hcrt/scheme.html where you can search for the term and copy
 #: the correct URI. When a discipline is missing from the resource, please either directly make an
-#: issue on the upstream [GitHub repository](https://github.com/dini-ag-kim/hcrt) or contact
+#: issue on the upstream [GitHub repository](https://github.com/dini-ag-kim/hcrt) or email
 #: charles.hoyt@ac.rwth-aachen.de for help
 DIF_HEADER_DISCIPLINE = "Discipline"
 #: A list of file extensions used by the resource (e.g., `.pdf`).

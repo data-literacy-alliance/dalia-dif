@@ -59,8 +59,7 @@ For example,
 ### `Community`
 
 A list of UUIDs corresponding to pre-curated communities in DALIA. If you would
-like to request a new one, please get in touch w/
-charles.hoyt@ac.rwth-aachem.de.
+like to request a new one, please email charles.hoyt@ac.rwth-aachen.de.
 
 ### `Discipline`
 
@@ -71,7 +70,7 @@ https://w3id.org/kim/hochschulfaechersystematik/n7.
 See https://w3id.org/kim/hcrt/scheme.html where you can search for the term and
 copy the correct URI. When a discipline is missing from the resource, please
 either directly make an issue on the upstream
-[GitHub repository](https://github.com/dini-ag-kim/hcrt) or contact
+[GitHub repository](https://github.com/dini-ag-kim/hcrt) or email
 charles.hoyt@ac.rwth-aachen.de for help
 
 ### `FileFormat`
