@@ -19,6 +19,7 @@ from pydantic_metamodel.api import (
 )
 from rdflib import BNode, Node, URIRef
 
+from .legacy import constants
 from .predicates import (
     AUTHOR_PREDICATE,
     AUTHOR_UNORDERED_PREDICATE,
@@ -122,23 +123,31 @@ class EducationalResourceDIF13(RDFInstanceBaseModel):
     rdf_type: ClassVar[URIRef] = EDUCATIONAL_RESOURCE_CLASS
 
     uuid: UUID4
-    title: Annotated[str, WithPredicate(TITLE_PREDICATE)]
+    title: Annotated[str, WithPredicate(TITLE_PREDICATE)] = Field(
+        ..., description=constants.DIF_HEADER_TITLE.__doc__
+    )
     subtitle: Annotated[str | None, WithPredicate(SUBTITLE_PREDICATE)] = None
     # TODO what about making the list ordered?
     authors: Annotated[list[AuthorDIF13 | OrganizationDIF13], AuthorAnnotation()] = Field(
-        default_factory=list
+        default_factory=list, description=constants.DIF_HEADER_AUTHORS.__doc__
     )
-    license: Annotated[RDFResource | None, WithPredicate(LICENSE_PREDICATE)] = None
-    links: Annotated[list[RDFResource], WithPredicate(LINK_PREDICATE)] = Field(default_factory=list)
+    license: Annotated[RDFResource | None, WithPredicate(LICENSE_PREDICATE)] = Field(
+        None, description=constants.DIF_HEADER_LICENSE.__doc__
+    )
+    links: Annotated[list[RDFResource], WithPredicate(LINK_PREDICATE)] = Field(
+        default_factory=list, description=constants.DIF_HEADER_LINK.__doc__
+    )
     supporting_communities: Annotated[
         list[RDFResource], WithPredicate(SUPPORTING_COMMUNITY_PRED)
-    ] = Field(default_factory=list)
+    ] = Field(default_factory=list, description=constants.DIF_HEADER_COMMUNITY.__doc__)
     recommending_communities: Annotated[
         list[RDFResource], WithPredicate(RECOMMENDING_COMMUNITY_PRED)
-    ] = Field(default_factory=list)
-    description: Annotated[str | None, WithPredicate(DESCRIPTION_PREDICATE)] = None
+    ] = Field(default_factory=list, description=constants.DIF_HEADER_COMMUNITY.__doc__)
+    description: Annotated[str | None, WithPredicate(DESCRIPTION_PREDICATE)] = Field(
+        None, description=constants.DIF_HEADER_DESCRIPTION.__doc__
+    )
     disciplines: Annotated[list[RDFResource] | None, WithPredicate(DISCIPLINE_PREDICATE)] = Field(
-        default_factory=list
+        default_factory=list, description=constants.DIF_HEADER_DISCIPLINE.__doc__
     )
     file_formats: Annotated[list[str] | None, WithPredicate(FILE_FORMAT_PREDICATE)] = Field(
         default_factory=list
