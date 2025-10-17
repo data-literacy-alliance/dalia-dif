@@ -102,7 +102,7 @@ def main() -> None:
 
     from sphinx.pycode import ModuleAnalyzer
 
-    module_root =  Path(__file__).parent.parent.resolve()
+    module_root = Path(__file__).parent.parent.resolve()
     repo_root = module_root.parent.parent.resolve()
 
     path = repo_root.joinpath("docs", "curation.md")
