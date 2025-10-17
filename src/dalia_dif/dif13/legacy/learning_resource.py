@@ -28,8 +28,8 @@ from .components import (
     add_title_to_lr,
     add_version_to_lr,
 )
-from .constants import DIF_HEADER_ID
 from .. import constants
+from ..constants import DIF_HEADER_ID
 from ..predicates import EDUCATIONAL_RESOURCE_CLASS
 from ...namespace import DALIA_OER, get_base_graph
 

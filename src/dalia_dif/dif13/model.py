@@ -19,7 +19,7 @@ from pydantic_metamodel.api import (
 )
 from rdflib import BNode, Node, URIRef
 
-from .legacy import constants
+from . import constants
 from .predicates import (
     AUTHOR_PREDICATE,
     AUTHOR_UNORDERED_PREDICATE,
