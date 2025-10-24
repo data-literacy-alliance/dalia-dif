@@ -171,10 +171,10 @@ def parse_dif13_row(
         return None
 
     keywords = []
-    tags = []
+    xrefs = []
     for keyword in _pop_split(row, "Keywords"):
         if ":" in keyword and converter is not None and converter.is_curie(keyword):
-            tags.append(URIRef(converter.expand(keyword, strict=True)))
+            xrefs.append(URIRef(converter.expand(keyword, strict=True)))
         else:
             keywords.append(keyword)
 
@@ -194,7 +194,7 @@ def parse_dif13_row(
             ),
             file_formats=_process_formats(row),
             keywords=keywords,
-            tags=tags,
+            tags=xrefs,
             languages=_process_languages(row),
             learning_resource_types=_process_learning_resource_types(
                 file_name, idx, row, error_accumulator=error_accumulator

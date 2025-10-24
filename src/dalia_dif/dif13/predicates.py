@@ -34,6 +34,7 @@ LANGUAGE_PREDICATE = DCTERMS.language
 DATE_PUBLISHED_PREDICATE = SDO.datePublished
 LEARNING_RESOURCE_TYPE_PREDICATE = modalia.hasLearningType
 KEYWORDS_PREDICATE = SDO.keywords
+XREF_PREDICATE = URIRef("http://www.geneontology.org/formats/oboInOwl#hasDbXref")
 FILE_FORMAT_PREDICATE = DCTERMS.format
 DESCRIPTION_PREDICATE = DCTERMS.description
 
