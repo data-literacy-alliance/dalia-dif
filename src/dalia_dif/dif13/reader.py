@@ -194,7 +194,7 @@ def parse_dif13_row(
             ),
             file_formats=_process_formats(row),
             keywords=keywords,
-            tags=xrefs,
+            xrefs=xrefs,
             languages=_process_languages(row),
             learning_resource_types=_process_learning_resource_types(
                 file_name, idx, row, error_accumulator=error_accumulator
