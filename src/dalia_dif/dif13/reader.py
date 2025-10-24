@@ -5,6 +5,7 @@ from collections import Counter
 from pathlib import Path
 from typing import TextIO
 
+import bioregistry
 import click
 import rdflib
 from pydantic_extra_types.language_code import ISO639_3
@@ -149,6 +150,17 @@ def parse_dif13_row(
         _log(file_name, idx, "no UUID given", error_accumulator=error_accumulator)
         return None
 
+    keywords = []
+    tags = []
+    for keyword in _pop_split(row, "Keywords"):
+        try:
+            x = bioregistry.get_iri(keyword)
+        except:
+            keywords.append(keyword)
+        else:
+            click.echo(f"GOT ONE! {keyword} to {x}")
+            tags.append(x)
+
     try:
         rv = EducationalResourceDIF13(
             uuid=uuid,
@@ -164,7 +176,8 @@ def parse_dif13_row(
                 file_name, idx, row, error_accumulator=error_accumulator
             ),
             file_formats=_process_formats(row),
-            keywords=_pop_split(row, "Keywords"),
+            keywords=keywords,
+            tags=tags,
             languages=_process_languages(row),
             learning_resource_types=_process_learning_resource_types(
                 file_name, idx, row, error_accumulator=error_accumulator
