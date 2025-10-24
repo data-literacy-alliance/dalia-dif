@@ -154,7 +154,9 @@ class EducationalResourceDIF13(RDFInstanceBaseModel):
     )
     keywords: Annotated[list[str], WithPredicate(KEYWORDS_PREDICATE)] = Field(default_factory=list)
     # TODO what predicate to use here?
-    tags: Annotated[list[RDFResource], WithPredicate(KEYWORDS_PREDICATE)] = Field(default_factory=list)
+    tags: Annotated[list[RDFResource], WithPredicate(KEYWORDS_PREDICATE)] = Field(
+        default_factory=list
+    )
     languages: Annotated[
         list[ISO639_3], WithPredicateNamespace(LANGUAGE_PREDICATE, ISO639_3_NS)
     ] = Field(default_factory=list)

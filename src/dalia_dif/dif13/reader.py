@@ -153,13 +153,16 @@ def parse_dif13_row(
     keywords = []
     tags = []
     for keyword in _pop_split(row, "Keywords"):
-        try:
-            x = bioregistry.get_iri(keyword)
-        except:
+        if ":" not in keyword:
             keywords.append(keyword)
         else:
-            click.echo(f"GOT ONE! {keyword} to {x}")
-            tags.append(x)
+            try:
+                x = bioregistry.get_iri(keyword)
+            except ValueError:
+                keywords.append(keyword)
+            else:
+                click.echo(f"GOT ONE! {keyword} to {x}")
+                tags.append(x)
 
     try:
         rv = EducationalResourceDIF13(
