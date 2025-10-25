@@ -176,7 +176,7 @@ def parse_dif13_row(
         if ":" not in keyword or converter is None:
             keywords.append(keyword)
         elif converter is None:
-            raise ValueError('CURIE given in keyword without specifying a converter')
+            raise ValueError("CURIE given in keyword without specifying a converter")
         else:
             uri = converter.expand(keyword)
             if uri:
