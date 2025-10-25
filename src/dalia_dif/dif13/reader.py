@@ -173,10 +173,16 @@ def parse_dif13_row(
     keywords = []
     xrefs = []
     for keyword in _pop_split(row, "Keywords"):
-        if ":" in keyword and converter is not None and converter.is_curie(keyword):
-            xrefs.append(URIRef(converter.expand(keyword, strict=True)))
-        else:
+        if ":" not in keyword or converter is None:
             keywords.append(keyword)
+        elif converter is None:
+            raise ValueError('CURIE given in keyword without specifying a converter')
+        else:
+            uri = converter.expand(keyword)
+            if uri:
+                xrefs.append(URIRef(uri))
+            else:
+                raise ValueError(f"converter was unable to expand CURIE in keyword: {keyword}")
 
     try:
         rv = EducationalResourceDIF13(

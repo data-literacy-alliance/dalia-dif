@@ -58,6 +58,8 @@ T4FS = Namespace("http://purl.obolibrary.org/obo/T4FS_")
 ORCID = Namespace("https://orcid.org/")
 ROR = Namespace("https://ror.org/")
 DOI = Namespace("https://doi.org/")
+OBO = Namespace("http://purl.obolibrary.org/obo/")
+OBOINOWL = Namespace("http://www.geneontology.org/formats/oboInOwl#")
 
 
 NAMESPACE_PREFIXES: dict[str, Namespace] = {
@@ -86,6 +88,8 @@ NAMESPACE_PREFIXES: dict[str, Namespace] = {
     "zenodo": ZENODO_RECORD,
     "occo": OCCO,
     "t4fs": T4FS,
+    "oboInOwl": OBOINOWL,
+    "obo": OBO,
 }
 
 CONVERTER = curies.Converter.from_prefix_map({k: str(v) for k, v in NAMESPACE_PREFIXES.items()})
