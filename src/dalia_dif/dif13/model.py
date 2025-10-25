@@ -50,6 +50,7 @@ from .predicates import (
     TARGET_GROUP_PREDICATE,
     TITLE_PREDICATE,
     VERSION_PREDICATE,
+    XREF_PREDICATE,
 )
 from .utils import create_rdf_collection
 from ..namespace import DALIA_OER, WIKIDATA
@@ -153,6 +154,7 @@ class EducationalResourceDIF13(RDFInstanceBaseModel):
         default_factory=list
     )
     keywords: Annotated[list[str], WithPredicate(KEYWORDS_PREDICATE)] = Field(default_factory=list)
+    xrefs: Annotated[list[RDFResource], WithPredicate(XREF_PREDICATE)] = Field(default_factory=list)
     languages: Annotated[
         list[ISO639_3], WithPredicateNamespace(LANGUAGE_PREDICATE, ISO639_3_NS)
     ] = Field(default_factory=list)

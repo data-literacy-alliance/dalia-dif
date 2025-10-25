@@ -1,11 +1,13 @@
 """Reader for DIF v1.3."""
 
+import logging
 import re
 from collections import Counter
 from pathlib import Path
 from typing import TextIO
 
 import click
+import curies
 import rdflib
 from pydantic_extra_types.language_code import ISO639_3
 from pydantic_metamodel.api import PredicateObject, RDFResource, Year
@@ -37,6 +39,8 @@ __all__ = [
     "write_dif13_jsonl",
     "write_dif13_rdf",
 ]
+
+logger = logging.getLogger(__name__)
 
 DELIMITER = " * "
 
@@ -89,7 +93,10 @@ def write_dif13_jsonl(
 
 
 def read_dif13(
-    path: str | Path | TextIO, *, error_accumulator: list[str] | None = None
+    path: str | Path | TextIO,
+    *,
+    error_accumulator: list[str] | None = None,
+    converter: curies.Converter | None = None,
 ) -> list[EducationalResourceDIF13]:
     """Parse DALIA records."""
     if isinstance(path, str) and (path.startswith("http://") or path.startswith("https://")):
@@ -106,11 +113,24 @@ def read_dif13(
         file_name = Path(path).name
     else:
         file_name = path.name
+
+    if converter is None:
+        try:
+            import bioregistry
+        except ImportError:
+            logger.info("no converter given and bioregistry couldn't be imported")
+        else:
+            converter = bioregistry.get_default_converter()
+
     with safe_open_dict_reader(path, delimiter=",") as reader:
         return [
             oer
             for idx, record in enumerate(reader, start=2)
-            if (oer := parse_dif13_row(file_name, idx, record, error_accumulator=error_accumulator))
+            if (
+                oer := parse_dif13_row(
+                    file_name, idx, record, error_accumulator=error_accumulator, converter=converter
+                )
+            )
             is not None
         ]
 
@@ -132,6 +152,7 @@ def parse_dif13_row(
     *,
     future: bool = False,
     error_accumulator: list[str] | None = None,
+    converter: curies.Converter | None = None,
 ) -> EducationalResourceDIF13 | None:
     """Convert a row in a DALIA curation file to a resource, or return none if unable."""
     supporting_communities, recommending_communities = _process_communities(
@@ -149,6 +170,20 @@ def parse_dif13_row(
         _log(file_name, idx, "no UUID given", error_accumulator=error_accumulator)
         return None
 
+    keywords = []
+    xrefs = []
+    for keyword in _pop_split(row, "Keywords"):
+        if ":" not in keyword or converter is None:
+            keywords.append(keyword)
+        elif converter is None:
+            raise ValueError("CURIE given in keyword without specifying a converter")
+        else:
+            uri = converter.expand(keyword)
+            if uri:
+                xrefs.append(URIRef(uri))
+            else:
+                raise ValueError(f"converter was unable to expand CURIE in keyword: {keyword}")
+
     try:
         rv = EducationalResourceDIF13(
             uuid=uuid,
@@ -164,7 +199,8 @@ def parse_dif13_row(
                 file_name, idx, row, error_accumulator=error_accumulator
             ),
             file_formats=_process_formats(row),
-            keywords=_pop_split(row, "Keywords"),
+            keywords=keywords,
+            xrefs=xrefs,
             languages=_process_languages(row),
             learning_resource_types=_process_learning_resource_types(
                 file_name, idx, row, error_accumulator=error_accumulator
