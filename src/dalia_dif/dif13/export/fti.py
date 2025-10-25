@@ -25,11 +25,14 @@ from collections import defaultdict
 from contextlib import closing
 from pathlib import Path
 from textwrap import dedent
+from typing import TYPE_CHECKING
 
-import pandas as pd
 import rdflib
 
 from dalia_dif.namespace import DALIA_OER
+
+if TYPE_CHECKING:
+    import pandas
 
 __all__ = [
     "dif13_to_sqlite_fti",
@@ -109,7 +112,9 @@ def graph_to_conn(graph: rdflib.Graph) -> sqlite3.Connection:
     return conn
 
 
-def graph_to_df(graph: rdflib.Graph) -> pd.DataFrame:
+def graph_to_df(graph: rdflib.Graph) -> pandas.DataFrame:
+    import pandas as pd
+
     titles = defaultdict(set)
     descriptions = defaultdict(set)
     keywords = defaultdict(set)
@@ -153,7 +158,7 @@ WHERE {
 """
 
 
-def _dif13_df_to_sqlite(df: pd.DataFrame, conn: sqlite3.Connection) -> None:
+def _dif13_df_to_sqlite(df: pandas.DataFrame, conn: sqlite3.Connection) -> None:
     """Write a dataframe to a SQLite database (which could be in-memory)."""
     # Enable FTS5 extension (usually built-in with modern SQLite)
     # Create FTS5 virtual table

@@ -5,18 +5,18 @@
 from collections import Counter, defaultdict
 from pathlib import Path
 from textwrap import dedent
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import click
-import matplotlib.axes
-import matplotlib.pyplot as plt
 import rdflib
-import seaborn as sns
 
 from dalia_dif.dif13.community import get_community_labels
 from dalia_dif.dif13.legacy.rdf import get_discipline_graph
 from dalia_dif.dif13.predicates import RECOMMENDING_COMMUNITY_PRED, SUPPORTING_COMMUNITY_PRED
 from dalia_dif.namespace import CONVERTER
+
+if TYPE_CHECKING:
+    import matplotlib.axes
 
 __all__ = [
     "export_chart",
@@ -344,6 +344,8 @@ def barplot_counter(
     log: bool = True,
 ) -> matplotlib.axes.Axes:
     """Plot a counter."""
+    import seaborn as sns
+
     categories, counts = zip(*counter.most_common(), strict=False)
     rv = sns.barplot(y=categories, x=counts, ax=ax)
     if title:
@@ -355,6 +357,8 @@ def barplot_counter(
 
 def export_chart(graph: rdflib.Graph, paths: Path | list[Path]) -> None:
     """Export the chart."""
+    import matplotlib.pyplot as plt
+
     n_oers = count_oers(graph)
     click.secho(f"DALIA has {n_oers:,} OERs")
 
