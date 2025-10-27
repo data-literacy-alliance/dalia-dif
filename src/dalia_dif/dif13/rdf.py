@@ -8,6 +8,7 @@ from rdflib import XSD, Literal, URIRef
 from rdflib.plugins.sparql import prepareQuery
 
 __all__ = [
+    "add_background_triples",
     "check_discipline_exists",
     "check_resource_type_exists",
     "get_discipline_graph",
@@ -15,6 +16,7 @@ __all__ = [
     "get_language_uriref",
     "get_license_uriref",
     "get_licenses_graph",
+    "get_modalia_graph",
     "get_resource_type_graph",
 ]
 
@@ -33,6 +35,7 @@ def get_discipline_graph() -> rdflib.Graph:
 
 @lru_cache
 def check_discipline_exists(discipline_uriref: URIRef) -> bool:
+    """Check if the discipline exists."""
     result = get_discipline_graph().query(
         HFS_EXISTS_QUERY,
         initBindings={"discipline": discipline_uriref},
@@ -65,6 +68,7 @@ def get_licenses_graph() -> rdflib.Graph:
 
 @lru_cache
 def get_license_uriref(identifier: str) -> URIRef | None:
+    """Get the reference for a license."""
     results = get_licenses_graph().query(
         GET_LICENSE_URI_FROM_SPDX_QUERY, initBindings={"identifier": Literal(identifier)}
     )
@@ -84,7 +88,7 @@ LANGUAGE_URI_QUERY = prepareQuery("""
     WHERE {
         ?language_uri lexvo:iso6392BCode|lexvo:iso6392TCode|lexvo:iso639P1Code|lexvo:iso639P3PCode ?language .
     }
-""")
+""")  # noqa:E501
 
 
 @lru_cache(1)
@@ -97,6 +101,7 @@ def get_language_graph() -> rdflib.Graph:
 
 @lru_cache
 def get_language_uriref(language: str) -> URIRef | None:
+    """Get a URI ref based on a language."""
     results = get_language_graph().query(
         LANGUAGE_URI_QUERY, initBindings={"language": Literal(language, datatype=XSD.string)}
     )
@@ -117,7 +122,10 @@ HCRT_TERM_EXISTS_QUERY = prepareQuery("""\
 
 @lru_cache(1)
 def get_resource_type_graph() -> rdflib.Graph:
-    """Get the learning resource type graph from DINI-KIM's Hochschulcampus Ressourcentypen (HCRT) graph."""
+    """Get the learning resource type graph.
+
+    This comes from DINI-KIM's Hochschulcampus Ressourcentypen (HCRT) graph.
+    """
     return pystow.ensure_rdf("dalia", url=HCRT_TTL)
 
 
@@ -130,3 +138,21 @@ def check_resource_type_exists(hcrt_term: URIRef) -> bool:
     if result.askAnswer is None:
         raise RuntimeError
     return result.askAnswer
+
+
+MODALIA_TTL = "https://git.rwth-aachen.de/dalia/dalia-ontology/-/raw/main/MoDalia.ttl"
+
+
+def get_modalia_graph(*, force: bool = False) -> rdflib.Graph:
+    """Get the MoDalia graph."""
+    graph = pystow.ensure_rdf("dalia", url=HCRT_TTL, force=force)
+    return graph
+
+
+def add_background_triples(graph: rdflib.Graph, force: bool = False) -> None:
+    """Enrich graph."""
+    graph += get_modalia_graph(force=force)
+    graph += get_resource_type_graph()
+    graph += get_language_graph()
+    graph += get_licenses_graph()
+    graph += get_discipline_graph()

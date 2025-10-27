@@ -11,8 +11,8 @@ import click
 import rdflib
 
 from dalia_dif.dif13.community import get_community_labels
-from dalia_dif.dif13.legacy.rdf import get_discipline_graph
 from dalia_dif.dif13.predicates import RECOMMENDING_COMMUNITY_PRED, SUPPORTING_COMMUNITY_PRED
+from dalia_dif.dif13.rdf import get_discipline_graph
 from dalia_dif.namespace import CONVERTER
 
 if TYPE_CHECKING:
