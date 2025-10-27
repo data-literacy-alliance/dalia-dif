@@ -4,7 +4,7 @@ from functools import lru_cache
 
 import pystow
 import rdflib
-from rdflib import XSD, Literal, URIRef
+from rdflib import SDO, SKOS, XSD, Literal, URIRef
 from rdflib.plugins.sparql import prepareQuery
 
 __all__ = [
@@ -30,7 +30,16 @@ HFS_EXISTS_QUERY = prepareQuery("""\
 @lru_cache(1)
 def get_discipline_graph() -> rdflib.Graph:
     """Get the disciplines graph from DINI-KIM's Hochschulfaechersystematik (HSFS)."""
-    return pystow.ensure_rdf("dalia", url=HOCHSCHULFAECHERSYSTEMATIK_TTL)
+    graph = pystow.ensure_rdf("dalia", url=HOCHSCHULFAECHERSYSTEMATIK_TTL)
+    _rewire_predicate(graph, URIRef("http://schema.org/isBasedOn"), SDO.isBasedOn)
+    return graph
+
+
+def _rewire_predicate(graph: rdflib.Graph, old: URIRef, new: URIRef) -> None:
+    # they incorrectly use http for schema.org, needs rewiring
+    for s, p, o in graph.triples((None, old, None)):
+        graph.remove((s, p, o))
+        graph.add((s, new, o))
 
 
 @lru_cache
@@ -96,6 +105,7 @@ def get_language_graph() -> rdflib.Graph:
     """Get the 3-letter language code graph."""
     graph = pystow.ensure_rdf("dalia", url=LEXVO_RDF, parse_kwargs={"format": "xml"})
     graph.bind("lexvo", "http://lexvo.org/ontology#")
+    _rewire_predicate(graph, URIRef("http://www.w3.org/2008/05/skos#prefLabel"), SKOS.prefLabel)
     return graph
 
 

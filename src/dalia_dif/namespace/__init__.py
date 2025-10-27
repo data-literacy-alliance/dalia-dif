@@ -47,10 +47,12 @@ __all__ = [
 DALIA_COMMUNITY = Namespace("https://id.dalia.education/community/")
 DALIA_OER = Namespace("https://id.dalia.education/learning-resource/")
 ISO639_3 = Namespace("http://lexvo.org/id/iso639-3/")
+LEXVO = Namespace("http://lexvo.org/ontology#")
 HSFS = Namespace("https://w3id.org/kim/hochschulfaechersystematik/")
 YOUTUBE_VIDEO = Namespace("https://www.youtube.com/watch?v=")
 YOUTUBE_PLAYLIST = Namespace("https://www.youtube.com/playlist?list=")
 SPDX_LICENSE = Namespace("http://spdx.org/licenses/")
+SPDX_TERM = Namespace("http://spdx.org/rdf/terms#")
 WIKIDATA = Namespace("http://www.wikidata.org/entity/")
 ZENODO_RECORD = Namespace("https://doi.org/10.5281/zenodo.")
 OCCO = Namespace("http://purl.obolibrary.org/obo/OCCO_")
@@ -60,6 +62,7 @@ ROR = Namespace("https://ror.org/")
 DOI = Namespace("https://doi.org/")
 OBO = Namespace("http://purl.obolibrary.org/obo/")
 OBOINOWL = Namespace("http://www.geneontology.org/formats/oboInOwl#")
+SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
 
 
 NAMESPACE_PREFIXES: dict[str, Namespace] = {
@@ -84,12 +87,15 @@ NAMESPACE_PREFIXES: dict[str, Namespace] = {
     "youtube.video": YOUTUBE_VIDEO,
     "youtube.playlist": YOUTUBE_PLAYLIST,
     "spdx.license": SPDX_LICENSE,
+    "spdx": SPDX_TERM,
     "wikidata": WIKIDATA,
     "zenodo": ZENODO_RECORD,
     "occo": OCCO,
     "t4fs": T4FS,
     "oboInOwl": OBOINOWL,
     "obo": OBO,
+    "skos": SKOS,
+    "lexvo": LEXVO,
 }
 
 CONVERTER = curies.Converter.from_prefix_map({k: str(v) for k, v in NAMESPACE_PREFIXES.items()})
