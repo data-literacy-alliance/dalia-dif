@@ -6,12 +6,6 @@ from pathlib import Path
 import click
 from rdflib import XSD, Graph, Literal, Node, URIRef
 
-from .rdf import (
-    check_discipline_exists,
-    check_resource_type_exists,
-    get_language_uriref,
-    get_license_uriref,
-)
 from ..community import COMMUNITIES_PATH, LOOKUP_DICT_COMMUNITIES, MISSING_COMMUNITIES
 from ..constants import DIF_SEPARATOR
 from ..picklists import (
@@ -41,6 +35,12 @@ from ..predicates import (
     TARGET_GROUP_PREDICATE,
     TITLE_PREDICATE,
     VERSION_PREDICATE,
+)
+from ..rdf import (
+    check_discipline_exists,
+    check_resource_type_exists,
+    get_language_uriref,
+    get_license_uriref,
 )
 from ...namespace import DALIA_COMMUNITY
 
