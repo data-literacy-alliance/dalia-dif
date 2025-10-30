@@ -1,5 +1,7 @@
 """RDF utilities for DIF v1.3."""
 
+from __future__ import annotations
+
 from functools import lru_cache
 
 import pystow

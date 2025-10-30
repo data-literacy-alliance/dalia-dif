@@ -1,5 +1,7 @@
 """A concrete implementation of the DALIA Interchange Format (DIF) v1.3."""
 
+from __future__ import annotations
+
 import datetime
 from typing import Annotated, ClassVar
 

@@ -1,5 +1,7 @@
 """Predicates for DIF v1.3."""
 
+from __future__ import annotations
+
 from rdflib import DCTERMS, OWL, SDO, URIRef
 
 from ..namespace import (

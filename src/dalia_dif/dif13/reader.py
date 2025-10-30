@@ -1,5 +1,7 @@
 """Reader for DIF v1.3."""
 
+from __future__ import annotations
+
 import logging
 import re
 from collections import Counter
