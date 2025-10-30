@@ -49,6 +49,8 @@ ORCID_RE = re.compile(r"^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$")
 ORCID_URI_PREFIX = "https://orcid.org/"
 ROR_URI_PREFIX = "https://ror.org/"
 WIKIDATA_URI_PREFIX = "http://www.wikidata.org/entity/"
+WIKIDATA_URI_PREFIX_2 = "https://www.wikidata.org/wiki/"
+
 COMMUNITY_RELATION_RE = re.compile(r"^(?P<name>.*)\s\((?P<relation>S|R|SR|RS)\)$")
 
 #: Keep track of fields in DIF CSV files that haven't
@@ -297,22 +299,25 @@ def _process_authors(
     *,
     error_accumulator: list[str] | None = None,
 ) -> list[AuthorDIF13 | OrganizationDIF13]:
-    return [
+    rv = [
         author
         for s in _pop_split(row, "Authors")
         if (author := _process_author(file_name, idx, s, error_accumulator=error_accumulator))
         is not None
     ]
+    if not rv:
+        _log(file_name, idx, "no authors found", error_accumulator=error_accumulator)
+    return rv
 
 
-def _process_author(
+def _process_author(  # noqa:C901
     file_name: str,
     idx: int,
     s: str,
     *,
     error_accumulator: list[str] | None = None,
 ) -> AuthorDIF13 | OrganizationDIF13 | None:
-    if not s or s.lower() == "n/a":
+    if not s or s.lower() in {"n/a", "na"}:
         return None
 
     if "{" not in s:
@@ -324,14 +329,20 @@ def _process_author(
     url = ids.lstrip("{").rstrip("}")
     if url.startswith("organization"):
         url = url.removeprefix("organization").strip()
+        if not url:
+            # TODO make error, to have curators do a better job of elaborating
+            #  on what's meant by an organization?
+            return OrganizationDIF13(name=name)
         if url.startswith(WIKIDATA_URI_PREFIX):
             return OrganizationDIF13(name=name, wikidata=url.removeprefix(WIKIDATA_URI_PREFIX))
+        elif url.startswith(WIKIDATA_URI_PREFIX_2):
+            return OrganizationDIF13(name=name, wikidata=url.removeprefix(WIKIDATA_URI_PREFIX_2))
         elif url.startswith(ROR_URI_PREFIX):
             return OrganizationDIF13(name=name, ror=url)
-        elif not url:
-            return OrganizationDIF13(name=name)
         else:
-            pass
+            if url:
+                _log(file_name, idx, f"unhandled URL: {url}", error_accumulator=error_accumulator)
+            return OrganizationDIF13(name=name)
     elif url.startswith(ORCID_URI_PREFIX):
         orcid = url.removeprefix(ORCID_URI_PREFIX)
         if not ORCID_RE.fullmatch(orcid):

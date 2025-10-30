@@ -89,7 +89,9 @@ def parse_dif13_row_legacy(
     lr_node = DALIA_OER[str(uuid)]
     g.add((lr_node, RDF.type, EDUCATIONAL_RESOURCE_CLASS))
 
-    add_authors_to_lr(g, lr_node, row[constants.DIF_HEADER_AUTHORS])
+    add_authors_to_lr(
+        g, lr_node, row[constants.DIF_HEADER_AUTHORS], row_number=row_number, path=path
+    )
     add_license_to_lr(g, lr_node, row[constants.DIF_HEADER_LICENSE])
     add_links_to_lr(g, lr_node, row[constants.DIF_HEADER_LINK])
     add_title_to_lr(g, lr_node, row[constants.DIF_HEADER_TITLE])
