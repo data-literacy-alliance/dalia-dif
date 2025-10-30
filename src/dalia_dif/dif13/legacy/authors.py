@@ -1,6 +1,7 @@
 """A legacy implementation of author parsing DIF v1.3 from Frank Lange."""
 
 import re
+from pathlib import Path
 
 import base32_crockford
 from rdflib import RDF, Graph
@@ -27,7 +28,9 @@ ORCID_RE = re.compile(r"^https?://orcid\.org/\d{4}-\d{4}-\d{4}-\d{3}[\dX]$")
 WIKIDATA_RE = re.compile(r"^http://www\.wikidata\.org/entity/Q\d*$")
 
 
-def _create_organization_author(g: Graph, organization: str) -> Node:
+def _create_organization_author(
+    g: Graph, organization: str, row_number: int, path: Path | None = None
+) -> Node:
     match = re.search(r"^(?P<name>.+)\s:\s{organization\s?(?P<identifier>.*)}$", organization)
 
     if not match:
@@ -52,12 +55,14 @@ def _create_organization_author(g: Graph, organization: str) -> Node:
                 )
             )
         else:
-            raise Exception(f'Invalid identifier in "{organization}": {organization_identifier}')
+            raise Exception(
+                f'[{path} {row_number}] Invalid identifier in "{organization}": {organization_identifier}'
+            )
 
     return organization_node
 
 
-def _create_person_author(g: Graph, person: str) -> Node:
+def _create_person_author(g: Graph, person: str, row_number: int, path: Path | None = None) -> Node:
     person_substrings = person.split(" : ")
     name_substrings = person_substrings[0].split(",")
 
@@ -75,45 +80,53 @@ def _create_person_author(g: Graph, person: str) -> Node:
         if is_valid_orcid(person_identifier):
             g.add((person_node, PERSON_ORCID_PREDICATE, Literal(person_identifier)))
         else:
-            raise Exception(f'Invalid identifier in "{person}": {person_identifier}')
+            raise Exception(
+                f'[{path} {row_number}] Invalid identifier in "{person}": {person_identifier}'
+            )
 
     return person_node
 
 
-def _create_author(g: Graph, author: str) -> Node | None:
+def _create_author(g: Graph, author: str, row_number: int, path: Path | None = None) -> Node | None:
     if not author:
         return None
 
-    if re.search(r"\s:\s{organization.*}", author):
-        return _create_organization_author(g, author)
-    return _create_person_author(g, author)
+    if re.search(r"\s*:\s*{organization.*}", author):
+        return _create_organization_author(g, author, row_number=row_number, path=path)
+    return _create_person_author(g, author, row_number=row_number, path=path)
 
 
-def _add_ordered_list_of_authors_to_lr(g: Graph, lr_node: Node, authors: str) -> None:
+def _add_ordered_list_of_authors_to_lr(
+    g: Graph, lr_node: Node, authors: str, row_number: int, path: Path | None = None
+) -> None:
     author_nodes = []
     for author in authors.split(DIF_SEPARATOR):
-        if author_node := _create_author(g, author.strip()):
+        if author_node := _create_author(g, author.strip(), row_number=row_number, path=path):
             author_nodes.append(author_node)
 
     if authors_list := create_rdf_collection(g, author_nodes):
         g.add((lr_node, AUTHOR_PREDICATE, authors_list))
 
 
-def _add_unordered_set_of_authors_to_lr(g: Graph, lr_node: Node, authors: str) -> None:
+def _add_unordered_set_of_authors_to_lr(
+    g: Graph, lr_node: Node, authors: str, row_number: int, path: Path | None = None
+) -> None:
     for author in authors.split(DIF_SEPARATOR):
-        if author_node := _create_author(g, author.strip()):
+        if author_node := _create_author(g, author.strip(), row_number=row_number, path=path):
             g.add((lr_node, AUTHOR_UNORDERED_PREDICATE, author_node))
 
 
-def add_authors_to_lr(g: Graph, lr_node: Node, authors: str) -> None:
+def add_authors_to_lr(
+    g: Graph, lr_node: Node, authors: str, row_number: int, path: Path | None = None
+) -> None:
     if not authors.strip():
         raise Exception("Empty Authors field")
 
     if authors.strip().lower() == "n/a":
         return None
 
-    _add_ordered_list_of_authors_to_lr(g, lr_node, authors)
-    _add_unordered_set_of_authors_to_lr(g, lr_node, authors)
+    _add_ordered_list_of_authors_to_lr(g, lr_node, authors, row_number=row_number, path=path)
+    _add_unordered_set_of_authors_to_lr(g, lr_node, authors, row_number=row_number, path=path)
     return None
 
 

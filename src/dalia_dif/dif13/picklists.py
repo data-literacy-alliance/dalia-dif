@@ -1,5 +1,7 @@
 """Picklists for DIF v1.3."""
 
+from __future__ import annotations
+
 from rdflib import PROV, SDO, URIRef
 
 from .predicates import (

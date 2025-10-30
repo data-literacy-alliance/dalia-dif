@@ -10,7 +10,7 @@ def test_add_authors_to_lr_with_no_authors() -> None:
     g = graph()
     lr_node = URIRef("http://example.com/something")
 
-    add_authors_to_lr(g, lr_node, "  *    *  ")
+    add_authors_to_lr(g, lr_node, "  *    *  ", row_number=1)
 
     assert same_graphs(g, graph())
 
@@ -22,20 +22,23 @@ def test_add_authors_to_lr_with_examples_from_dif() -> None:
         g,
         URIRef("http://example.com/something1"),
         "   Mustermann   ,   Max    : {   https://orcid.org/0000-0001-2345-6789  }   *   Musterfrau , Paula  ",
+        row_number=1,
     )
     add_authors_to_lr(
         g,
         URIRef("http://example.com/something2"),
         "Müllermeier, John * Musterkollegin, Alex * "
         "Nationale Forschungsdateninfrastruktur   : {organization    https://ror.org/05qj6w324    }",
+        row_number=1,
     )
     add_authors_to_lr(
         g,
         URIRef("http://example.com/something3"),
         "NFDI4Chem   : {organization   http://www.wikidata.org/entity/Q96678459   } * "
         "Example-Organization-without-identifier : {organization    }",
+        row_number=1,
     )
-    add_authors_to_lr(g, URIRef("http://example.com/something4"), "  n/a   ")
+    add_authors_to_lr(g, URIRef("http://example.com/something4"), "  n/a   ", row_number=1)
 
     expected = graph().parse(
         data="""
@@ -156,4 +159,4 @@ def test_add_authors_to_lr_raises_exception_on_invalid_input(
     g = graph()
 
     with pytest.raises(Exception, match=expected_error_msg):
-        add_authors_to_lr(g, URIRef("http://example.com/something"), authors)
+        add_authors_to_lr(g, URIRef("http://example.com/something"), authors, row_number=1)

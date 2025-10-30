@@ -1,5 +1,7 @@
 """A concrete implementation of the DALIA Interchange Format (DIF) v1.3."""
 
+from __future__ import annotations
+
 import datetime
 from typing import Annotated, ClassVar
 
@@ -128,9 +130,8 @@ class EducationalResourceDIF13(RDFInstanceBaseModel):
         ..., description=constants.DIF_HEADER_TITLE.__doc__
     )
     subtitle: Annotated[str | None, WithPredicate(SUBTITLE_PREDICATE)] = None
-    # TODO what about making the list ordered?
     authors: Annotated[list[AuthorDIF13 | OrganizationDIF13], AuthorAnnotation()] = Field(
-        default_factory=list, description=constants.DIF_HEADER_AUTHORS.__doc__
+        default_factory=list, description=constants.DIF_HEADER_AUTHORS.__doc__, min_length=1
     )
     license: Annotated[RDFResource | None, WithPredicate(LICENSE_PREDICATE)] = Field(
         None, description=constants.DIF_HEADER_LICENSE.__doc__
