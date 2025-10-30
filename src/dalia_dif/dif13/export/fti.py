@@ -20,6 +20,8 @@ educational resources encoded in RDF using the DIF v1.3 schema.
     uuids = query_sqlite_fti("chem*", conn)
 """
 
+from __future__ import annotations
+
 import sqlite3
 from collections import defaultdict
 from contextlib import closing
