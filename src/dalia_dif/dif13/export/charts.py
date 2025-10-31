@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import datetime
 from collections import Counter, defaultdict
 from pathlib import Path
 from textwrap import dedent
@@ -84,6 +85,7 @@ def count_licenses(graph: rdflib.Graph) -> Counter[str]:
     return Counter(
         CONVERTER.compress(license_uri, strict=False, passthrough=True)
         .removeprefix("spdx:")
+        .removeprefix("spdx.license:")
         .removesuffix("-3.0")
         .removesuffix("-4.0")
         .removesuffix("-2.0")
@@ -191,6 +193,7 @@ LRT_MAPPING = {
     "Bestpractices": "best practices",
     "codenotebook": "code notebook",
     "Codenotebook": "code notebook",
+    "SoftwareSourceCode": "code",
     "softwaresourcecode": "code",
     "Softwaresourcecode": "code",
 }
@@ -223,9 +226,19 @@ def _remap_lrt(x: str) -> str:
 
 DISCIPLINES_RENAMES = {
     "Cultural Studies in the narrower sense": "Cultural Studies",
-    "Archival and Documentation Science": "Archival and Documentation",
+    "Archival and Documentation Science": "Archival/Docs",
     "Human Medicine / Health Sciences": "Health Sciences",
     "Information and Library Sciences": "Library Sciences",
+    "Geosciences (excl. Geography)": "Geosciences",
+    "Agricultural Science/Agriculture": "Agriculture",
+    "Mathematics, Natural Sciences": "Mathematics",
+    "Medicine (General Medicine)": "Medicine",
+    "Film and Television Studies": "Film Studies",
+    "Art History, Art Theory": "Art History",
+    "Art, Art Theory": "Art",
+    "Social Sciences/Sociology": "Social Sciences",
+    "Engineering Sciences": "Engineering",
+    "Educational Sciences": "Education",
 }
 
 GET_DISCIPLINE_LABEL_SPARQL = dedent("""\
@@ -344,17 +357,51 @@ def barplot_counter(
     ax: matplotlib.axes.Axes | None = None,
     title: str | None = None,
     log: bool = True,
+    total: int,
 ) -> matplotlib.axes.Axes:
     """Plot a counter."""
     import seaborn as sns
 
     categories, counts = zip(*counter.most_common(), strict=False)
-    rv = sns.barplot(y=categories, x=counts, ax=ax)
+    ax = sns.barplot(y=categories, x=counts, ax=ax)
+
+    max_width = max(patch.get_width() for patch in ax.patches)
+
+    # Define threshold as a fraction of max width
+    threshold = max_width * 0.45
+
+    for patch in ax.patches:
+        count = int(patch.get_width())
+        label = f"{count} ({count / total:.1%})"
+        y_pos = patch.get_y() + patch.get_height() / 2
+
+        if count > threshold:
+            # divide to move to the left, since it's on a log scale
+            x_pos = count / 1.1
+            color = "white"
+            horizontal_alignment = "right"
+        else:
+            # multiple to move to the right, since it's on a log scale
+            x_pos = count * 1.1
+            color = "black"
+            horizontal_alignment = "left"
+
+        ax.text(
+            x_pos,
+            y_pos,
+            label,
+            ha=horizontal_alignment,
+            va="center",
+            color=color,
+            fontweight="semibold",
+            fontsize=10,
+        )
+
     if title:
-        rv.set_title(title)
+        ax.set_title(title)
     if log:
-        rv.set_xscale("log")
-    return rv
+        ax.set_xscale("log")
+    return ax
 
 
 def export_chart(graph: rdflib.Graph, paths: Path | list[Path]) -> None:
@@ -367,21 +414,38 @@ def export_chart(graph: rdflib.Graph, paths: Path | list[Path]) -> None:
     _fig, axes = plt.subplots(3, 3, figsize=(15, 17))
 
     _combine_language_counter, single_language_counter = count_languages(graph)
-    barplot_counter(single_language_counter, ax=axes[0][0], title="Language Occurrence")
-    barplot_counter(count_licenses(graph), ax=axes[0][1], title="Licenses")
-    barplot_counter(count_file_extensions(graph), ax=axes[0][2], title="File Extensions")
-    barplot_counter(count_media_types(graph), ax=axes[1][0], title="Media Types")
     barplot_counter(
-        count_proficiency_level(graph, n_oers), ax=axes[1][1], title="Required Proficiency Level"
+        single_language_counter, ax=axes[0][0], title="Language Occurrence", total=n_oers
     )
-    barplot_counter(count_disciplines(graph), ax=axes[1][2], title="Disciplines")
-    barplot_counter(count_communities(graph), ax=axes[2][0], title="Community")
-    barplot_counter(count_target_groups(graph, n_oers), ax=axes[2][1], title="Target Groups")
+    barplot_counter(count_licenses(graph), ax=axes[0][1], title="Licenses", total=n_oers)
     barplot_counter(
-        count_learning_resource_type(graph), ax=axes[2][2], title="Learning Resource Type"
+        count_file_extensions(graph), ax=axes[0][2], title="File Extensions", total=n_oers
+    )
+    barplot_counter(count_media_types(graph), ax=axes[1][0], title="Media Types", total=n_oers)
+    barplot_counter(
+        count_proficiency_level(graph, n_oers),
+        ax=axes[1][1],
+        title="Required Proficiency Level",
+        total=n_oers,
+    )
+    barplot_counter(count_disciplines(graph), ax=axes[1][2], title="Disciplines", total=n_oers)
+    barplot_counter(count_communities(graph), ax=axes[2][0], title="Community", total=n_oers)
+    barplot_counter(
+        count_target_groups(graph, n_oers), ax=axes[2][1], title="Target Groups", total=n_oers
+    )
+    barplot_counter(
+        count_learning_resource_type(graph),
+        ax=axes[2][2],
+        title="Learning Resource Type",
+        total=n_oers,
     )
 
-    plt.tight_layout()
+    today = datetime.date.today()
+
+    plt.suptitle(f"A summary of {n_oers} OERs ({today.isoformat()})", fontsize=30, y=0.95)
+    plt.subplots_adjust(top=0.85)  # move plot down a bit to create space below the suptitle
+    plt.tight_layout(rect=[0, 0, 1, 0.95])  # ensure layout doesn't overlap with suptitle
+
     if not isinstance(paths, list):
         paths = [paths]
     for path in paths:
