@@ -44,6 +44,18 @@ reader, and a command line validator.
 A tutorial/guide for curating OERs in a tabular form (CSV) can be found
 [here](docs/curation.md).
 
+```mermaid
+graph LR
+    er[Educational Resource] -- "supported by (0..*)" --> community[Community]
+    er -- "recommended by by (0..*)" --> community
+    er -- "has author (1..*)" --> author[Author]
+    er -- "has discipline (0..*)" --> discipline[Discipline]
+    er -- "type (1)" --> lrt[Learning Resource Type]
+    er -- "has media type (0..*)" --> mediatype[Media Type]
+    er -- "has target group (0..*)" --> tg[Target Group]
+    er -- "requires (0..*)" --> pl[Proficiency Level]
+```
+
 ## 💪 Getting Started
 
 The `dalia_dif` command line tool can be used from the console with to validate
