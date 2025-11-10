@@ -46,6 +46,8 @@ __all__ = [
 
 DALIA_COMMUNITY = Namespace("https://id.dalia.education/community/")
 DALIA_OER = Namespace("https://id.dalia.education/learning-resource/")
+DALIA_AUTHOR = Namespace("https://id.dalia.education/author/")
+DALIA_ORGANIZATION = Namespace("https://id.dalia.education/organization/")
 ISO639_3 = Namespace("http://lexvo.org/id/iso639-3/")
 LEXVO = Namespace("http://lexvo.org/ontology#")
 HSFS = Namespace("https://w3id.org/kim/hochschulfaechersystematik/")
@@ -76,6 +78,8 @@ NAMESPACE_PREFIXES: dict[str, Namespace] = {
     "citedcat": CITEDCAT,
     "dalia-community": DALIA_COMMUNITY,
     "dalia.oer": DALIA_OER,
+    "dalia.organization": DALIA_ORGANIZATION,
+    "dalia.author": DALIA_AUTHOR,
     "educor": EDUCOR,
     "fabio": FABIO,
     "kim.hcrt": HCRT,
