@@ -65,6 +65,10 @@ __all__ = [
 ]
 
 
+def _norm(s: str) -> str:
+    return s.lower().replace(" ", "-").replace(".", "")
+
+
 class AuthorDIF13(RDFInstanceBaseModel):
     """Represents an author in DIF v1.3."""
 
@@ -84,7 +88,7 @@ class AuthorDIF13(RDFInstanceBaseModel):
         if self.orcid:
             return URIRef(self.orcid)
         else:
-            return DALIA_AUTHOR[self.name.lower().replace(" ", "-")]
+            return DALIA_AUTHOR[_norm(self.name)]
 
 
 class OrganizationDIF13(RDFInstanceBaseModel):
@@ -103,7 +107,7 @@ class OrganizationDIF13(RDFInstanceBaseModel):
         if self.ror:
             return URIRef(self.ror)
         else:
-            return DALIA_ORGANIZATION[self.name.lower().replace(" ", "-")]
+            return DALIA_ORGANIZATION[_norm(self.name)]
 
 
 class AuthorAnnotation(PredicateAnnotation):
