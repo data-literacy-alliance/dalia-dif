@@ -42,6 +42,7 @@ MEDIA_TYPES = {
     "image": SDO.ImageObject,
     "multipart": modalia.Multipart,
 }
+
 PROFICIENCY_LEVELS = {
     "novice": modalia.Novice,
     "advanced beginner": modalia.Beginner,
@@ -49,6 +50,14 @@ PROFICIENCY_LEVELS = {
     "proficient": modalia.Proficient,
     "expert": modalia.Expert,
 }
+PROFICIENCY_TO_ORDER: dict[URIRef, int] = {
+    modalia.Novice: 0,
+    modalia.Beginner: 1,
+    modalia.Competent: 2,
+    modalia.Proficient: 3,
+    modalia.Expert: 4,
+}
+
 RELATED_WORKS_RELATIONS = {
     "isPartOf": modalia.isPartOf,
     "hasPart": SDO.hasPart,
@@ -61,7 +70,6 @@ RELATED_WORKS_RELATIONS = {
     "isDuplicateOf": modalia.isDuplicateOf,
     "isTranslationOf": modalia.isTranslationOf,
 }
-
 
 # Entries that will be ignored during the mapping because they shall be used as media type.
 # Format: URI -> media type to be used instead
