@@ -188,6 +188,11 @@ def parse_dif13_row(
             else:
                 raise ValueError(f"converter was unable to expand CURIE in keyword: {keyword}")
 
+    description = row.pop("Description").strip()
+    if not description:
+        _log(file_name, idx, "no description given", error_accumulator=error_accumulator)
+        return None
+
     try:
         rv = EducationalResourceDIF13(
             uuid=uuid,
@@ -198,7 +203,7 @@ def parse_dif13_row(
             links=external_uris,
             supporting_communities=supporting_communities,
             recommending_communities=recommending_communities,
-            description=row.pop("Description").strip() or None,
+            description=description,
             disciplines=_process_disciplines(
                 file_name, idx, row, error_accumulator=error_accumulator
             ),
