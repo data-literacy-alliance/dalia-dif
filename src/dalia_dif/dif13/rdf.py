@@ -8,12 +8,14 @@ import pystow
 import rdflib
 from rdflib import SDO, SKOS, XSD, Literal, URIRef
 from rdflib.plugins.sparql import prepareQuery
+from tqdm import tqdm
 
 __all__ = [
     "add_background_triples",
     "check_discipline_exists",
     "check_resource_type_exists",
     "get_discipline_graph",
+    "get_discipline_label",
     "get_language_graph",
     "get_language_uriref",
     "get_license_uriref",
@@ -26,6 +28,13 @@ HOCHSCHULFAECHERSYSTEMATIK_TTL = "https://github.com/dini-ag-kim/hochschulfaeche
 HFS_EXISTS_QUERY = prepareQuery("""\
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     ASK { ?discipline a skos:Concept . }
+""")
+HFS_LABEL_QUERY = prepareQuery("""\
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    SELECT ?label {
+        ?discipline skos:prefLabel ?label .
+        FILTER(LANG(?label) = 'en') .
+    }
 """)
 
 
@@ -54,6 +63,20 @@ def check_discipline_exists(discipline_uriref: URIRef) -> bool:
     if result.askAnswer is None:
         raise RuntimeError
     return result.askAnswer
+
+
+def get_discipline_label(discipline_uriref: URIRef) -> str | None:
+    """Get the discipline label."""
+    result = get_discipline_graph().query(
+        HFS_LABEL_QUERY,
+        initBindings={"discipline": discipline_uriref},
+    )
+    rows = list(result)
+    if rows:
+        return str(rows[0][0])  # type:ignore[index]
+    else:
+        tqdm.write(f"unable to look up name for ({type(discipline_uriref)}) {discipline_uriref}")
+        return None
 
 
 LICENSES_TTL = (
