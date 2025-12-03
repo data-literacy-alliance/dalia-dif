@@ -149,8 +149,8 @@ def read_dif13_into_rdflib(
     return graph
 
 
-def parse_dif13_row(
-    file_name: str,
+def parse_dif13_row(  # noqa:C901
+    file_name: str | Path,
     idx: int,
     row: dict[str, str],
     *,
@@ -159,6 +159,9 @@ def parse_dif13_row(
     converter: curies.Converter | None = None,
 ) -> EducationalResourceDIF13 | None:
     """Convert a row in a DALIA curation file to a resource, or return none if unable."""
+    if isinstance(file_name, Path):
+        file_name = file_name.name
+
     supporting_communities, recommending_communities = _process_communities(
         file_name, idx, row, error_accumulator=error_accumulator
     )
