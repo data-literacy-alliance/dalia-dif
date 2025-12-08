@@ -106,8 +106,8 @@ bump = [
     "bump-my-version",
 ]
 build = [
-    "uv",
-    "uv-build",
+    "uv>=0.9.6",
+    "uv-build>=0.9.6",
 ]
 release = [
     { include-group = "build" },
