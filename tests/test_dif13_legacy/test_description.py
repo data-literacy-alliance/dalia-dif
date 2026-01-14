@@ -5,7 +5,7 @@ from dalia_dif.namespace import get_base_graph as graph
 from tests.util import same_graphs
 
 
-def test_add_description_to_lr_with_valid_input():
+def test_add_description_to_lr_with_valid_input()-> None:
     g = graph()
 
     add_description_to_lr(

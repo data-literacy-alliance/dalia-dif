@@ -6,7 +6,7 @@ from dalia_dif.namespace import get_base_graph as graph
 from tests.util import same_graphs
 
 
-def test_dif_learning_resource_to_graph():
+def test_dif_learning_resource_to_graph()-> None:
     g = graph()
     row = {
         s.DIF_HEADER_ID: "b3763080-15a4-4de4-b99b-c9b337644904",
@@ -94,7 +94,7 @@ def test_dif_learning_resource_to_graph():
     assert same_graphs(g, expected)
 
 
-def test_dif_learning_resource_to_graph_adds_no_learning_resource_for_empty_id():
+def test_dif_learning_resource_to_graph_adds_no_learning_resource_for_empty_id()-> None:
     g = graph()
     row = {
         s.DIF_HEADER_ID: "",
@@ -124,7 +124,7 @@ def test_dif_learning_resource_to_graph_adds_no_learning_resource_for_empty_id()
     assert same_graphs(g, expected)
 
 
-def test_dif_learning_resource_to_graph_raises_value_error_on_invalid_id():
+def test_dif_learning_resource_to_graph_raises_value_error_on_invalid_id() -> None:
     row = {s.DIF_HEADER_ID: "abc"}
     expected_error_msg = "badly formed hexadecimal UUID string"
 
