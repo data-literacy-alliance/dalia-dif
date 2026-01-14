@@ -17,8 +17,9 @@ def main() -> None:
 
 @main.command()
 @click.option("--dif-version", type=click.Choice(["1.3"]), default="1.3")
+@click.option("--ignore-missing-description", is_flag=True)
 @click.argument("location")
-def validate(location: str, dif_version: str) -> None:
+def validate(location: str, dif_version: str, ignore_missing_description: bool) -> None:
     """Validate a local/remote file or local folder of DIF-encoded CSVs."""
     from dalia_dif.dif13 import read_dif13
 
@@ -31,7 +32,11 @@ def validate(location: str, dif_version: str) -> None:
         for path in p.glob("*.csv"):
             click.secho(f"\n> {path.relative_to(p)}", fg="green")
             errors: list[str] = []
-            read_dif13(path, error_accumulator=errors)
+            read_dif13(
+                path,
+                error_accumulator=errors,
+                ignore_missing_description=ignore_missing_description,
+            )
             if errors:
                 fail = True
                 for error in errors:
