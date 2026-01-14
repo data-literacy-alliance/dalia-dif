@@ -101,6 +101,7 @@ def read_dif13(
     *,
     error_accumulator: list[str] | None = None,
     converter: curies.Converter | None = None,
+    ignore_missing_description: bool = False,
 ) -> list[EducationalResourceDIF13]:
     """Parse DALIA records."""
     if isinstance(path, str) and (path.startswith("http://") or path.startswith("https://")):
@@ -132,7 +133,12 @@ def read_dif13(
             for idx, record in enumerate(reader, start=2)
             if (
                 oer := parse_dif13_row(
-                    file_name, idx, record, error_accumulator=error_accumulator, converter=converter
+                    file_name,
+                    idx,
+                    record,
+                    error_accumulator=error_accumulator,
+                    converter=converter,
+                    ignore_missing_description=ignore_missing_description,
                 )
             )
             is not None
@@ -157,6 +163,7 @@ def parse_dif13_row(  # noqa:C901
     future: bool = False,
     error_accumulator: list[str] | None = None,
     converter: curies.Converter | None = None,
+    ignore_missing_description: bool = False,
 ) -> EducationalResourceDIF13 | None:
     """Convert a row in a DALIA curation file to a resource, or return none if unable."""
     if isinstance(file_name, Path):
@@ -193,7 +200,12 @@ def parse_dif13_row(  # noqa:C901
 
     description = row.pop("Description").strip()
     if not description:
-        _log(file_name, idx, "no description given", error_accumulator=error_accumulator)
+        _log(
+            file_name,
+            idx,
+            "no description given",
+            error_accumulator=None if ignore_missing_description else error_accumulator,
+        )
         return None
 
     try:
