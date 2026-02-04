@@ -24,7 +24,7 @@ class Community(BaseModel):
 def _process(row: dict[str, Any]) -> Community:
     if synonyms_raw := row.pop("synonyms"):
         row["synonyms"] = [s.strip() for s in synonyms_raw.split("|")]
-    return Community.model_validate({k:v for k,v in row.items() if v})
+    return Community.model_validate({k: v for k, v in row.items() if v})
 
 
 def read_communities(path: Path) -> list[Community]:
@@ -37,6 +37,7 @@ CommunityDict: TypeAlias = dict[str, str]
 
 
 def get_communities_dict(path: Path) -> CommunityDict:
+    """Get a mapping from names/synonyms to UUID strings."""
     rv = {}
     for community in read_communities(path):
         rv[community.title] = str(community.uuid)
