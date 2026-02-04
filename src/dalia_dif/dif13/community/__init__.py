@@ -22,9 +22,9 @@ class Community(BaseModel):
 
 
 def _process(row: dict[str, Any]) -> Community:
-    if synonyms_raw := row.pop("Synonyms"):
-        row["Synonyms"] = [s.strip() for s in synonyms_raw.split("|")]
-    return Community.model_validate(row)
+    if synonyms_raw := row.pop("synonyms"):
+        row["synonyms"] = [s.strip() for s in synonyms_raw.split("|")]
+    return Community.model_validate({k:v for k,v in row.items() if v})
 
 
 def read_communities(path: Path) -> list[Community]:

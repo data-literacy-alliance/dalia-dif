@@ -18,17 +18,17 @@ def main() -> None:
 @main.command()
 @click.option("--dif-version", type=click.Choice(["1.3"]), default="1.3")
 @click.option("--ignore-missing-description", is_flag=True)
-@click.option("--communities", type=Path)
+@click.option("--communities-path", type=Path)
 @click.argument("location")
 def validate(
-    location: str, dif_version: str, ignore_missing_description: bool, communities: Path | None
+    location: str, dif_version: str, ignore_missing_description: bool, communities_path: Path | None
 ) -> None:
     """Validate a local/remote file or local folder of DIF-encoded CSVs."""
     from dalia_dif.dif13 import read_dif13
     from dalia_dif.dif13.community import get_communities_dict
 
-    if communities is not None:
-        community_dict = get_communities_dict(communities)
+    if communities_path is not None:
+        community_dict = get_communities_dict(communities_path)
     else:
         community_dict = {}
 
