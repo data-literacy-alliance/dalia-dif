@@ -21,10 +21,20 @@ class Community(BaseModel):
     synonyms: list[str] = Field(default_factory=list)
 
 
+RENAMES = {
+    "ID": "uuid",
+    "ROR": "ror",
+    "Website": "website",
+    "Synonyms": "synonyms",
+    "Title": "title",
+}
+
+
 def _process(row: dict[str, Any]) -> Community:
-    if synonyms_raw := row.pop("synonyms"):
+    row = {RENAMES[k]: v for k, v in row.items() if v}
+    if synonyms_raw := row.pop("synonyms", None):
         row["synonyms"] = [s.strip() for s in synonyms_raw.split("|")]
-    return Community.model_validate({k: v for k, v in row.items() if v})
+    return Community.model_validate(row)
 
 
 def read_communities(path: Path) -> list[Community]:
