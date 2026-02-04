@@ -213,7 +213,8 @@ def parse_dif13_row(  # noqa:C901
             "no description given",
             error_accumulator=None if ignore_missing_description else error_accumulator,
         )
-        return None
+        if not ignore_missing_description:
+            return None
 
     try:
         rv = EducationalResourceDIF13(
