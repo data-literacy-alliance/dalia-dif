@@ -19,7 +19,7 @@ from pydantic_metamodel.api import (
     WithPredicateNamespace,
     Year,
 )
-from rdflib import BNode, Node, URIRef
+from rdflib import Node, URIRef
 
 from . import constants
 from .predicates import (
@@ -55,7 +55,7 @@ from .predicates import (
     XREF_PREDICATE,
 )
 from .utils import create_rdf_collection
-from ..namespace import DALIA_OER, WIKIDATA
+from ..namespace import DALIA_AUTHOR, DALIA_OER, DALIA_ORGANIZATION, WIKIDATA
 from ..namespace import ISO639_3 as ISO639_3_NS
 
 __all__ = [
@@ -63,6 +63,10 @@ __all__ = [
     "EducationalResourceDIF13",
     "OrganizationDIF13",
 ]
+
+
+def _norm(s: str) -> str:
+    return s.lower().replace(" ", "-").replace(".", "")
 
 
 class AuthorDIF13(RDFInstanceBaseModel):
@@ -81,7 +85,10 @@ class AuthorDIF13(RDFInstanceBaseModel):
 
     def get_node(self) -> Node:
         """Get a blank node for the author."""
-        return BNode()
+        if self.orcid:
+            return URIRef(self.orcid)
+        else:
+            return DALIA_AUTHOR[_norm(self.name)]
 
 
 class OrganizationDIF13(RDFInstanceBaseModel):
@@ -97,7 +104,10 @@ class OrganizationDIF13(RDFInstanceBaseModel):
 
     def get_node(self) -> Node:
         """Get a blank node for the organization."""
-        return BNode()
+        if self.ror:
+            return URIRef(self.ror)
+        else:
+            return DALIA_ORGANIZATION[_norm(self.name)]
 
 
 class AuthorAnnotation(PredicateAnnotation):

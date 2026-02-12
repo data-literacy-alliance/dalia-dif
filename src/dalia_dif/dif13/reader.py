@@ -340,6 +340,17 @@ def _process_authors(
     return rv
 
 
+def _check_first_name(full_name, given_name: str, file_name, idx, error_accumulator):
+    given_name = given_name.replace(".", "")
+    if all(len(n) == 1 for n in given_name.split()):
+        _log(
+            file_name,
+            idx,
+            f"one letter first name: {full_name}",
+            error_accumulator=error_accumulator,
+        )
+
+
 def _process_author(  # noqa:C901
     file_name: str,
     idx: int,
@@ -353,6 +364,7 @@ def _process_author(  # noqa:C901
     if "{" not in s:
         # assume whole thing is a name
         family_name, _, given_name = (x.strip() for x in s.rpartition(","))
+        _check_first_name(s, given_name, file_name, idx, error_accumulator)
         return AuthorDIF13(given_name=given_name, family_name=family_name)
 
     name, _, ids = s.partition(" : ")
@@ -379,6 +391,7 @@ def _process_author(  # noqa:C901
             _log(file_name, idx, f"invalid ORCID: {orcid}", error_accumulator=error_accumulator)
             return None
         family_name, _, given_name = (x.strip() for x in name.rpartition(","))
+        _check_first_name(name, given_name, file_name, idx, error_accumulator)
         return AuthorDIF13(
             given_name=given_name, family_name=family_name, orcid=ORCID_URI_PREFIX + orcid
         )
