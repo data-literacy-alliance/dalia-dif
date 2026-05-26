@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import datetime
 from collections import Counter, defaultdict
+from collections.abc import Sequence
 from pathlib import Path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any
@@ -20,6 +21,7 @@ from dalia_dif.namespace import CONVERTER
 
 if TYPE_CHECKING:
     import matplotlib.axes
+    import matplotlib.patches
 
 __all__ = [
     "export_chart",
@@ -316,7 +318,7 @@ def count_disciplines(graph: rdflib.Graph) -> Counter[str]:
     )
     frv: Counter[str] = Counter()
     for k, v in rv.most_common():
-        if v > 1:
+        if v > 2:
             frv[k] = v
         else:
             frv["Other"] += v
@@ -365,15 +367,17 @@ def barplot_counter(
     categories, counts = zip(*counter.most_common(), strict=False)
     ax = sns.barplot(y=categories, x=counts, ax=ax)
 
-    max_width = max(patch.get_width() for patch in ax.patches)
+    patches: Sequence[matplotlib.patches.Patch] = ax.patches
+
+    max_width = max(patch.get_width() for patch in patches)  # type:ignore
 
     # Define threshold as a fraction of max width
     threshold = max_width * 0.45
 
-    for patch in ax.patches:
-        count = int(patch.get_width())
+    for patch in patches:
+        count = int(patch.get_width())  # type:ignore
         label = f"{count} ({count / total:.1%})"
-        y_pos = patch.get_y() + patch.get_height() / 2
+        y_pos = patch.get_y() + patch.get_height() / 2  # type:ignore
 
         if count > threshold:
             # divide to move to the left, since it's on a log scale
@@ -404,7 +408,9 @@ def barplot_counter(
     return ax
 
 
-def export_chart(graph: rdflib.Graph, paths: Path | list[Path]) -> None:
+def export_chart(
+    graph: rdflib.Graph, paths: Path | list[Path], *, include_title: bool = False
+) -> None:
     """Export the chart."""
     import matplotlib.pyplot as plt
 
@@ -442,12 +448,15 @@ def export_chart(graph: rdflib.Graph, paths: Path | list[Path]) -> None:
 
     today = datetime.date.today()
 
-    plt.suptitle(f"A summary of {n_oers} OERs ({today.isoformat()})", fontsize=30, y=0.95)
-    plt.subplots_adjust(top=0.85)  # move plot down a bit to create space below the suptitle
-    plt.tight_layout(rect=[0, 0, 1, 0.95])  # ensure layout doesn't overlap with suptitle
+    if include_title:
+        plt.suptitle(f"A summary of {n_oers} OERs ({today.isoformat()})", fontsize=30, y=0.95)
+        plt.subplots_adjust(top=0.85)  # move plot down a bit to create space below the suptitle
+        plt.tight_layout(rect=[0, 0, 1, 0.95])  # type:ignore  # ensure layout doesn't overlap with suptitle
+    else:
+        plt.tight_layout()
 
     if not isinstance(paths, list):
         paths = [paths]
     for path in paths:
-        plt.savefig(path, dpi=300)
+        plt.savefig(path, dpi=450)
     plt.close()

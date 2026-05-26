@@ -10,7 +10,9 @@ from dalia_dif.dif13.legacy.authors import is_valid_wikidata_concept_uri
         "http://www.wikidata.org/entity/Q96678459",
     ],
 )
-def test_is_valid_wikidata_concept_uri_with_valid_wikidata_concept_uri(valid_wikidata_concept_uri):
+def test_is_valid_wikidata_concept_uri_with_valid_wikidata_concept_uri(
+    valid_wikidata_concept_uri: str,
+) -> None:
     assert is_valid_wikidata_concept_uri(valid_wikidata_concept_uri)
 
 
@@ -21,6 +23,6 @@ def test_is_valid_wikidata_concept_uri_with_valid_wikidata_concept_uri(valid_wik
     ],
 )
 def test_is_valid_wikidata_concept_uri_with_invalid_wikidata_concept_uri(
-    invalid_wikidata_concept_uri,
-):
+    invalid_wikidata_concept_uri: str,
+) -> None:
     assert not is_valid_wikidata_concept_uri(invalid_wikidata_concept_uri)
