@@ -369,15 +369,15 @@ def barplot_counter(
 
     patches: Sequence[matplotlib.patches.Patch] = ax.patches
 
-    max_width = max(patch.get_width() for patch in patches)
+    max_width = max(patch.get_width() for patch in patches)  # type:ignore
 
     # Define threshold as a fraction of max width
     threshold = max_width * 0.45
 
     for patch in patches:
-        count = int(patch.get_width())
+        count = int(patch.get_width())  # type:ignore
         label = f"{count} ({count / total:.1%})"
-        y_pos = patch.get_y() + patch.get_height() / 2
+        y_pos = patch.get_y() + patch.get_height() / 2  # type:ignore
 
         if count > threshold:
             # divide to move to the left, since it's on a log scale
@@ -451,7 +451,7 @@ def export_chart(
     if include_title:
         plt.suptitle(f"A summary of {n_oers} OERs ({today.isoformat()})", fontsize=30, y=0.95)
         plt.subplots_adjust(top=0.85)  # move plot down a bit to create space below the suptitle
-        plt.tight_layout(rect=[0, 0, 1, 0.95])  # ensure layout doesn't overlap with suptitle
+        plt.tight_layout(rect=[0, 0, 1, 0.95])  # type:ignore  # ensure layout doesn't overlap with suptitle
     else:
         plt.tight_layout()
 
