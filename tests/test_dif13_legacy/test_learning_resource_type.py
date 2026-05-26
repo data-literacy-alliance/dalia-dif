@@ -1,15 +1,13 @@
 import pytest
 from rdflib import URIRef
 
-from dalia_dif.dif13.legacy.components import (
-    MEDIA_TYPE_EXCEPTIONS,
-    add_learning_resource_types_to_lr,
-)
+from dalia_dif.dif13.legacy.components import add_learning_resource_types_to_lr
+from dalia_dif.dif13.picklists import MEDIA_TYPE_EXCEPTIONS
 from dalia_dif.namespace import get_base_graph as graph
 from tests.util import same_graphs
 
 
-def test_add_learning_resource_types_to_lr_with_valid_input():
+def test_add_learning_resource_types_to_lr_with_valid_input() -> None:
     g = graph()
 
     add_learning_resource_types_to_lr(
@@ -72,8 +70,8 @@ def test_add_learning_resource_types_to_lr_with_valid_input():
     ],
 )
 def test_add_learning_resource_types_to_lr_raises_exception_on_invalid_input(
-    learning_resource_types, expected_error_msg
-):
+    learning_resource_types: str, expected_error_msg: str
+) -> None:
     g = graph()
 
     with pytest.raises(Exception, match=expected_error_msg):

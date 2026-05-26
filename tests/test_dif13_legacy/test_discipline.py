@@ -6,7 +6,7 @@ from dalia_dif.namespace import get_base_graph as graph
 from tests.util import same_graphs
 
 
-def test_add_disciplines_to_lr_with_valid_input():
+def test_add_disciplines_to_lr_with_valid_input() -> None:
     g = graph()
 
     add_disciplines_to_lr(
@@ -60,7 +60,9 @@ def test_add_disciplines_to_lr_with_valid_input():
         # ),
     ],
 )
-def test_add_disciplines_to_lr_raises_exception_on_invalid_input(disciplines, expected_error_msg):
+def test_add_disciplines_to_lr_raises_exception_on_invalid_input(
+    disciplines: str, expected_error_msg: str
+) -> None:
     g = graph()
 
     with pytest.raises(Exception, match=expected_error_msg):

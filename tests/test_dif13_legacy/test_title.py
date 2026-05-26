@@ -6,7 +6,7 @@ from dalia_dif.namespace import get_base_graph as graph
 from tests.util import same_graphs
 
 
-def test_add_title_to_lr_with_example_from_dif():
+def test_add_title_to_lr_with_example_from_dif() -> None:
     g = graph()
 
     add_title_to_lr(
@@ -43,7 +43,9 @@ def test_add_title_to_lr_with_example_from_dif():
         ),
     ],
 )
-def test_add_title_to_lr_raises_exception_on_invalid_input(title, expected_error_msg):
+def test_add_title_to_lr_raises_exception_on_invalid_input(
+    title: str, expected_error_msg: str
+) -> None:
     g = graph()
 
     with pytest.raises(Exception, match=expected_error_msg):

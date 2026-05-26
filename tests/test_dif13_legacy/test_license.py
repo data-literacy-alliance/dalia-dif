@@ -6,7 +6,7 @@ from dalia_dif.namespace import get_base_graph as graph
 from tests.util import same_graphs
 
 
-def test_add_license_to_lr_with_valid_license_identifiers():
+def test_add_license_to_lr_with_valid_license_identifiers() -> None:
     g = graph()
 
     add_license_to_lr(g, URIRef("http://example.com/something1"), " CC-BY-4.0  ")
@@ -42,7 +42,9 @@ def test_add_license_to_lr_with_valid_license_identifiers():
         ),
     ],
 )
-def test_add_license_to_lr_raises_exception_on_invalid_input(license, expected_error_msg):
+def test_add_license_to_lr_raises_exception_on_invalid_input(
+    license: str, expected_error_msg: str
+) -> None:
     g = graph()
 
     with pytest.raises(Exception, match=expected_error_msg):
