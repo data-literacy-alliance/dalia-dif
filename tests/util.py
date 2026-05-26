@@ -1,6 +1,8 @@
 from rdflib import Graph
 from rdflib.compare import isomorphic
 
+__all__ = ["same_graphs"]
+
 
 def same_graphs(g1: Graph, g2: Graph) -> bool:
     if not isomorphic(g1, g2):

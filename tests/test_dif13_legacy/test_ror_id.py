@@ -12,7 +12,7 @@ from dalia_dif.dif13.legacy.authors import is_valid_ror_id
         "https://ror.org/05qj6w324",
     ],
 )
-def test_is_valid_ror_id_with_valid_ror_id(valid_ror_id):
+def test_is_valid_ror_id_with_valid_ror_id(valid_ror_id: str) -> None:
     assert is_valid_ror_id(valid_ror_id)
 
 
@@ -27,5 +27,5 @@ def test_is_valid_ror_id_with_valid_ror_id(valid_ror_id):
         "https://ror.org/03yrm5c27",
     ],
 )
-def test_is_valid_ror_id_with_invalid_ror_id(invalid_ror_id):
+def test_is_valid_ror_id_with_invalid_ror_id(invalid_ror_id: str) -> None:
     assert not is_valid_ror_id(invalid_ror_id)
