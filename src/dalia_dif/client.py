@@ -67,14 +67,14 @@ class DALIAUploadRequest(BaseModel):
 
     title: str
     main_url: AnyHttpUrl
-    publication_date: Annotated[datetime.date, Field(default_factory=datetime.date.today)]
-    description: str
+    publication_date: datetime.date | None = None
+    description: str | None = None
     size_mb: Annotated[str | None, Field(examples=["-9707."])] = None  #
     submitted_for_review: bool = True
     submitted_at: Annotated[datetime.datetime, Field(default_factory=datetime.datetime.now)]
     version: int = 1
     is_active: bool = True
-    resource: int
+    resource: int | None = None
     created_by: int
     submitted_by: int
     languages: Annotated[list[int], Field(default_factory=list)]
@@ -104,58 +104,70 @@ class Client:
         self.token = pystow.get_config("dalia", "token", passthrough=token, raise_on_missing=True)
         self.session = requests.Session()
         self.session.headers["Authorization"] = f"Token {self.token}"
-        self.base = base or "https://search.dalia.education/api"
+        self.base = base or "https://search.dalia.education"
         self.module = pystow.module("dalia", "web-resources")
 
         # need to cache some stuff on first try
         self.relation_types = self.module.ensure_json(
-            url=f"{self.base}/curation/relation-types/",
+            url=f"{self.base}/api/curation/relation-types/",
             name="relation-types.json",
         )
         self.target_groups = self.module.ensure_json(
-            url=f"{self.base}/curation/target-groups/",
+            url=f"{self.base}/api/curation/target-groups/",
             name="target-groups.json",
         )
         self.proficiency_levels = self.module.ensure_json(
-            url=f"{self.base}/curation/proficiency-levels/",
+            url=f"{self.base}/api/curation/proficiency-levels/",
             name="proficiency-levels.json",
         )
         self.organizations = self.module.ensure_json(
-            url=f"{self.base}/curation/organizations/",
+            url=f"{self.base}/api/curation/organizations/",
             name="organizations.json",
         )
         self.media_types = self.module.ensure_json(
-            url=f"{self.base}/curation/media-types/",
+            url=f"{self.base}/api/curation/media-types/",
             name="media-types.json",
         )
         self.licenses = self.module.ensure_json(
-            url=f"{self.base}/curation/licenses/",
+            url=f"{self.base}/api/curation/licenses/",
             name="licenses.json",
         )
+        self.license_lookup: dict[str, int] = {
+            d['label']: d['id']
+            for d in self.licenses
+        }
+
         self.learning_resource_types = self.module.ensure_json(
-            url=f"{self.base}/curation/learning-resource-types/",
+            url=f"{self.base}/api/curation/learning-resource-types/",
             name="learning-resource-types.json",
         )
         self.languages = self.module.ensure_json(
-            url=f"{self.base}/curation/languages/",
+            url=f"{self.base}/api/curation/languages/",
             name="languages.json",
         )
         self.file_formats = self.module.ensure_json(
-            url=f"{self.base}/curation/file-formats/",
+            url=f"{self.base}/api/curation/file-formats/",
             name="file-formats.json",
         )
         self.disciplines = self.module.ensure_json(
-            url=f"{self.base}/curation/disciplines/",
+            url=f"{self.base}/api/curation/disciplines/",
             name="disciplines.json",
         )
         self.communities = self.module.ensure_json(
-            url=f"{self.base}/curation/communities/",
+            url=f"{self.base}/api/curation/communities/",
             name="communities.json",
         )
+        self.current_user = self.module.ensure_json(
+            url=f"{self.base}/api/v1/auth/me/",
+            name=f"{self.token}.json",
+        )
+        self.current_user_id = self.current_user["id"]
+        self.current_user_username = self.current_user["username"]
+        self.current_user_email = self.current_user["email"]
 
     def upload_dif13(
         self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, parse: bool = False
-    ) -> DALIAUploadResponse:
+    ) -> DALIAUploadResponse | requests.Response:
         """Upload a learning resource to DALIA."""
         if isinstance(r, EducationalResourceDIF13):
             r = self._convert(r)
@@ -164,14 +176,54 @@ class Client:
             json=r.model_dump(exclude_none=True, exclude_unset=True),
         )
         res.raise_for_status()
-        rv = res.json()
         if parse:
-            rv = DALIAUploadResponse.model_validate(rv)
-        return rv
+            return DALIAUploadResponse.model_validate(res.json())
+        return res
 
     def _convert(self, r: EducationalResourceDIF13) -> DALIAUploadRequest:
-        raise NotImplementedError
+        if r.license is None:
+            ll = None
+        elif r.license.startswith("http://spdx.org/licenses/"):
+            ll = self.license_lookup[r.license.removeprefix("http://spdx.org/licenses/")]
+        elif str(r.license) == "https://purl.org/ontology/modalia#ProprietaryLicense":
+            ll = 2
+        else:
+            print(f"CANT HANDLE LICENSE: {r.license}")
+            ll = None
+
+        if isinstance(r.publication_date, int):
+            publication_date = datetime.date(year=r.publication_date, month=1, day=1)
+        else:
+            publication_date = r.publication_date
+
+        return DALIAUploadRequest(
+            title=r.title,
+            main_url=r.links[0],
+            publication_date=publication_date,
+            description=r.description,
+            created_by=self.current_user_id,
+            submitted_by=self.current_user_id,
+            licenses=[ll] if ll else [],
+        )
+
+
+def _demo() -> None:
+    import dalia_dif.dif13
+
+    # load example DIF13 data
+    path = "/Users/cthoyt/dev/dalia-curation/curation/dalia_curation_2026_04.csv"
+    resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
+
+    client = Client()
+
+    import pprint
+
+    # pprint.pprint(client.licenses)
+
+    for resource in resources:
+        client._convert(resource)
+    # client.upload_dif13(resources[0])
 
 
 if __name__ == "__main__":
-    client = Client()
+    _demo()
