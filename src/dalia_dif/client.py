@@ -1,62 +1,25 @@
 """Client to DALIA website."""
 
 import datetime
+import json
+import logging
+from collections.abc import Iterable, Sequence
 from typing import Annotated
 
+import click
 import pystow
 import requests
 from pydantic import AnyHttpUrl, BaseModel, Field
+from pydantic_extra_types.language_code import _index_by_alpha2
 
 from dalia_dif.dif13 import EducationalResourceDIF13
 
-"""
-Example input:
+__all__ = [
+    "Client",
+    "DALIAUploadRequest",
+]
 
-{
-  "title": "string",
-  "main_url": "string",
-  "publication_date": "2026-05-26",
-  "description": "string",
-  "size_mb": "-9707.",
-  "submitted_for_review": true,
-  "submitted_at": "2026-05-26T10:42:37.303Z",
-  "version": 2147483647,
-  "is_active": true,
-  "resource": 0,
-  "created_by": 0,
-  "submitted_by": 0,
-  "languages": [
-    0
-  ],
-  "people": [
-    0
-  ],
-  "organizations": [
-    0
-  ],
-  "learning_resource_types": [
-    0
-  ],
-  "disciplines": [
-    0
-  ],
-  "licenses": [
-    0
-  ],
-  "proficiency_levels": [
-    0
-  ],
-  "target_groups": [
-    0
-  ],
-  "file_formats": [
-    0
-  ],
-  "media_types": [
-    0
-  ]
-}
-"""
+logger = logging.getLogger(__name__)
 
 
 class DALIAUploadRequest(BaseModel):
@@ -72,7 +35,7 @@ class DALIAUploadRequest(BaseModel):
     size_mb: Annotated[str | None, Field(examples=["-9707."])] = None  #
     submitted_for_review: bool = True
     submitted_at: Annotated[datetime.datetime, Field(default_factory=datetime.datetime.now)]
-    version: int = 1
+    version: int | None = None  # does this need to be set?
     is_active: bool = True
     resource: int | None = None
     created_by: int
@@ -87,13 +50,6 @@ class DALIAUploadRequest(BaseModel):
     target_groups: Annotated[list[int], Field(default_factory=list)]
     file_formats: Annotated[list[int], Field(default_factory=list)]
     media_types: Annotated[list[int], Field(default_factory=list)]
-
-
-class DALIAUploadResponse(BaseModel):
-    """The response returned by DALIA resource creation.
-
-    See: https://search.dalia.education/api/docs/#/Curation%20-%20Resource%20contents/api_curation_resource_contents_create
-    """
 
 
 class Client:
@@ -112,47 +68,76 @@ class Client:
             url=f"{self.base}/api/curation/relation-types/",
             name="relation-types.json",
         )
-        self.target_groups = self.module.ensure_json(
-            url=f"{self.base}/api/curation/target-groups/",
-            name="target-groups.json",
+        self.target_groups = {
+            part["uri"]: part["id"]
+            for part in self.module.ensure_json(
+                url=f"{self.base}/api/curation/target-groups/",
+                name="target-groups.json",
+            )
+        }
+        self.target_groups.update(
+            {
+                "https://purl.org/ontology/modalia#DataSteward": 3,
+                "https://purl.org/ontology/modalia#TeacherHighEducation": 11,
+            }
         )
-        self.proficiency_levels = self.module.ensure_json(
-            url=f"{self.base}/api/curation/proficiency-levels/",
-            name="proficiency-levels.json",
-        )
+
+        self.proficiency_levels = {
+            d["uri"]: d["id"]
+            for d in self.module.ensure_json(
+                url=f"{self.base}/api/curation/proficiency-levels/",
+                name="proficiency-levels.json",
+            )
+        }
         self.organizations = self.module.ensure_json(
             url=f"{self.base}/api/curation/organizations/",
             name="organizations.json",
         )
-        self.media_types = self.module.ensure_json(
-            url=f"{self.base}/api/curation/media-types/",
-            name="media-types.json",
-        )
-        self.licenses = self.module.ensure_json(
-            url=f"{self.base}/api/curation/licenses/",
-            name="licenses.json",
-        )
-        self.license_lookup: dict[str, int] = {
-            d['label']: d['id']
-            for d in self.licenses
+        self.media_types = {
+            d["uri"]: d["id"]
+            for d in self.module.ensure_json(
+                url=f"{self.base}/api/curation/media-types/",
+                name="media-types.json",
+            )
         }
-
-        self.learning_resource_types = self.module.ensure_json(
-            url=f"{self.base}/api/curation/learning-resource-types/",
-            name="learning-resource-types.json",
+        self.licenses: dict[str, int] = {
+            d["label"]: d["id"]
+            for d in self.module.ensure_json(
+                url=f"{self.base}/api/curation/licenses/",
+                name="licenses.json",
+            )
+        }
+        self.learning_resource_types = {
+            d["uri"]: d["id"]
+            for d in self.module.ensure_json(
+                url=f"{self.base}/api/curation/learning-resource-types/",
+                name="learning-resource-types.json",
+            )
+        }
+        self.languages = {
+            _index_by_alpha2()[d["code"]].alpha3: d["id"]
+            for d in self.module.ensure_json(
+                url=f"{self.base}/api/curation/languages/",
+                name="languages.json",
+            )
+        }
+        self.file_formats = {
+            d["label"].lower().removeprefix("."): d["id"]
+            for d in self.module.ensure_json(
+                url=f"{self.base}/api/curation/file-formats/",
+                name="file-formats.json",
+            )
+        }
+        self.file_formats.update(
+            {"PDF": 14, "ZIP": 23, "PPTX": 16, "MD": 9, "MBZ": 8, "MP3": 10, "mpeg-4": 11}
         )
-        self.languages = self.module.ensure_json(
-            url=f"{self.base}/api/curation/languages/",
-            name="languages.json",
-        )
-        self.file_formats = self.module.ensure_json(
-            url=f"{self.base}/api/curation/file-formats/",
-            name="file-formats.json",
-        )
-        self.disciplines = self.module.ensure_json(
-            url=f"{self.base}/api/curation/disciplines/",
-            name="disciplines.json",
-        )
+        self.disciplines = {
+            d["uri"]: d["id"]
+            for d in self.module.ensure_json(
+                url=f"{self.base}/api/curation/disciplines/",
+                name="disciplines.json",
+            )
+        }
         self.communities = self.module.ensure_json(
             url=f"{self.base}/api/curation/communities/",
             name="communities.json",
@@ -165,31 +150,63 @@ class Client:
         self.current_user_username = self.current_user["username"]
         self.current_user_email = self.current_user["email"]
 
-    def upload_dif13(
-        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, parse: bool = False
-    ) -> DALIAUploadResponse | requests.Response:
+    def upload_dif13(self, r: EducationalResourceDIF13 | DALIAUploadRequest) -> requests.Response:
         """Upload a learning resource to DALIA."""
         if isinstance(r, EducationalResourceDIF13):
             r = self._convert(r)
         res = self.session.post(
-            f"{self.base}/curation/resource-contents/",
-            json=r.model_dump(exclude_none=True, exclude_unset=True),
+            f"{self.base}/api/curation/resource-contents/",
+            json=r.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
         )
         res.raise_for_status()
-        if parse:
-            return DALIAUploadResponse.model_validate(res.json())
         return res
 
     def _convert(self, r: EducationalResourceDIF13) -> DALIAUploadRequest:
+        def _ll(lookup: dict[str, int], values: Iterable[str] | None, key: str) -> Sequence[int]:
+            rv = []
+            for value in values or []:
+                if numeric_id := lookup.get(str(value)):
+                    rv.append(numeric_id)
+                else:
+                    logger.warning("missing value in %s: %s", key, value)
+            return rv
+
+        target_groups = _ll(self.target_groups, r.target_groups, "target group")
+        proficiency_levels = _ll(
+            self.proficiency_levels, r.proficiency_levels, "proficicency levels"
+        )
+        media_types = _ll(self.media_types, r.media_types, "media types")
+
+        licenses = []
         if r.license is None:
-            ll = None
-        elif r.license.startswith("http://spdx.org/licenses/"):
-            ll = self.license_lookup[r.license.removeprefix("http://spdx.org/licenses/")]
+            pass
+        elif str(r.license) in {
+            "http://spdx.org/licenses/unlicensed",
+        }:
+            pass
         elif str(r.license) == "https://purl.org/ontology/modalia#ProprietaryLicense":
-            ll = 2
+            licenses.append(2)
+        elif r.license.startswith("http://spdx.org/licenses/"):
+            if license_id := self.licenses.get(r.license.removeprefix("http://spdx.org/licenses/")):
+                licenses.append(license_id)
+            else:
+                logger.warning("could not lookup license: %s", r.license)
         else:
-            print(f"CANT HANDLE LICENSE: {r.license}")
-            ll = None
+            logger.warning("could not lookup license: %s", r.license)
+
+        learning_resource_types = _ll(
+            self.learning_resource_types, r.learning_resource_types, "learning resource types"
+        )
+        languages = _ll(self.languages, r.languages, "languages")
+
+        ff = (
+            [zz for f in r.file_formats if (zz := f.removeprefix(".").lower().strip())]
+            if r.file_formats
+            else None
+        )
+        file_formats = _ll(self.file_formats, ff, "file formats")
+
+        disciplines = _ll(self.disciplines, r.disciplines, "disciplines")
 
         if isinstance(r.publication_date, int):
             publication_date = datetime.date(year=r.publication_date, month=1, day=1)
@@ -203,26 +220,38 @@ class Client:
             description=r.description,
             created_by=self.current_user_id,
             submitted_by=self.current_user_id,
-            licenses=[ll] if ll else [],
+            licenses=licenses,
+            target_groups=target_groups,
+            media_types=media_types,
+            proficiency_levels=proficiency_levels,
+            learning_resource_types=learning_resource_types,
+            languages=languages,
+            file_formats=file_formats,
+            disciplines=disciplines,
         )
 
 
 def _demo() -> None:
+    from pathlib import Path
+
     import dalia_dif.dif13
 
+    directory = Path("/Users/cthoyt/dev/dalia-curation/curation")
+
     # load example DIF13 data
-    path = "/Users/cthoyt/dev/dalia-curation/curation/dalia_curation_2026_04.csv"
-    resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
 
     client = Client()
+    for path in directory.glob("*.csv"):
+        resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
+        for resource in resources:
+            try:
+                client._convert(resource)
+            except Exception as e:
+                e.add_note(str(path))
+                raise
 
-    import pprint
-
-    # pprint.pprint(client.licenses)
-
-    for resource in resources:
-        client._convert(resource)
-    # client.upload_dif13(resources[0])
+    res = client.upload_dif13(resource)
+    click.echo(json.dumps(res.json(), indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
