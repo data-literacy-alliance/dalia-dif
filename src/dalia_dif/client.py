@@ -161,7 +161,7 @@ class Client:
         res.raise_for_status()
         return res
 
-    def _convert(self, r: EducationalResourceDIF13) -> DALIAUploadRequest:
+    def _convert(self, r: EducationalResourceDIF13) -> DALIAUploadRequest:  # noqa:C901
         def _ll(lookup: dict[str, int], values: Iterable[str] | None, key: str) -> Sequence[int]:
             rv = []
             for value in values or []:
@@ -208,8 +208,11 @@ class Client:
 
         disciplines = _ll(self.disciplines, r.disciplines, "disciplines")
 
+        publication_date: datetime.date | None
         if isinstance(r.publication_date, int):
             publication_date = datetime.date(year=r.publication_date, month=1, day=1)
+        elif isinstance(r.publication_date, datetime.datetime):
+            publication_date = r.publication_date.date()
         else:
             publication_date = r.publication_date
 
@@ -219,6 +222,7 @@ class Client:
             publication_date=publication_date,
             description=r.description,
             created_by=self.current_user_id,
+            submitted_at=datetime.datetime.now(),
             submitted_by=self.current_user_id,
             licenses=licenses,
             target_groups=target_groups,
@@ -228,6 +232,8 @@ class Client:
             languages=languages,
             file_formats=file_formats,
             disciplines=disciplines,
+            people=[],
+            organizations=[],
         )
 
 
