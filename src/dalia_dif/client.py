@@ -3,7 +3,7 @@
 import datetime
 import json
 import logging
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable
 from typing import Annotated
 
 import click
@@ -162,7 +162,7 @@ class Client:
         return res
 
     def _convert(self, r: EducationalResourceDIF13) -> DALIAUploadRequest:  # noqa:C901
-        def _ll(lookup: dict[str, int], values: Iterable[str] | None, key: str) -> Sequence[int]:
+        def _ll(lookup: dict[str, int], values: Iterable[str] | None, key: str) -> list[int]:
             rv = []
             for value in values or []:
                 if numeric_id := lookup.get(str(value)):
@@ -218,7 +218,7 @@ class Client:
 
         return DALIAUploadRequest(
             title=r.title,
-            main_url=r.links[0],
+            main_url=AnyHttpUrl(str(r.links[0])),
             publication_date=publication_date,
             description=r.description,
             created_by=self.current_user_id,
