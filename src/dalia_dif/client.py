@@ -250,11 +250,7 @@ def _demo() -> None:
     for path in directory.glob("*.csv"):
         resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
         for resource in resources:
-            try:
-                client._convert(resource)
-            except Exception as e:
-                e.add_note(str(path))
-                raise
+            client._convert(resource)
 
     res = client.upload_dif13(resource)
     res_json = res.json()
