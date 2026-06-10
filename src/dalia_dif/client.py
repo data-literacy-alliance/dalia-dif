@@ -256,7 +256,7 @@ def _demo() -> None:
     res_json = res.json()
 
     click.echo(json.dumps(res.json(), indent=2, ensure_ascii=False))
-    res_json["resource_uuid"]  #  7a261e7e-b62a-4766-9767-e259c86eb8de
+    res_json["resource_uuid"]  # 7a261e7e-b62a-4766-9767-e259c86eb8de
     # TODO the resource page https://search.dalia.education/admin/curation/resource/
     #  does not have it as published yet
 
