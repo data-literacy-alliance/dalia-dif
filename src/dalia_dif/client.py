@@ -3,8 +3,9 @@
 import datetime
 import json
 import logging
+import uuid
 from collections.abc import Iterable
-from typing import Annotated
+from typing import Annotated, Literal, overload
 
 import click
 import pystow
@@ -150,13 +151,45 @@ class Client:
         self.current_user_username = self.current_user["username"]
         self.current_user_email = self.current_user["email"]
 
-    def upload_dif13(self, r: EducationalResourceDIF13 | DALIAUploadRequest) -> requests.Response:
+    @overload
+    def upload_dif13(
+        self, r: EducationalResourceDIF13 | DALIAUploadRequest
+    ) -> requests.Response: ...
+
+    @overload
+    def upload_dif13(
+        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: Literal[True] = ...
+    ) -> tuple[requests.Response, requests.Response]: ...
+
+    @overload
+    def upload_dif13(
+        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: Literal[False] = ...
+    ) -> requests.Response: ...
+
+    def upload_dif13(
+        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: bool = False
+    ) -> requests.Response | tuple[requests.Response, requests.Response]:
         """Upload a learning resource to DALIA."""
         if isinstance(r, EducationalResourceDIF13):
             r = self._convert(r)
         res = self.session.post(
             f"{self.base}/api/curation/resource-contents/",
             json=r.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
+        )
+        res.raise_for_status()
+        if not publish:
+            return res
+
+        publish_res = self.publish(res.json()["resource_uuid"])
+        return res, publish_res
+
+    def publish(self, uuid_: str | uuid.UUID) -> requests.Response:
+        """Publish a learning resource to DALIA.
+
+        see: https://search.dalia.education/api/docs/#/Curation%20-%20Resource%20contents/api_curation_resource_contents_publish_create
+        """
+        res = self.session.post(
+            f"{self.base}/api/curation/resource-contents/{uuid_}/publish/",
         )
         res.raise_for_status()
         return res
@@ -247,6 +280,8 @@ def _demo() -> None:
     # load example DIF13 data
 
     client = Client()
+
+    return
     for path in directory.glob("*.csv"):
         resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
         for resource in resources:
