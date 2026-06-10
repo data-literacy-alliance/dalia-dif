@@ -180,7 +180,8 @@ class Client:
         if not publish:
             return res
 
-        publish_res = self.publish(res.json()["resource_uuid"])
+        # important you use the uuid and not resource_uuid, these are different
+        publish_res = self.publish(res.json()["uuid"])
         return res, publish_res
 
     def publish(self, uuid_: str | uuid.UUID) -> requests.Response:
@@ -280,8 +281,6 @@ def _demo() -> None:
     # load example DIF13 data
 
     client = Client()
-
-    return
     for path in directory.glob("*.csv"):
         resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
         for resource in resources:
@@ -290,8 +289,8 @@ def _demo() -> None:
     res = client.upload_dif13(resource)
     res_json = res.json()
 
-    click.echo(json.dumps(res.json(), indent=2, ensure_ascii=False))
-    res_json["resource_uuid"]  # 7a261e7e-b62a-4766-9767-e259c86eb8de
+    click.echo(res_json["resource_uuid"])
+    click.echo(json.dumps(res_json, indent=2, ensure_ascii=False))
     # TODO the resource page https://search.dalia.education/admin/curation/resource/
     #  does not have it as published yet
 
