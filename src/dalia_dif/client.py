@@ -3,8 +3,9 @@
 import datetime
 import json
 import logging
+import uuid
 from collections.abc import Iterable
-from typing import Annotated
+from typing import Annotated, Literal, overload
 
 import click
 import pystow
@@ -150,13 +151,46 @@ class Client:
         self.current_user_username = self.current_user["username"]
         self.current_user_email = self.current_user["email"]
 
-    def upload_dif13(self, r: EducationalResourceDIF13 | DALIAUploadRequest) -> requests.Response:
+    @overload
+    def upload_dif13(
+        self, r: EducationalResourceDIF13 | DALIAUploadRequest
+    ) -> requests.Response: ...
+
+    @overload
+    def upload_dif13(
+        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: Literal[True] = ...
+    ) -> tuple[requests.Response, requests.Response]: ...
+
+    @overload
+    def upload_dif13(
+        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: Literal[False] = ...
+    ) -> requests.Response: ...
+
+    def upload_dif13(
+        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: bool = False
+    ) -> requests.Response | tuple[requests.Response, requests.Response]:
         """Upload a learning resource to DALIA."""
         if isinstance(r, EducationalResourceDIF13):
             r = self._convert(r)
         res = self.session.post(
             f"{self.base}/api/curation/resource-contents/",
             json=r.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
+        )
+        res.raise_for_status()
+        if not publish:
+            return res
+
+        # important you use the uuid and not resource_uuid, these are different
+        publish_res = self.publish(res.json()["uuid"])
+        return res, publish_res
+
+    def publish(self, uuid_: str | uuid.UUID) -> requests.Response:
+        """Publish a learning resource to DALIA.
+
+        see: https://search.dalia.education/api/docs/#/Curation%20-%20Resource%20contents/api_curation_resource_contents_publish_create
+        """
+        res = self.session.post(
+            f"{self.base}/api/curation/resource-contents/{uuid_}/publish/",
         )
         res.raise_for_status()
         return res
@@ -255,8 +289,8 @@ def _demo() -> None:
     res = client.upload_dif13(resource)
     res_json = res.json()
 
-    click.echo(json.dumps(res.json(), indent=2, ensure_ascii=False))
-    res_json["resource_uuid"]  # 7a261e7e-b62a-4766-9767-e259c86eb8de
+    click.echo(res_json["resource_uuid"])
+    click.echo(json.dumps(res_json, indent=2, ensure_ascii=False))
     # TODO the resource page https://search.dalia.education/admin/curation/resource/
     #  does not have it as published yet
 
