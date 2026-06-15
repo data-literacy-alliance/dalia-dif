@@ -29,7 +29,7 @@ class PersonRequest(BaseModel):
 
     first_name: str
     last_name: str
-    orcid: str | None = None
+    orcid: Annotated[str | None, Field(pattern=r"^orcid:\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$")] = None
 
 
 class DALIAUploadRequest(BaseModel):
@@ -248,7 +248,11 @@ class Client:
         self.name_to_person[person.first_name, person.last_name] = database_id
         return database_id
 
-    def _convert(self, r: EducationalResourceDIF13) -> DALIAUploadRequest:  # noqa:C901
+    def _convert(  # noqa:C901
+        self,
+        r: EducationalResourceDIF13,
+        dry: bool = False,
+    ) -> DALIAUploadRequest:
         def _ll(lookup: dict[str, int], values: Iterable[str] | None, key: str) -> list[int]:
             rv = []
             for value in values or []:
@@ -306,16 +310,21 @@ class Client:
         people: list[int] = []
         for author in r.authors or []:
             if not isinstance(author, AuthorDIF13):
-                click.echo(f"skipping org: {author}")
+                tqdm.write(f"skipping org: {author}")
                 continue
-            if author.orcid and (lookup := self.orcid_to_person.get(author.orcid)):
-                click.echo(f"looked up ORCiD: {author.orcid}")
+            if author.orcid and (
+                lookup := self.orcid_to_person.get(author.orcid.removeprefix("https://orcid.org/"))
+            ):
                 people.append(lookup)
             elif lookup2 := self.name_to_person.get((author.given_name, author.family_name)):
-                click.echo(f"looked up name: {author.given_name} {author.family_name}")
                 people.append(lookup2)
+            elif dry:
+                tqdm.write(
+                    f"would create author: {author.given_name} {author.family_name} "
+                    f"({author.orcid or 'no orcid'})"
+                )
             else:
-                click.echo(
+                tqdm.write(
                     f"creating author: {author.given_name} {author.family_name} ({author.orcid})"
                 )
                 people.append(
@@ -323,7 +332,9 @@ class Client:
                         PersonRequest(
                             first_name=author.given_name,
                             last_name=author.family_name,
-                            orcid=author.orcid,
+                            orcid=author.orcid.removeprefix("https://orcid.org/")
+                            if author.orcid
+                            else None,
                         )
                     )
                 )
@@ -349,13 +360,13 @@ class Client:
             organizations=[],
         )
 
-    def soft_delete(self, resource_uuid: str) -> dict[str, Any]:
+    def soft_delete(self, resource_uuid: str) -> requests.Response:
         """Delete (soft) an OER."""
         res = self.session.post(
             f"{self.base}/api/curation/resource-contents/{resource_uuid}/soft-delete/"
         )
         res.raise_for_status()
-        return res.json()
+        return res
 
     def _delete_made_by_charlie(self) -> None:
         oers = self.get_resources()
@@ -370,13 +381,12 @@ def _explore() -> None:
     import dalia_dif.dif13
 
     directory = Path("/Users/cthoyt/dev/dalia-curation/curation")
-    path = directory.joinpath("KODAQS_curation.csv")
 
     client = Client()
-
-    resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
-    for resource in resources:
-        client._convert(resource)
+    for path in directory.glob("*.csv"):
+        resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
+        for resource in resources:
+            client._convert(resource, dry=True)
 
 
 def _demo() -> None:
@@ -401,4 +411,4 @@ def _demo() -> None:
 
 
 if __name__ == "__main__":
-    _demo()
+    _explore()
