@@ -386,15 +386,18 @@ LOGGED = set()
 
 def _explore() -> None:
     from pathlib import Path
+    from dalia_dif.dif13.community import get_communities_dict
 
     import dalia_dif.dif13
 
-    directory = Path("/Users/cthoyt/dev/dalia-curation/curation")
+
+    directory = Path("/Users/cthoyt/dev/dalia-curation")
+    communities = get_communities_dict(directory.joinpath("communities.csv"))
 
     client = Client()
-    for path in directory.glob("*.csv"):
+    for path in sorted(directory.joinpath("curation").glob("*.csv")):
         tqdm.write(path.name)
-        resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
+        resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True, communities=communities)
         for resource in resources:
             client._convert(resource, dry=True)
 
