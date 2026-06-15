@@ -310,7 +310,7 @@ class Client:
         people: list[int] = []
         for author in r.authors or []:
             if not isinstance(author, AuthorDIF13):
-                tqdm.write(f"skipping org: {author}")
+                _write(f"  skipping org: {author}")
                 continue
             if author.orcid and (
                 lookup := self.orcid_to_person.get(author.orcid.removeprefix("https://orcid.org/"))
@@ -319,8 +319,8 @@ class Client:
             elif lookup2 := self.name_to_person.get((author.given_name, author.family_name)):
                 people.append(lookup2)
             elif dry:
-                tqdm.write(
-                    f"would create author: {author.given_name} {author.family_name} "
+                _write(
+                    f"  would create author: {author.given_name} {author.family_name} "
                     f"({author.orcid or 'no orcid'})"
                 )
             else:
@@ -375,6 +375,15 @@ class Client:
                 self.soft_delete(oer["uuid"])
 
 
+def _write(s: str) -> None:
+    if s not in LOGGED:
+        tqdm.write(s)
+        LOGGED.add(s)
+
+
+LOGGED = set()
+
+
 def _explore() -> None:
     from pathlib import Path
 
@@ -384,6 +393,7 @@ def _explore() -> None:
 
     client = Client()
     for path in directory.glob("*.csv"):
+        tqdm.write(path.name)
         resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
         for resource in resources:
             client._convert(resource, dry=True)
