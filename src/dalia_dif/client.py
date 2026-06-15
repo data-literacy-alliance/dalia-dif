@@ -5,7 +5,7 @@ import json
 import logging
 import uuid
 from collections.abc import Iterable
-from typing import Annotated, Literal, overload
+from typing import Annotated, Literal, cast, overload
 
 import click
 import pystow
@@ -13,7 +13,7 @@ import requests
 from pydantic import AnyHttpUrl, BaseModel, Field
 from pydantic_extra_types.language_code import _index_by_alpha2
 
-from dalia_dif.dif13 import EducationalResourceDIF13
+from dalia_dif.dif13 import AuthorDIF13, EducationalResourceDIF13
 
 __all__ = [
     "Client",
@@ -21,6 +21,14 @@ __all__ = [
 ]
 
 logger = logging.getLogger(__name__)
+
+
+class PersonRequest(BaseModel):
+    """A post request for a person."""
+
+    first_name: str
+    last_name: str
+    orcid: str | None = None
 
 
 class DALIAUploadRequest(BaseModel):
@@ -144,6 +152,18 @@ class Client:
             url=f"{self.base}/api/curation/communities/",
             name="communities.json",
         )
+        self.people = self.module.ensure_json(
+            url=f"{self.base}/api/curation/persons/",
+            name="people.json",
+            force=True,  # this is going to get updated each time
+        )
+        self.name_to_person: dict[tuple[str, str], int] = {
+            (person["first_name"], person["last_name"]): person["id"] for person in self.people
+        }
+        self.orcid_to_person: dict[str, int] = {
+            orcid: person["id"] for person in self.people if (orcid := person.get("orcid"))
+        }
+
         self.current_user = self.module.ensure_json(
             url=f"{self.base}/api/v1/auth/me/",
             name=f"{self.token}.json",
@@ -195,6 +215,20 @@ class Client:
         )
         res.raise_for_status()
         return res
+
+    def _create_author(self, person: PersonRequest) -> int:
+        """Create a person and return their UUID."""
+        res = self.session.post(
+            f"{self.base}/api/curation/persons/",
+            json=person.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
+        )
+        res.raise_for_status()
+        res_json = res.json()
+        database_id = cast(int, res_json["id"])
+        if person.orcid:
+            self.orcid_to_person[person.orcid] = database_id
+        self.name_to_person[person.first_name, person.last_name] = database_id
+        return database_id
 
     def _convert(self, r: EducationalResourceDIF13) -> DALIAUploadRequest:  # noqa:C901
         def _ll(lookup: dict[str, int], values: Iterable[str] | None, key: str) -> list[int]:
@@ -251,6 +285,31 @@ class Client:
         else:
             publication_date = r.publication_date
 
+        people: list[int] = []
+        for author in r.authors or []:
+            if not isinstance(author, AuthorDIF13):
+                click.echo(f"skipping org: {author}")
+                continue
+            if author.orcid and (lookup := self.orcid_to_person.get(author.orcid)):
+                click.echo(f"looked up ORCiD: {author.orcid}")
+                people.append(lookup)
+            elif lookup2 := self.name_to_person.get((author.given_name, author.family_name)):
+                click.echo(f"looked up name: {author.given_name} {author.family_name}")
+                people.append(lookup2)
+            else:
+                click.echo(
+                    f"creating author: {author.given_name} {author.family_name} ({author.orcid})"
+                )
+                people.append(
+                    self._create_author(
+                        PersonRequest(
+                            first_name=author.given_name,
+                            last_name=author.family_name,
+                            orcid=author.orcid,
+                        )
+                    )
+                )
+
         return DALIAUploadRequest(
             title=r.title,
             main_url=AnyHttpUrl(str(r.links[0])),
@@ -267,10 +326,25 @@ class Client:
             languages=languages,
             file_formats=file_formats,
             disciplines=disciplines,
-            keywords=r.keywords or [],
-            people=[],
+            keywords=r.keywords,
+            people=people,
             organizations=[],
         )
+
+
+def _explore() -> None:
+    from pathlib import Path
+
+    import dalia_dif.dif13
+
+    directory = Path("/Users/cthoyt/dev/dalia-curation/curation")
+    path = directory.joinpath("KODAQS_curation.csv")
+
+    client = Client()
+
+    resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
+    for resource in resources:
+        client._convert(resource)
 
 
 def _demo() -> None:
@@ -279,23 +353,19 @@ def _demo() -> None:
     import dalia_dif.dif13
 
     directory = Path("/Users/cthoyt/dev/dalia-curation/curation")
-
+    path = directory.joinpath("KODAQS_curation.csv")
     # load example DIF13 data
 
     client = Client()
-    for path in directory.glob("*.csv"):
-        resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
-        for resource in resources:
-            client._convert(resource)
-
-    res = client.upload_dif13(resource)
-    res_json = res.json()
-
-    click.echo(res_json["resource_uuid"])
-    click.echo(json.dumps(res_json, indent=2, ensure_ascii=False))
+    resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
+    for resource in resources:
+        res, _ = client.upload_dif13(resource, publish=True)
+        res_json = res.json()
+        click.echo(res_json["resource_uuid"])
+        click.echo(json.dumps(res_json, indent=2, ensure_ascii=False))
     # TODO the resource page https://search.dalia.education/admin/curation/resource/
     #  does not have it as published yet
 
 
 if __name__ == "__main__":
-    _demo()
+    _explore()
