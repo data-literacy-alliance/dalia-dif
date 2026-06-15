@@ -1,14 +1,13 @@
 """Code for curated DALIA communities."""
 
-import csv
 from collections import Counter
 from pathlib import Path
 from typing import Any, TypeAlias
 
 from pydantic import UUID4, AnyHttpUrl, BaseModel, Field
+from pystow.utils import safe_open_dict_reader
 
 HERE = Path(__file__).parent.resolve()
-COMMUNITIES_PATH = HERE / "dalia_communities.csv"
 
 
 class Community(BaseModel):
@@ -37,16 +36,16 @@ def _process(row: dict[str, Any]) -> Community:
     return Community.model_validate(row)
 
 
-def read_communities(path: Path) -> list[Community]:
+def read_communities(path: str | Path) -> list[Community]:
     """Read communities."""
-    with open(path, newline="") as csvfile:
-        return [_process(row) for row in csv.DictReader(csvfile)]
+    with safe_open_dict_reader(path) as reader:
+        return [_process(row) for row in reader]
 
 
 CommunityDict: TypeAlias = dict[str, str]
 
 
-def get_communities_dict(path: Path) -> CommunityDict:
+def get_communities_dict(path: str | Path) -> CommunityDict:
     """Get a mapping from names/synonyms to UUID strings."""
     rv = {}
     for community in read_communities(path):
@@ -56,29 +55,4 @@ def get_communities_dict(path: Path) -> CommunityDict:
     return rv
 
 
-def _read_mapping() -> dict[str, str]:
-    rv = {}
-    for community in read_communities(COMMUNITIES_PATH):
-        rv[community.title] = str(community.uuid)
-        for synonym in community.synonyms:
-            rv[synonym] = str(community.uuid)
-    return rv
-
-
-LOOKUP_DICT_COMMUNITIES: CommunityDict = get_communities_dict(COMMUNITIES_PATH)
-
 MISSING_COMMUNITIES: Counter[str] = Counter()
-
-
-def get_community_labels() -> dict[str, str]:
-    """Get community labels."""
-    return {
-        str(community.uuid): COMMUNITY_RELABELS.get(community.title, community.title)
-        for community in read_communities(COMMUNITIES_PATH)
-    }
-
-
-COMMUNITY_RELABELS = {
-    "Nationale Forschungsdateninfrastruktur (NFDI)": "NFDI",
-    "HeFDI - Hessische Forschungsdateninfrastrukturen": "HeFDI",
-}

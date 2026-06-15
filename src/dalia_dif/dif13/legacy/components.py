@@ -6,7 +6,7 @@ from pathlib import Path
 import click
 from rdflib import XSD, Graph, Literal, Node, URIRef
 
-from ..community import COMMUNITIES_PATH, LOOKUP_DICT_COMMUNITIES, MISSING_COMMUNITIES
+from ..community import MISSING_COMMUNITIES, CommunityDict, get_communities_dict
 from ..constants import DIF_SEPARATOR
 from ..picklists import (
     COMMUNITY_RELATIONS,
@@ -43,6 +43,10 @@ from ..rdf import (
     get_license_uriref,
 )
 from ...namespace import DALIA_COMMUNITY
+
+HERE = Path(__file__).parent.resolve()
+COMMUNITIES_PATH = HERE / "dalia_communities.csv"
+LOOKUP_DICT_COMMUNITIES: CommunityDict = get_communities_dict(COMMUNITIES_PATH)
 
 
 def add_description_to_lr(g: Graph, lr_node: Node, description: str) -> None:
