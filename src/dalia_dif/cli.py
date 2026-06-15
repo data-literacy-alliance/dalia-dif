@@ -39,7 +39,7 @@ def validate(
                 path,
                 error_accumulator=errors,
                 ignore_missing_description=ignore_missing_description,
-                commmunities=communities_path,
+                communities=communities_path,
             )
             if errors:
                 fail = True
@@ -51,7 +51,7 @@ def validate(
 
     else:
         errors = []
-        read_dif13(location, error_accumulator=errors, commmunities=communities_path)
+        read_dif13(location, error_accumulator=errors, communities=communities_path)
         if errors:
             for error in errors:
                 click.secho(error, fg="red")
@@ -72,7 +72,7 @@ def lint(location: Path) -> None:
 
     count = 0
     for path in location.glob("*.csv"):
-        path.write_text(path.read_text().replace(" ", " "))  # noqa:RUF001
+        path.write_text(path.read_text().replace(" ", " ").replace("  ", " ").rstrip() + "\n")  # noqa:RUF001
         df = pd.read_csv(path, sep=",")
         if DIF_HEADER_ID not in df.columns:
             click.secho(f"missing column {DIF_HEADER_ID} in {path}")

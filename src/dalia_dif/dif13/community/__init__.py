@@ -18,6 +18,7 @@ class Community(BaseModel):
     ror: str | None = None
     website: AnyHttpUrl | None = None
     synonyms: list[str] = Field(default_factory=list)
+    alts: list[str] | None = None
 
 
 RENAMES = {
@@ -33,6 +34,8 @@ def _process(row: dict[str, Any]) -> Community:
     row = {RENAMES[k]: v for k, v in row.items() if v}
     if synonyms_raw := row.pop("synonyms", None):
         row["synonyms"] = [s.strip() for s in synonyms_raw.split("|")]
+    if alts_raw := row.pop("alts", None):
+        row["alts"] = [s.strip() for s in alts_raw.split("|")]
     return Community.model_validate(row)
 
 
