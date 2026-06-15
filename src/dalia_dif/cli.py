@@ -25,12 +25,6 @@ def validate(
 ) -> None:
     """Validate a local/remote file or local folder of DIF-encoded CSVs."""
     from dalia_dif.dif13 import read_dif13
-    from dalia_dif.dif13.community import get_communities_dict
-
-    if communities_path is not None:
-        community_dict = get_communities_dict(communities_path)
-    else:
-        community_dict = {}
 
     fail = False
     p = Path(location)
@@ -45,7 +39,7 @@ def validate(
                 path,
                 error_accumulator=errors,
                 ignore_missing_description=ignore_missing_description,
-                custom_community_dict=community_dict,
+                commmunities=communities_path,
             )
             if errors:
                 fail = True
@@ -57,7 +51,7 @@ def validate(
 
     else:
         errors = []
-        read_dif13(location, error_accumulator=errors)
+        read_dif13(location, error_accumulator=errors, commmunities=communities_path)
         if errors:
             for error in errors:
                 click.secho(error, fg="red")
