@@ -102,11 +102,11 @@ def read_dif13(
     error_accumulator: list[str] | None = None,
     converter: curies.Converter | None = None,
     ignore_missing_description: bool = False,
-    commmunities: str | Path | CommunityDict | None = None,
+    communities: str | Path | CommunityDict | None = None,
 ) -> list[EducationalResourceDIF13]:
     """Parse DALIA records."""
-    if isinstance(commmunities, str | Path):
-        commmunities = get_communities_dict(commmunities)
+    if isinstance(communities, str | Path):
+        communities = get_communities_dict(communities)
 
     if isinstance(path, str) and (path.startswith("http://") or path.startswith("https://")):
         from io import StringIO
@@ -143,7 +143,7 @@ def read_dif13(
                     error_accumulator=error_accumulator,
                     converter=converter,
                     ignore_missing_description=ignore_missing_description,
-                    communities=commmunities,
+                    communities=communities,
                 )
             )
             is not None

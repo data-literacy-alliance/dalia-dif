@@ -39,7 +39,7 @@ def validate(
                 path,
                 error_accumulator=errors,
                 ignore_missing_description=ignore_missing_description,
-                commmunities=communities_path,
+                communities=communities_path,
             )
             if errors:
                 fail = True
@@ -51,7 +51,7 @@ def validate(
 
     else:
         errors = []
-        read_dif13(location, error_accumulator=errors, commmunities=communities_path)
+        read_dif13(location, error_accumulator=errors, communities=communities_path)
         if errors:
             for error in errors:
                 click.secho(error, fg="red")
