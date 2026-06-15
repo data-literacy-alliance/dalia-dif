@@ -5,13 +5,14 @@ import json
 import logging
 import uuid
 from collections.abc import Iterable
-from typing import Annotated, Literal, cast, overload
+from typing import Annotated, Any, Literal, cast, overload
 
 import click
 import pystow
 import requests
 from pydantic import AnyHttpUrl, BaseModel, Field
 from pydantic_extra_types.language_code import _index_by_alpha2
+from tqdm import tqdm
 
 from dalia_dif.dif13 import AuthorDIF13, EducationalResourceDIF13
 
@@ -216,6 +217,23 @@ class Client:
         res.raise_for_status()
         return res
 
+    def get_resources(self, *, page_size: int | None = None) -> list[dict[str, Any]]:
+        """Get all resources."""
+        if page_size is None:
+            page_size = 1_000
+        oers = []
+        next_url = f"{self.base}/api/curation/resource-contents/"
+        while next_url:
+            res = self.session.get(
+                next_url,
+                params={"page_size": page_size},
+            )
+            res.raise_for_status()
+            res_json = res.json()
+            oers.extend(res_json["results"])
+            next_url = res_json.get("next")
+        return oers
+
     def _create_author(self, person: PersonRequest) -> int:
         """Create a person and return their UUID."""
         res = self.session.post(
@@ -331,6 +349,20 @@ class Client:
             organizations=[],
         )
 
+    def soft_delete(self, resource_uuid: str) -> dict[str, Any]:
+        """Delete (soft) an OER."""
+        res = self.session.post(
+            f"{self.base}/api/curation/resource-contents/{resource_uuid}/soft-delete/"
+        )
+        res.raise_for_status()
+        return res.json()
+
+    def _delete_made_by_charlie(self) -> None:
+        oers = self.get_resources()
+        for oer in tqdm(oers):
+            if oer["created_by"]["username"] == "cthoyt":
+                self.soft_delete(oer["uuid"])
+
 
 def _explore() -> None:
     from pathlib import Path
@@ -357,6 +389,7 @@ def _demo() -> None:
     # load example DIF13 data
 
     client = Client()
+    client._delete_made_by_charlie()
     resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
     for resource in resources:
         res, _ = client.upload_dif13(resource, publish=True)
@@ -368,4 +401,4 @@ def _demo() -> None:
 
 
 if __name__ == "__main__":
-    _explore()
+    _demo()
