@@ -353,6 +353,9 @@ def _process_author(  # noqa:C901
     if "{" not in s:
         # assume whole thing is a name
         family_name, _, given_name = (x.strip() for x in s.rpartition(","))
+        if _bad_given_name(given_name) or _bad_family_name(family_name):
+            _log(file_name, idx, f"bad author name: {s}", error_accumulator=error_accumulator)
+            return None
         return AuthorDIF13(given_name=given_name, family_name=family_name)
 
     name, _, ids = s.partition(" : ")
@@ -379,6 +382,11 @@ def _process_author(  # noqa:C901
             _log(file_name, idx, f"invalid ORCID: {orcid}", error_accumulator=error_accumulator)
             return None
         family_name, _, given_name = (x.strip() for x in name.rpartition(","))
+        if _bad_given_name(given_name) or _bad_family_name(family_name):
+            _log(
+                file_name, idx, f"bad author name prefix: {s}", error_accumulator=error_accumulator
+            )
+            return None
         return AuthorDIF13(
             given_name=given_name, family_name=family_name, orcid=ORCID_URI_PREFIX + orcid
         )
@@ -415,6 +423,20 @@ def _process_target_groups(
                 error_accumulator=error_accumulator,
             )
     return rv
+
+
+def _bad_given_name(s: str) -> bool:
+    if s.startswith("Dr ") or s.startswith("Dr. "):
+        return True
+    if "*" in s or "," in s:
+        return True
+    return False
+
+
+def _bad_family_name(s: str) -> bool:
+    if "*" in s or "," in s:
+        return True
+    return False
 
 
 def _process_size(row: dict[str, str]) -> str | None:
