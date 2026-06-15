@@ -78,6 +78,7 @@ def lint(location: Path) -> None:
 
     count = 0
     for path in location.glob("*.csv"):
+        path.write_text(path.read_text().replace(" ", " "))  # noqa:RUF001
         df = pd.read_csv(path, sep=",")
         if DIF_HEADER_ID not in df.columns:
             click.secho(f"missing column {DIF_HEADER_ID} in {path}")
