@@ -14,7 +14,7 @@ from typing import TYPE_CHECKING, Any
 import click
 import rdflib
 
-from dalia_dif.dif13.community import get_community_labels
+from dalia_dif.dif13.community import read_communities
 from dalia_dif.dif13.predicates import RECOMMENDING_COMMUNITY_PRED, SUPPORTING_COMMUNITY_PRED
 from dalia_dif.dif13.rdf import get_discipline_graph
 from dalia_dif.namespace import CONVERTER
@@ -36,6 +36,11 @@ COUNT_OERS_SPARQL = dedent("""\
     }
     GROUP BY ?S
 """)
+
+
+def get_community_labels(path: str | Path) -> dict[str, str]:
+    """Get community labels."""
+    return {str(community.uuid): community.title for community in read_communities(path)}
 
 
 def count_oers(graph: rdflib.Graph) -> int:
@@ -335,9 +340,9 @@ COUNT_COMMUNITIES_SPARQL = dedent(f"""\
 """)
 
 
-def count_communities(graph: rdflib.Graph) -> Counter[str]:
+def count_communities(graph: rdflib.Graph, path: str | Path) -> Counter[str]:
     """Count communities."""
-    community_labels = get_community_labels()
+    community_labels = get_community_labels(path)
     res = list(graph.query(COUNT_COMMUNITIES_SPARQL))
     if len(res) == 0:
         raise ValueError(f"query returned no results:\n{COUNT_COMMUNITIES_SPARQL}")
@@ -409,7 +414,11 @@ def barplot_counter(
 
 
 def export_chart(
-    graph: rdflib.Graph, paths: Path | list[Path], *, include_title: bool = False
+    graph: rdflib.Graph,
+    paths: Path | list[Path],
+    *,
+    include_title: bool = False,
+    communities: str | Path,
 ) -> None:
     """Export the chart."""
     import matplotlib.pyplot as plt
@@ -435,7 +444,9 @@ def export_chart(
         total=n_oers,
     )
     barplot_counter(count_disciplines(graph), ax=axes[1][2], title="Disciplines", total=n_oers)
-    barplot_counter(count_communities(graph), ax=axes[2][0], title="Community", total=n_oers)
+    barplot_counter(
+        count_communities(graph, path=communities), ax=axes[2][0], title="Community", total=n_oers
+    )
     barplot_counter(
         count_target_groups(graph, n_oers), ax=axes[2][1], title="Target Groups", total=n_oers
     )

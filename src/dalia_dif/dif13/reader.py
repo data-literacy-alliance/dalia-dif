@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 import re
-from collections import ChainMap, Counter
+from collections import Counter
 from pathlib import Path
 from typing import TextIO
 
@@ -17,7 +17,7 @@ from pystow.utils import safe_open_dict_reader
 from rdflib import URIRef
 from tqdm import tqdm
 
-from .community import LOOKUP_DICT_COMMUNITIES, CommunityDict
+from .community import CommunityDict, get_communities_dict
 from .model import (
     AuthorDIF13,
     EducationalResourceDIF13,
@@ -102,9 +102,12 @@ def read_dif13(
     error_accumulator: list[str] | None = None,
     converter: curies.Converter | None = None,
     ignore_missing_description: bool = False,
-    custom_community_dict: CommunityDict | None = None,
+    commmunities: str | Path | CommunityDict | None = None,
 ) -> list[EducationalResourceDIF13]:
     """Parse DALIA records."""
+    if isinstance(commmunities, str | Path):
+        commmunities = get_communities_dict(commmunities)
+
     if isinstance(path, str) and (path.startswith("http://") or path.startswith("https://")):
         from io import StringIO
 
@@ -140,7 +143,7 @@ def read_dif13(
                     error_accumulator=error_accumulator,
                     converter=converter,
                     ignore_missing_description=ignore_missing_description,
-                    custom_community_dict=custom_community_dict,
+                    communities=commmunities,
                 )
             )
             is not None
@@ -166,7 +169,7 @@ def parse_dif13_row(  # noqa:C901
     error_accumulator: list[str] | None = None,
     converter: curies.Converter | None = None,
     ignore_missing_description: bool = False,
-    custom_community_dict: CommunityDict | None = None,
+    communities: CommunityDict | None = None,
 ) -> EducationalResourceDIF13 | None:
     """Convert a row in a DALIA curation file to a resource, or return none if unable."""
     if isinstance(file_name, Path):
@@ -177,7 +180,7 @@ def parse_dif13_row(  # noqa:C901
         idx,
         row,
         error_accumulator=error_accumulator,
-        custom_community_dict=custom_community_dict,
+        communities=communities,
     )
 
     external_uris = _pop_split(row, "Link")
@@ -353,6 +356,9 @@ def _process_author(  # noqa:C901
     if "{" not in s:
         # assume whole thing is a name
         family_name, _, given_name = (x.strip() for x in s.rpartition(","))
+        if _bad_given_name(given_name) or _bad_family_name(family_name):
+            _log(file_name, idx, f"bad author name: {s}", error_accumulator=error_accumulator)
+            return None
         return AuthorDIF13(given_name=given_name, family_name=family_name)
 
     name, _, ids = s.partition(" : ")
@@ -379,6 +385,11 @@ def _process_author(  # noqa:C901
             _log(file_name, idx, f"invalid ORCID: {orcid}", error_accumulator=error_accumulator)
             return None
         family_name, _, given_name = (x.strip() for x in name.rpartition(","))
+        if _bad_given_name(given_name) or _bad_family_name(family_name):
+            _log(
+                file_name, idx, f"bad author name prefix: {s}", error_accumulator=error_accumulator
+            )
+            return None
         return AuthorDIF13(
             given_name=given_name, family_name=family_name, orcid=ORCID_URI_PREFIX + orcid
         )
@@ -415,6 +426,20 @@ def _process_target_groups(
                 error_accumulator=error_accumulator,
             )
     return rv
+
+
+def _bad_given_name(s: str) -> bool:
+    if s.startswith("Dr ") or s.startswith("Dr. "):
+        return True
+    if "*" in s or "," in s:
+        return True
+    return False
+
+
+def _bad_family_name(s: str) -> bool:
+    if "*" in s or "," in s:
+        return True
+    return False
 
 
 def _process_size(row: dict[str, str]) -> str | None:
@@ -481,10 +506,11 @@ def _process_communities(
     row: dict[str, str],
     *,
     error_accumulator: list[str] | None = None,
-    custom_community_dict: CommunityDict | None = None,
+    communities: CommunityDict | None = None,
 ) -> tuple[list[URIRef], list[URIRef]]:
+    if communities is None:
+        communities = {}
     supporting, recommending = [], []
-    community_dict = ChainMap(custom_community_dict or {}, LOOKUP_DICT_COMMUNITIES)
     for community in _pop_split(row, "Community"):
         match = COMMUNITY_RELATION_RE.search(community)
         if not match:
@@ -499,7 +525,7 @@ def _process_communities(
         name = match.group("name").strip()
         relation = match.group("relation")
 
-        community_uuid = community_dict.get(name, None)
+        community_uuid = communities.get(name, None)
         if not community_uuid:
             if not MISSING_COMMUNITIES[name]:
                 _log(
