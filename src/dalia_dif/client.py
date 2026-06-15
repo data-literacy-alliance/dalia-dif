@@ -51,6 +51,7 @@ class DALIAUploadRequest(BaseModel):
     target_groups: Annotated[list[int], Field(default_factory=list)]
     file_formats: Annotated[list[int], Field(default_factory=list)]
     media_types: Annotated[list[int], Field(default_factory=list)]
+    keywords: Annotated[list[str], Field(default_factory=list)]
 
 
 class Client:
@@ -266,6 +267,7 @@ class Client:
             languages=languages,
             file_formats=file_formats,
             disciplines=disciplines,
+            keywords=r.keywords or [],
             people=[],
             organizations=[],
         )
