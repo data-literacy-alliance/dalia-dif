@@ -38,7 +38,7 @@ def _process(row: dict[str, Any]) -> Community:
 
 def read_communities(path: str | Path) -> list[Community]:
     """Read communities."""
-    with safe_open_dict_reader(path) as reader:
+    with safe_open_dict_reader(path, delimiter=",") as reader:
         return [_process(row) for row in reader]
 
 
