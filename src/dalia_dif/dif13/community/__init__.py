@@ -27,6 +27,7 @@ RENAMES = {
     "Website": "website",
     "Synonyms": "synonyms",
     "Title": "title",
+    "Alts": "alts",
 }
 
 
