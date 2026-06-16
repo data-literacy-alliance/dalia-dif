@@ -51,8 +51,13 @@ CommunityDict: TypeAlias = dict[str, str]
 
 def get_communities_dict(path: str | Path) -> CommunityDict:
     """Get a mapping from names/synonyms to UUID strings."""
+    return make_communities_dict(read_communities(path))
+
+
+def make_communities_dict(communities: list[Community]) -> CommunityDict:
+    """Get a mapping from names/synonyms to UUID strings."""
     rv = {}
-    for community in read_communities(path):
+    for community in communities:
         rv[community.title] = str(community.uuid)
         for synonym in community.synonyms:
             rv[synonym] = str(community.uuid)

@@ -72,7 +72,11 @@ class AuthorDIF13(RDFInstanceBaseModel):
 
     family_name: Annotated[str, WithPredicate(PERSON_FAMILY_NAME_PREDICATE)]
     given_name: Annotated[str, WithPredicate(PERSON_GIVEN_NAME_PREDICATE)]
-    orcid: Annotated[str | None, WithPredicate(PERSON_ORCID_PREDICATE)] = None
+    orcid: Annotated[
+        str | None,
+        WithPredicate(PERSON_ORCID_PREDICATE),
+        Field(description="The ORCiD URL, not just the ORCiD identifier."),
+    ] = None
 
     @property
     def name(self) -> str:

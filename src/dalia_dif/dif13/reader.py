@@ -17,7 +17,7 @@ from pystow.utils import safe_open_dict_reader
 from rdflib import URIRef
 from tqdm import tqdm
 
-from .community import CommunityDict, get_communities_dict
+from .community import Community, CommunityDict, get_communities_dict, make_communities_dict
 from .model import (
     AuthorDIF13,
     EducationalResourceDIF13,
@@ -102,11 +102,13 @@ def read_dif13(
     error_accumulator: list[str] | None = None,
     converter: curies.Converter | None = None,
     ignore_missing_description: bool = False,
-    communities: str | Path | CommunityDict | None = None,
+    communities: str | Path | CommunityDict | list[Community] | None = None,
 ) -> list[EducationalResourceDIF13]:
     """Parse DALIA records."""
     if isinstance(communities, str | Path):
         communities = get_communities_dict(communities)
+    elif isinstance(communities, list):
+        communities = make_communities_dict(communities)
 
     if isinstance(path, str) and (path.startswith("http://") or path.startswith("https://")):
         from io import StringIO
