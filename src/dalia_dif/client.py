@@ -1,12 +1,11 @@
 """Client to DALIA website."""
 
 import datetime
-import json
 import logging
 import uuid
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Annotated, Any, Literal, Self, cast, overload
+from typing import Annotated, Any, Self, cast
 
 import click
 import pystow
@@ -81,6 +80,12 @@ class CommunityRequest(BaseModel):
         )
 
 
+class RelationRequest(BaseModel):
+    community: int
+    relation_type: int
+    content: int
+
+
 class DALIAUploadRequest(BaseModel):
     """The expected post request body for DALIA resource creation.
 
@@ -128,6 +133,8 @@ class Client:
             url=f"{self.base}/api/curation/relation-types/",
             name="relation-types.json",
         )
+        self.relation_type_slug = {rt["code"]: rt["id"] for rt in self.relation_types}
+
         self.target_groups = {
             part["uri"]: part["id"]
             for part in self.module.ensure_json(
@@ -201,7 +208,7 @@ class Client:
         self.uuid_to_community = {
             community["uuid"]: community["id"] for community in self.communities
         }
-        self.slug_to_community = {
+        self.slug_to_community: dict[str, int] = {
             community["slug"]: community["id"] for community in self.communities
         }
 
@@ -237,38 +244,61 @@ class Client:
         self.current_user_username = self.current_user["username"]
         self.current_user_email = self.current_user["email"]
 
-    @overload
     def upload_dif13(
-        self, r: EducationalResourceDIF13 | DALIAUploadRequest
-    ) -> requests.Response: ...
+        self, r: EducationalResourceDIF13, *, publish: bool = False, communities: list[Community]
+    ) -> requests.Response:
+        """Upload a learning resource to DALIA.
 
-    @overload
-    def upload_dif13(
-        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: Literal[True] = ...
-    ) -> tuple[requests.Response, requests.Response]: ...
-
-    @overload
-    def upload_dif13(
-        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: Literal[False] = ...
-    ) -> requests.Response: ...
-
-    def upload_dif13(
-        self, r: EducationalResourceDIF13 | DALIAUploadRequest, *, publish: bool = False
-    ) -> requests.Response | tuple[requests.Response, requests.Response]:
-        """Upload a learning resource to DALIA."""
-        if isinstance(r, EducationalResourceDIF13):
-            r = self._convert(r)
+        See: https://search.dalia.education/api/docs/#/Curation%20-%20Resource%20contents/api_curation_resource_contents_create
+        """
         res = self.session.post(
             f"{self.base}/api/curation/resource-contents/",
-            json=r.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
+            json=self._convert(r).model_dump(exclude_none=True, exclude_unset=True, mode="json"),
         )
         res.raise_for_status()
-        if not publish:
-            return res
+        res_json = res.json()
 
-        # important you use the uuid and not resource_uuid, these are different
-        publish_res = self.publish(res.json()["uuid"])
-        return res, publish_res
+        if publish:
+            # important to use the uuid and not resource_uuid, these are different
+            self.publish(res_json["uuid"])
+
+        uuid_to_community_id: dict[str, int] = {
+            str(community.uuid): xx
+            for community in communities
+            if (xx := self.slug_to_community.get(_slugify_community(community.title))) is not None
+        }
+
+        database_id = res_json["id"]
+        # prepare https://search.dalia.education/api/docs/#/Curation%20-%20Resource%20Relations/api_curation_community_relations_create
+        for community_uris, relation_type in [
+            (r.supporting_communities, self.relation_type_slug["supporting"]),
+            (r.recommending_communities, self.relation_type_slug["recommending"]),
+        ]:
+            for community_uri in community_uris:
+                community_uuid = community_uri.removeprefix("https://id.dalia.education/community/")
+                if community_id := uuid_to_community_id.get(community_uuid):
+                    relation_request = RelationRequest(
+                        community=community_id, relation_type=relation_type, content=database_id
+                    )
+                    try:
+                        self._upload_community_relation(relation_request)
+                    except requests.exceptions.HTTPError as err:
+                        tqdm.write(
+                            f"unable to establish link between {r.title} (id:{database_id}) and "
+                            f"community: {community_uri} (id:{community_id}). {err.response.text}"
+                        )
+        return res
+
+    def _upload_community_relation(self, rr: RelationRequest) -> int:
+        """See https://search.dalia.education/api/docs/#/Curation%20-%20Resource%20Relations/api_curation_community_relations_create."""
+        res = self.session.post(
+            f"{self.base}/api/curation/community-relations/",
+            json=rr.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
+        )
+        res.raise_for_status()
+        res_json = res.json()
+        database_id = cast(int, res_json["id"])
+        return database_id
 
     def publish(self, uuid_: str | uuid.UUID) -> requests.Response:
         """Publish a learning resource to DALIA.
@@ -288,10 +318,7 @@ class Client:
         oers = []
         next_url = f"{self.base}/api/curation/resource-contents/"
         while next_url:
-            res = self.session.get(
-                next_url,
-                params={"page_size": page_size},
-            )
+            res = self.session.get(next_url, params={"page_size": page_size})
             res.raise_for_status()
             res_json = res.json()
             oers.extend(res_json["results"])
@@ -482,7 +509,7 @@ class Client:
 
     def _delete_made_by_charlie(self) -> None:
         oers = self.get_resources()
-        for oer in tqdm(oers):
+        for oer in tqdm(oers, desc="deleting OERs"):
             if oer["created_by"]["username"] == "cthoyt":
                 self.soft_delete(oer["uuid"])
 
@@ -528,18 +555,22 @@ def _explore() -> None:
 
 
 def _demo() -> None:
-    directory = Path("/Users/cthoyt/dev/dalia-curation/curation")
-    path = directory.joinpath("KODAQS_curation.csv")
+    directory = Path("/Users/cthoyt/dev/dalia-curation")
+    path = directory.joinpath("curation", "KODAQS_curation.csv")
     # load example DIF13 data
+
+    communities_path = directory.joinpath("communities.csv")
+    communities = read_communities(communities_path)
 
     client = Client()
     client._delete_made_by_charlie()
-    resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True)
+    resources = dalia_dif.dif13.read_dif13(
+        path, ignore_missing_description=True, communities=communities
+    )
     for resource in resources:
-        res, _ = client.upload_dif13(resource, publish=True)
+        res = client.upload_dif13(resource, publish=True, communities=communities)
         res_json = res.json()
-        click.echo(res_json["resource_uuid"])
-        click.echo(json.dumps(res_json, indent=2, ensure_ascii=False))
+        click.echo(f"Resource UUID: {res_json['resource_uuid']}")
     # TODO the resource page https://search.dalia.education/admin/curation/resource/
     #  does not have it as published yet
 
@@ -552,4 +583,4 @@ def _explore_communities() -> None:
 
 
 if __name__ == "__main__":
-    _explore_communities()
+    _demo()
