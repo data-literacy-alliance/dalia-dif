@@ -32,6 +32,14 @@ class PersonRequest(BaseModel):
     orcid: Annotated[str | None, Field(pattern=r"^orcid:\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$")] = None
 
 
+class OrganizationRequest(BaseModel):
+    """A post request for a community."""
+
+    name: str
+    ror_id: str | None = None
+    homepage: str | None = None
+
+
 class DALIAUploadRequest(BaseModel):
     """The expected post request body for DALIA resource creation.
 
@@ -100,10 +108,7 @@ class Client:
                 name="proficiency-levels.json",
             )
         }
-        self.organizations = self.module.ensure_json(
-            url=f"{self.base}/api/curation/organizations/",
-            name="organizations.json",
-        )
+
         self.media_types = {
             d["uri"]: d["id"]
             for d in self.module.ensure_json(
@@ -153,6 +158,19 @@ class Client:
             url=f"{self.base}/api/curation/communities/",
             name="communities.json",
         )
+        self.organizations = self.module.ensure_json(
+            url=f"{self.base}/api/curation/organizations/",
+            name="organizations.json",
+        )
+        self.name_to_organization: dict[str, int] = {
+            organization["name"]: organization["id"] for organization in self.organizations
+        }
+        self.ror_uri_to_organization = {
+            ror_uri: organization["id"]
+            for organization in self.organizations
+            if (ror_uri := organization.get("ror_id"))
+        }
+
         self.people = self.module.ensure_json(
             url=f"{self.base}/api/curation/persons/",
             name="people.json",
@@ -235,7 +253,7 @@ class Client:
         return oers
 
     def _create_author(self, person: PersonRequest) -> int:
-        """Create a person and return their UUID."""
+        """Create a person and return their database ID."""
         res = self.session.post(
             f"{self.base}/api/curation/persons/",
             json=person.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
@@ -246,6 +264,19 @@ class Client:
         if person.orcid:
             self.orcid_to_person[person.orcid] = database_id
         self.name_to_person[person.first_name, person.last_name] = database_id
+        return database_id
+
+    def _create_organization(self, org: OrganizationRequest) -> int:
+        res = self.session.post(
+            f"{self.base}/api/curation/organizations/",
+            json=org.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
+        )
+        res.raise_for_status()
+        res_json = res.json()
+        database_id = cast(int, res_json["id"])
+        if org.ror_id:
+            self.ror_uri_to_organization[org.ror_id] = database_id
+        self.name_to_organization[org.name] = database_id
         return database_id
 
     def _convert(  # noqa:C901
@@ -308,36 +339,55 @@ class Client:
             publication_date = r.publication_date
 
         people: list[int] = []
+        organizations: list[int] = []
         for author in r.authors or []:
             if not isinstance(author, AuthorDIF13):
-                _write(f"  skipping org: {author}")
-                continue
-            if author.orcid and (
-                lookup := self.orcid_to_person.get(author.orcid.removeprefix("https://orcid.org/"))
-            ):
-                people.append(lookup)
-            elif lookup2 := self.name_to_person.get((author.given_name, author.family_name)):
-                people.append(lookup2)
-            elif dry:
-                _write(
-                    f"  would create author: {author.given_name} {author.family_name} "
-                    f"({author.orcid or 'no orcid'})"
-                )
-            else:
-                tqdm.write(
-                    f"creating author: {author.given_name} {author.family_name} ({author.orcid})"
-                )
-                people.append(
-                    self._create_author(
-                        PersonRequest(
-                            first_name=author.given_name,
-                            last_name=author.family_name,
-                            orcid=author.orcid.removeprefix("https://orcid.org/")
-                            if author.orcid
-                            else None,
+                if author.ror and (
+                    lookup := self.ror_uri_to_organization.get(
+                        author.ror.removeprefix("https://ror.org/")
+                    )
+                ):
+                    organizations.append(lookup)
+                elif lookup2 := self.name_to_organization.get(author.name):
+                    organizations.append(lookup2)
+                elif dry:
+                    _write(f"  would create organization: {author.name} ({author.ror or 'no ROR'})")
+                else:
+                    organizations.append(
+                        self._create_organization(
+                            OrganizationRequest(name=author.name, ror_id=author.ror)
                         )
                     )
-                )
+            else:
+                if author.orcid and (
+                    lookup := self.orcid_to_person.get(
+                        author.orcid.removeprefix("https://orcid.org/")
+                    )
+                ):
+                    people.append(lookup)
+                elif lookup2 := self.name_to_person.get((author.given_name, author.family_name)):
+                    people.append(lookup2)
+                elif dry:
+                    _write(
+                        f"  would create author: {author.given_name} {author.family_name} "
+                        f"({author.orcid or 'no orcid'})"
+                    )
+                else:
+                    tqdm.write(
+                        f"creating author: {author.given_name} {author.family_name} "
+                        f"({author.orcid})"
+                    )
+                    people.append(
+                        self._create_author(
+                            PersonRequest(
+                                first_name=author.given_name,
+                                last_name=author.family_name,
+                                orcid=author.orcid.removeprefix("https://orcid.org/")
+                                if author.orcid
+                                else None,
+                            )
+                        )
+                    )
 
         return DALIAUploadRequest(
             title=r.title,
@@ -381,15 +431,14 @@ def _write(s: str) -> None:
         LOGGED.add(s)
 
 
-LOGGED = set()
+LOGGED: set[str] = set()
 
 
 def _explore() -> None:
     from pathlib import Path
-    from dalia_dif.dif13.community import get_communities_dict
 
     import dalia_dif.dif13
-
+    from dalia_dif.dif13.community import get_communities_dict
 
     directory = Path("/Users/cthoyt/dev/dalia-curation")
     communities = get_communities_dict(directory.joinpath("communities.csv"))
@@ -397,7 +446,9 @@ def _explore() -> None:
     client = Client()
     for path in sorted(directory.joinpath("curation").glob("*.csv")):
         tqdm.write(path.name)
-        resources = dalia_dif.dif13.read_dif13(path, ignore_missing_description=True, communities=communities)
+        resources = dalia_dif.dif13.read_dif13(
+            path, ignore_missing_description=True, communities=communities
+        )
         for resource in resources:
             client._convert(resource, dry=True)
 
