@@ -17,14 +17,13 @@ from unidecode import unidecode
 
 import dalia_dif.dif13
 from dalia_dif.dif13 import AuthorDIF13, EducationalResourceDIF13
-from dalia_dif.dif13.community import read_communities
+from dalia_dif.dif13.community import Community, read_communities
 
 __all__ = [
     "Client",
     "DALIAUploadRequest",
 ]
 
-from dalia_dif.dif13.community import Community
 
 logger = logging.getLogger(__name__)
 
