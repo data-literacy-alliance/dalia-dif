@@ -469,7 +469,7 @@ class Client:
             disciplines=disciplines,
             keywords=r.keywords,
             people=people,
-            organizations=[],
+            organizations=organizations,
         )
 
     def soft_delete(self, resource_uuid: str) -> requests.Response:
