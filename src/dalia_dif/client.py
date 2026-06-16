@@ -5,7 +5,7 @@ import logging
 import uuid
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Annotated, Any, Self, cast
+from typing import Annotated, Any, cast
 
 import click
 import pystow
@@ -13,6 +13,7 @@ import requests
 from pydantic import UUID4, AnyHttpUrl, BaseModel, Field
 from pydantic_extra_types.language_code import _index_by_alpha2
 from tqdm import tqdm
+from typing_extensions import Self
 from unidecode import unidecode
 
 import dalia_dif.dif13
