@@ -5,21 +5,27 @@ import json
 import logging
 import uuid
 from collections.abc import Iterable
-from typing import Annotated, Any, Literal, cast, overload
+from pathlib import Path
+from typing import Annotated, Any, Literal, Self, cast, overload
 
 import click
 import pystow
 import requests
-from pydantic import AnyHttpUrl, BaseModel, Field
+from pydantic import UUID4, AnyHttpUrl, BaseModel, Field
 from pydantic_extra_types.language_code import _index_by_alpha2
 from tqdm import tqdm
+from unidecode import unidecode
 
+import dalia_dif.dif13
 from dalia_dif.dif13 import AuthorDIF13, EducationalResourceDIF13
+from dalia_dif.dif13.community import read_communities
 
 __all__ = [
     "Client",
     "DALIAUploadRequest",
 ]
+
+from dalia_dif.dif13.community import Community
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +44,41 @@ class OrganizationRequest(BaseModel):
     name: str
     ror_id: str | None = None
     homepage: str | None = None
+
+
+def _slugify_community(s: str) -> str:
+    return (
+        cast(str, unidecode(s))
+        .lower()
+        .replace(" ", "-")
+        .replace(".", "")
+        .replace("@", "")
+        .replace("+", "plus")
+        .replace("(", "")
+        .replace(")", "")
+        .replace("&", "and")
+        .replace("--", "-")
+    )
+
+
+class CommunityRequest(BaseModel):
+    """A post request for a community.
+
+    See https://search.dalia.education/api/docs/#/Curation%20-%20Communities/api_curation_communities_create
+    """
+
+    title: str
+    uuid: UUID4
+    slug: str | None = None
+    description: str | None = None
+
+    @classmethod
+    def from_community(cls, community: Community) -> Self:
+        return cls(
+            title=community.title,
+            uuid=community.uuid,
+            slug=_slugify_community(community.title),
+        )
 
 
 class DALIAUploadRequest(BaseModel):
@@ -155,12 +196,17 @@ class Client:
             )
         }
         self.communities = self.module.ensure_json(
-            url=f"{self.base}/api/curation/communities/",
-            name="communities.json",
+            url=f"{self.base}/api/curation/communities/", name="communities.json", force=True
         )
+        self.uuid_to_community = {
+            community["uuid"]: community["id"] for community in self.communities
+        }
+        self.slug_to_community = {
+            community["slug"]: community["id"] for community in self.communities
+        }
+
         self.organizations = self.module.ensure_json(
-            url=f"{self.base}/api/curation/organizations/",
-            name="organizations.json",
+            url=f"{self.base}/api/curation/organizations/", name="organizations.json", force=True
         )
         self.name_to_organization: dict[str, int] = {
             organization["name"]: organization["id"] for organization in self.organizations
@@ -251,6 +297,22 @@ class Client:
             oers.extend(res_json["results"])
             next_url = res_json.get("next")
         return oers
+
+    def _create_community(self, community: CommunityRequest | Community) -> int:
+        """Create a community and return their database ID.
+
+        See: https://search.dalia.education/api/docs/#/Curation%20-%20Communities/api_curation_communities_create
+        """
+        if isinstance(community, Community):
+            community = CommunityRequest.from_community(community)
+        res = self.session.post(
+            f"{self.base}/api/curation/communities/",
+            json=community.model_dump(exclude_none=True, exclude_unset=True, mode="json"),
+        )
+        res.raise_for_status()
+        res_json = res.json()
+        database_id = cast(int, res_json["id"])
+        return database_id
 
     def _create_author(self, person: PersonRequest) -> int:
         """Create a person and return their database ID."""
@@ -424,6 +486,21 @@ class Client:
             if oer["created_by"]["username"] == "cthoyt":
                 self.soft_delete(oer["uuid"])
 
+    def upload_communities_from_path(self, path: str | Path) -> None:
+        """Upload communities."""
+        communities = read_communities(path)
+        for community in communities:
+            slug = _slugify_community(community.title)
+            if community.uuid in self.uuid_to_community or slug in self.slug_to_community:
+                continue
+            try:
+                database_id = self._create_community(community)
+            except requests.exceptions.HTTPError:
+                tqdm.write(f"failed on community: {slug}")
+                continue
+            else:
+                tqdm.write(f"created: {slug} with DB ID: {database_id}")
+
 
 def _write(s: str) -> None:
     if s not in LOGGED:
@@ -435,9 +512,6 @@ LOGGED: set[str] = set()
 
 
 def _explore() -> None:
-    from pathlib import Path
-
-    import dalia_dif.dif13
     from dalia_dif.dif13.community import get_communities_dict
 
     directory = Path("/Users/cthoyt/dev/dalia-curation")
@@ -454,10 +528,6 @@ def _explore() -> None:
 
 
 def _demo() -> None:
-    from pathlib import Path
-
-    import dalia_dif.dif13
-
     directory = Path("/Users/cthoyt/dev/dalia-curation/curation")
     path = directory.joinpath("KODAQS_curation.csv")
     # load example DIF13 data
@@ -474,5 +544,12 @@ def _demo() -> None:
     #  does not have it as published yet
 
 
+def _explore_communities() -> None:
+    client = Client()
+    directory = Path("/Users/cthoyt/dev/dalia-curation")
+    path = directory.joinpath("communities.csv")
+    client.upload_communities_from_path(path)
+
+
 if __name__ == "__main__":
-    _explore()
+    _explore_communities()
