@@ -9,9 +9,10 @@ from collections import Counter, defaultdict
 from collections.abc import Sequence
 from pathlib import Path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any
 
 import click
+import curies
 import rdflib
 
 from dalia_dif.dif13.community import read_communities
@@ -26,8 +27,6 @@ if TYPE_CHECKING:
 __all__ = [
     "export_chart",
 ]
-
-X = TypeVar("X")
 
 MISSING = "missing"
 
@@ -326,6 +325,7 @@ def count_disciplines(graph: rdflib.Graph) -> Counter[str]:
     if len(res) == 0:
         raise ValueError(f"query returned no results:\n{COUNT_DISCIPLINES_SPARQL}")
     names = get_discipline_names()
+    reference: curies.Reference | None
     rv = Counter(
         name
         if (reference := CONVERTER.parse_uri(discipline))
@@ -336,7 +336,7 @@ def count_disciplines(graph: rdflib.Graph) -> Counter[str]:
     return _counter_cutoff(rv, 4)
 
 
-def _counter_cutoff(counter: Counter[X], cutoff: int = 1) -> Counter[X]:
+def _counter_cutoff(counter: Counter[str], cutoff: int = 1) -> Counter[str]:
     rv: Counter[str] = Counter()
     for k, v in counter.most_common():
         if v > cutoff:
