@@ -9,7 +9,7 @@ from collections import Counter, defaultdict
 from collections.abc import Sequence
 from pathlib import Path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, TypeVar
 
 import click
 import rdflib
@@ -26,6 +26,8 @@ if TYPE_CHECKING:
 __all__ = [
     "export_chart",
 ]
+
+X = TypeVar("X")
 
 MISSING = "missing"
 
@@ -89,7 +91,7 @@ def count_licenses(graph: rdflib.Graph) -> Counter[str]:
     res = list(graph.query(COUNT_LICENSES_SPARQL))
     if len(res) == 0:
         raise ValueError(f"query returned no results:\n{COUNT_LICENSES_SPARQL}")
-    return Counter(
+    rv = Counter(
         CONVERTER.compress(license_uri, strict=False, passthrough=True)
         .removeprefix("spdx:")
         .removeprefix("spdx.license:")
@@ -100,6 +102,7 @@ def count_licenses(graph: rdflib.Graph) -> Counter[str]:
         .replace("modalia:ProprietaryLicense", "proprietary")
         for (license_uri,) in res
     )
+    return _counter_cutoff(rv)
 
 
 COUNT_FILE_EXTENSIONS_SPARQL = dedent("""\
@@ -116,7 +119,8 @@ def count_file_extensions(graph: rdflib.Graph) -> Counter[str]:
     res = list(graph.query(COUNT_FILE_EXTENSIONS_SPARQL))
     if len(res) == 0:
         raise ValueError(f"query returned no results:\n{COUNT_FILE_EXTENSIONS_SPARQL}")
-    return Counter(str(format_str) if format_str else MISSING for _, format_str in res)
+    rv = Counter(str(format_str) if format_str else MISSING for _, format_str in res)
+    return _counter_cutoff(rv)
 
 
 MEDIA_TYPE_LABELS = {
@@ -219,12 +223,13 @@ def count_learning_resource_type(graph: rdflib.Graph) -> Counter[str]:
     res = list(graph.query(COUNT_LEARNING_TYPE_RESOURCES_SPARQL))
     if len(res) == 0:
         raise ValueError(f"query returned no results:\n{COUNT_LEARNING_TYPE_RESOURCES_SPARQL}")
-    return Counter(
+    rv = Counter(
         _remap_lrt(CONVERTER.parse_uri(learning_resource_type, strict=True).identifier)
         if learning_resource_type
         else MISSING
         for (learning_resource_type,) in res
     )
+    return _counter_cutoff(rv, 2)
 
 
 def _remap_lrt(x: str) -> str:
@@ -235,6 +240,7 @@ DISCIPLINES_RENAMES = {
     "Cultural Studies in the narrower sense": "Cultural Studies",
     "Archival and Documentation Science": "Archival/Docs",
     "Human Medicine / Health Sciences": "Health Sciences",
+    "Humanities (general)": "Humanities",
     "Information and Library Sciences": "Library Sciences",
     "Geosciences (excl. Geography)": "Geosciences",
     "Agricultural Science/Agriculture": "Agriculture",
@@ -246,6 +252,8 @@ DISCIPLINES_RENAMES = {
     "Social Sciences/Sociology": "Social Sciences",
     "Engineering Sciences": "Engineering",
     "Educational Sciences": "Education",
+    "Agricultural, Forest and Nutritional Sciences, Veterinary medicine": "",
+    "Area of study: Natural Sciences/General Studies": "Natural Sciences",
 }
 
 GET_DISCIPLINE_LABEL_SPARQL = dedent("""\
@@ -319,15 +327,23 @@ def count_disciplines(graph: rdflib.Graph) -> Counter[str]:
         raise ValueError(f"query returned no results:\n{COUNT_DISCIPLINES_SPARQL}")
     names = get_discipline_names()
     rv = Counter(
-        names[CONVERTER.parse_uri(discipline, strict=True).identifier] for (discipline,) in res
+        name
+        if (reference := CONVERTER.parse_uri(discipline))
+        and (name := names.get(reference.identifier))
+        else "Other"
+        for (discipline,) in res
     )
-    frv: Counter[str] = Counter()
-    for k, v in rv.most_common():
-        if v > 2:
-            frv[k] = v
+    return _counter_cutoff(rv, 4)
+
+
+def _counter_cutoff(counter: Counter[X], cutoff: int = 1) -> Counter[X]:
+    rv: Counter[str] = Counter()
+    for k, v in counter.most_common():
+        if v > cutoff:
+            rv[k] = v
         else:
-            frv["Other"] += v
-    return frv
+            rv["Other"] += v
+    return rv
 
 
 COUNT_COMMUNITIES_SPARQL = dedent(f"""\
@@ -351,10 +367,7 @@ def count_communities(graph: rdflib.Graph, path: str | Path) -> Counter[str]:
         community_labels[str(community).removeprefix("https://id.dalia.education/community/")]
         for (community,) in res
     )
-    for k, v in rv.most_common():
-        if v < 3:
-            rv["Other"] += v
-            del rv[k]
+    rv = _counter_cutoff(rv, 8)
     return rv
 
 
@@ -417,7 +430,7 @@ def export_chart(
     graph: rdflib.Graph,
     paths: Path | list[Path],
     *,
-    include_title: bool = False,
+    include_title: bool = True,
     communities: str | Path,
 ) -> None:
     """Export the chart."""
