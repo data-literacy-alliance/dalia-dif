@@ -112,6 +112,7 @@ LEARNING_RESOURCE_TYPES: dict[str, URIRef] = {
     "lecture": modalia.Lecture,
     "tutorial": modalia.Tutorial,
     "codenotebook": modalia.CodeNotebook,
+    "code notebook": modalia.CodeNotebook,
     "bestpractices": modalia.BestPractices,
     "cookbook": modalia.Cookbook,
     "mo:poster": modalia.Poster,
