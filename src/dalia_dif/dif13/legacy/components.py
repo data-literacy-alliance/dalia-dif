@@ -281,7 +281,7 @@ def add_learning_resource_types_to_lr(
     learning_resource_types: str,
     row_number: int = 0,
     path: Path | None = None,
-) -> None | list[URIRef | None]:
+) -> list[URIRef | None] | None:
     if not learning_resource_types.strip():
         return None
 

@@ -12,6 +12,7 @@ import pystow
 import requests
 from pydantic import UUID4, AnyHttpUrl, BaseModel, Field
 from pydantic_extra_types.language_code import _index_by_alpha2
+from pystow.constants import TimeoutHint
 from tqdm import tqdm
 from typing_extensions import Self
 from unidecode import unidecode
@@ -24,7 +25,6 @@ __all__ = [
     "Client",
     "DALIAUploadRequest",
 ]
-
 
 logger = logging.getLogger(__name__)
 
@@ -96,7 +96,7 @@ class DALIAUploadRequest(BaseModel):
     main_url: AnyHttpUrl
     publication_date: datetime.date | None = None
     description: str | None = None
-    size_mb: Annotated[str | None, Field(examples=["-9707."])] = None  #
+    size_mb: Annotated[str | None, Field(examples=["-9707."])] = None
     submitted_for_review: bool = True
     submitted_at: Annotated[datetime.datetime, Field(default_factory=datetime.datetime.now)]
     version: int | None = None  # does this need to be set?
@@ -389,9 +389,7 @@ class Client:
         media_types = _ll(self.media_types, r.media_types, "media types")
 
         licenses = []
-        if r.license is None:
-            pass
-        elif str(r.license) in {
+        if r.license is None or str(r.license) in {
             "http://spdx.org/licenses/unlicensed",
         }:
             pass

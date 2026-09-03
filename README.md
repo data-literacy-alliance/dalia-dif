@@ -93,19 +93,15 @@ resource = EducationalResourceDIF13(
     uuid="b37ddf6e-f136-4230-8418-faf18c4c34d2",
     title="Chemotion ELN Instruction Videos",
     description="Chemotion ELN Instruction Videos Chemotion[1] is an open source "
-                "system for storing and managing experiments and molecular data in "
-                "chemistry and its related sciences.",
+    "system for storing and managing experiments and molecular data in "
+    "chemistry and its related sciences.",
     links=["https://doi.org/10.5281/zenodo.7634481"],
     authors=[
         AuthorDIF13(given_name="Fabian", family_name="Fink", orcid="0000-0002-1863-2087"),
         AuthorDIF13(given_name="Salim", family_name="Benjamaa", orcid="0000-0001-6215-6834"),
         AuthorDIF13(given_name="Nicole", family_name="Parks", orcid="0000-0002-6243-2840"),
-        AuthorDIF13(
-            given_name="Alexander", family_name="Hoffmann", orcid="0000-0002-9647-8839"
-        ),
-        AuthorDIF13(
-            given_name="Sonja", family_name="Herres-Pawlis", orcid="0000-0002-4354-4353"
-        ),
+        AuthorDIF13(given_name="Alexander", family_name="Hoffmann", orcid="0000-0002-9647-8839"),
+        AuthorDIF13(given_name="Sonja", family_name="Herres-Pawlis", orcid="0000-0002-4354-4353"),
     ],
     license="https://creativecommons.org/licenses/by/4.0",
     supporting_communities=[],

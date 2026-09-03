@@ -123,11 +123,11 @@ def add_authors_to_lr(
         raise Exception("Empty Authors field")
 
     if authors.strip().lower() == "n/a":
-        return None
+        return
 
     _add_ordered_list_of_authors_to_lr(g, lr_node, authors, row_number=row_number, path=path)
     _add_unordered_set_of_authors_to_lr(g, lr_node, authors, row_number=row_number, path=path)
-    return None
+    return
 
 
 # see https://support.orcid.org/hc/en-us/articles/360006897674-Structure-of-the-ORCID-Identifier#2-checksum
