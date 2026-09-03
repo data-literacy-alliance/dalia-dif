@@ -1,0 +1,4985 @@
+{
+  "count": 665,
+  "offset": 0,
+  "limit": 20,
+  "results": [
+    {
+      "learning_resource_types": [
+        {
+          "label": "Video",
+          "value": "https://w3id.org/kim/hcrt/video"
+        },
+        {
+          "label": "Course",
+          "value": "https://w3id.org/kim/hcrt/course"
+        },
+        {
+          "label": "Lesson Plan",
+          "value": "https://w3id.org/kim/hcrt/lesson_plan"
+        },
+        {
+          "label": "Script",
+          "value": "https://w3id.org/kim/hcrt/script"
+        },
+        {
+          "label": "Slide",
+          "value": "https://w3id.org/kim/hcrt/slide"
+        },
+        {
+          "label": "Worksheet",
+          "value": "https://w3id.org/kim/hcrt/worksheet"
+        },
+        {
+          "label": "Workshop",
+          "value": "http://purl.org/ontology/bibo/Workshop"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Presentation",
+          "value": "https://schema.org/PresentationDigitalDocument"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        },
+        {
+          "label": "Video",
+          "value": "https://schema.org/VideoObject"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Agricultural Science, Food- And Beverage Technology (n58)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n58"
+        },
+        {
+          "label": "Agricultural Science/Agriculture (n003)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n003"
+        },
+        {
+          "label": "Agricultural, Forest and Nutritional Sciences, Veterinary medicine",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n7"
+        },
+        {
+          "label": "Biology (n42)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n42"
+        },
+        {
+          "label": "Mathematics, Natural Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n4"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        },
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent"
+        },
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        },
+        {
+          "label": "Proficient",
+          "value": "https://purl.org/ontology/modalia#Proficient"
+        }
+      ],
+      "format": "DOCX, HTML, MD, MP4, ODP, ODT, PDF, PPTX, XLSX",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "CC-BY-4.0",
+        "link": null
+      },
+      "publication_date": "2026-08-10",
+      "links": [],
+      "languages": [
+        "German"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "e4e7aa33-44f2-4cf8-84c0-c8048df5c33c",
+      "slug": "die-lizenz-zum-forschen-wann-gilt-das-urheberrecht-und-was-hat-die-lizenz-damit-zu-tun-dont-panic-survival-guide-on-law-and-ethics-in-research-episode-iii-trainingmaterial",
+      "title": "Die Lizenz zum Forschen: Wann gilt das Urheberrecht und was hat die Lizenz damit zu tun? - Don`t panic! Survival Guide on Law and Ethics in Research Episode III - Trainingmaterial",
+      "communities": [
+        {
+          "id": "49ffdb84-aee7-47d6-8843-ae24723b3f6c",
+          "slug": "nfdi4earth",
+          "title": "NFDI4Earth",
+          "image": null,
+          "url": "https://id.dalia.education/community/2156f39a-e2f4-4386-893c-4ecf4e8a6630",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        },
+        {
+          "id": "1abe2e66-5ee7-4cf4-974b-d5f85902a343",
+          "slug": "nfdi4biodiversity",
+          "title": "NFDI4Biodiversity",
+          "image": null,
+          "url": "https://id.dalia.education/community/aac7b1be-cf00-4fdc-a26a-e8e0e1410b18",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        },
+        {
+          "id": "a8598584-30f0-41f9-a9a0-182343d3eaec",
+          "slug": "fairagro",
+          "title": "FAIRagro",
+          "image": null,
+          "url": "https://id.dalia.education/community/f6e6a7fc-552b-4d75-9fca-8e2b1b8ad624",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "Im Rahmen der Legal Training Series \u201eDon\u2019t panic! Survival guide for Law and Ethics in Research\u201d wurde vom 24. \u2013 26.03.26 die Episode \u201cDie Lizenz zum Forschen - Wann gilt das Urheberrecht und was hat die Lizenz damit zu tun?\u201d von Lea Singson und Sophie Bo\u00dfe durchgef\u00fchrt. An den drei aufeinanderfolgenden Tagen wurden jeweils zweist\u00fcndige, aufeinander aufbauende Workshops abgehalten. An dieser Stelle werden die Aufzeichnungen der nicht interaktiven Teile der Online-Workshops sowie alle verwendeten Trainingsmaterialien zur Verf\u00fcgung gestellt. Zielgruppe dieser Ver\u00f6ffentlichung sind sowohl Personen, die eigenst\u00e4ndig Inhalte zum Thema Datenrechte erlernen m\u00f6chten, als auch Trainer:innen, die Konzept und Materialien der Workshops vollst\u00e4ndig oder teilweise nachnutzen m\u00f6chten. Das Lehrdrehbuch hilft bei der Konzeption von Veranstaltungen und gibt einen \u00dcberblick \u00fcber Themen, Lernziele und Zeitplanung des Workshops. Dar\u00fcber hinaus sind Pr\u00e4sentationsfolien inklusive Vortragsnotizen und Arbeitsbl\u00e4tter verf\u00fcgbar, die zur Nachnutzung angepasst werden k\u00f6nnen und sollten. \n\nAlle Materialien sind f\u00fcr optimale Nachnutzbarkeit in verschiedenen Formaten verf\u00fcgbar. \n\nZielgruppe der Publikation: Lehrende und Lernende\n\nZielgruppe des Workshops: Forschende\n\nKompetenz Level: Grundstufe, Mittelstufe\n\nDom\u00e4ne: Agrarwissenschaften, Erdsystemwissenschaften, Umweltwissenschaften, Biodiversit\u00e4tsforschung\n\nDauer: 3 Workshops \u00e1 2h\n\nLernressourcen-Typ: Video, Pr\u00e4sentationsfolien, \u00dcbungsmaterialien, Lehrdrehbuch\n\nWorkshopbeschreibung:  Von Messwerten im Feld \u00fcber komplexe Modellierungen bis hin zur Textpublikation \u2013 Forschungsdaten in der Agrosystem-, Erdwissenschafts- und Umweltforschung sind divers und oft das Herzst\u00fcck eines Projekts. Doch wer hat hieran eigentlich Rechte und wie darf ich sie teilen und nachnutzen?\n\nTaucht in unserem dreit\u00e4gigen Workshop ein in die Welt von Urheberrecht, Lizenzen und Gemeinfreiheit. Erhaltet eine verst\u00e4ndliche und praxisnahe Erkl\u00e4rung, wann Forschungsdaten urheberrechtlich gesch\u00fctzt sind und welche Lizenzsysteme \u2013 von Creative Commons bis zu speziellen Softwarelizenzen \u2013 in der Forschung sinnvoll eingesetzt werden k\u00f6nnen. Entdeckt \u00fcber das Urheberrecht hinaus eine Verb\u00fcndete in der Guten Wissenschaftlichen Praxis. \u00dcbt anhand realer Beispiele, Lizenztexte zu verstehen, passende Lizenzen und public domain marks zu vergeben, um rechtliche Fallstricke zu vermeiden.\n\nMit einer Mischung aus Impulsen, Diskussionen und praktischen \u00dcbungen vermittelt der Workshop das n\u00f6tige R\u00fcstzeug, um Daten rechtlich fundiert, verantwortungsvoll und zugleich offen zu nutzen und zu teilen.",
+      "authors": [
+        {
+          "firstname": "Sophie",
+          "firstName": "Sophie",
+          "lastname": "Bo\u00dfe",
+          "lastName": "Bo\u00dfe",
+          "orcid": "0009-0002-6461-8291",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Lea Sophie",
+          "firstName": "Lea Sophie",
+          "lastname": "Singson",
+          "lastName": "Singson",
+          "orcid": "0009-0004-9978-8703",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.5281/zenodo.21871110",
+      "image": null,
+      "likes": 0,
+      "views": 6,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "Forschungsdatenmanagement",
+        "Datenrechte",
+        "FAIRagro",
+        "Don't panic! Survival Guide on Law and Ethics in Research",
+        "Lizenzen",
+        "Urheberrecht",
+        "Arbeitsrecht",
+        "Agrarwissenschaften",
+        "Erdsystemwissenschaften",
+        "Umweltwissenschaften"
+      ],
+      "related_works": [
+        {
+          "type": {
+            "label": "is part of",
+            "value": "isPartOf"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006527953"
+        },
+        {
+          "type": {
+            "label": "continues",
+            "value": "continues"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006402743"
+        },
+        {
+          "type": {
+            "label": "is based on",
+            "value": "isBasedOn"
+          },
+          "link": "https://doi.org/10.5281/zenodo.12685074"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Educational Game",
+          "value": "https://w3id.org/kim/hcrt/educational_game"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Interdisciplinary",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n0"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "Librarian",
+          "value": "http://purl.obolibrary.org/obo/OCCO_25402200"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        },
+        {
+          "label": "Teacher (higher Education)",
+          "value": "https://purl.org/ontology/modalia#TeacherHigherEducation"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "ZIP",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "CC-BY-4.0",
+        "link": null
+      },
+      "publication_date": "2026-07-24",
+      "links": [],
+      "languages": [
+        "German"
+      ],
+      "file_size": "89.000 MB",
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "61b51529-d0fc-4c47-8fbe-2a45bccf5592",
+      "slug": "forschungsdaten-escape-game-fur-studierende-im-rahmen-der-love-data-week",
+      "title": "Forschungsdaten-Escape-Game f\u00fcr Studierende im Rahmen der Love Data Week",
+      "communities": [],
+      "description": "Die Ver\u00f6ffentlichung umfasst alle Materialien f\u00fcr ein selbst entwickeltes Escape-Game zum Forschungsdatenmanagement (FDM) von Mitarbeitenden der Universit\u00e4ts- und Landesbibliothek M\u00fcnster, das im Rahmen der Love Data Week konzipiert wurde. Studierende m\u00fcssen innerhalb von ca. 30\u201345 Minuten durch das L\u00f6sen von R\u00e4tseln und Aufgaben die T\u00fccken des Datings meistern, um das Herz der*des Auserw\u00e4hlten zu gewinnen. Das Spiel dient als spielerisches Lernformat zur F\u00f6rderung von Teamarbeit, Probleml\u00f6sungsf\u00e4higkeiten und kreativem Denken. Studierende befassen sich durch das Spiel niedrigschwellig mit Aspekten des FDMs (Lebenszyklus, Bedeutung von Metadaten, Dateibenennungen und -formate, sensible Daten, Laborbuch sowie der 3-2-1-Backup-Regelung). \nMit der Publikation werden die Anleitung zum Spiel, die Materialliste sowie die Aufgabenzettel zur Nachnutzung angeboten.",
+      "authors": [
+        {
+          "firstname": "Wibke",
+          "firstName": "Wibke",
+          "lastname": "Fellermann",
+          "lastName": "Fellermann",
+          "orcid": "0000-0002-6085-8354",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Adienne",
+          "firstName": "Adienne",
+          "lastname": "Karsten-Welker",
+          "lastName": "Karsten-Welker",
+          "orcid": "0000-0002-0562-7393",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Nicole",
+          "firstName": "Nicole",
+          "lastname": "Roloff",
+          "lastName": "Roloff",
+          "orcid": "0009-0007-7873-7095",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.17879/78868595841",
+      "image": null,
+      "likes": 0,
+      "views": 9,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "FDM",
+        "Escape Game",
+        "Studierende",
+        "Veranstaltung",
+        "Gamification",
+        "Forschungsdatenmanagement",
+        "Hochschulbildung",
+        "spielbasiertes Lernen"
+      ],
+      "related_works": [
+        {
+          "type": {
+            "label": "is identical to",
+            "value": "isIdenticalTo"
+          },
+          "link": "https://nbn-resolving.org/urn:nbn:de:hbz:6-78868592753"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Educational Game",
+          "value": "https://w3id.org/kim/hcrt/educational_game"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Interdisciplinary",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n0"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "Librarian",
+          "value": "http://purl.obolibrary.org/obo/OCCO_25402200"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        },
+        {
+          "label": "Teacher (higher Education)",
+          "value": "https://purl.org/ontology/modalia#TeacherHigherEducation"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "ZIP",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "CC-BY-4.0",
+        "link": null
+      },
+      "publication_date": "2026-07-24",
+      "links": [],
+      "languages": [
+        "German"
+      ],
+      "file_size": "15.100 MB",
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "6d8c2f45-46bb-476c-96b6-31f8d9aa02ad",
+      "slug": "weihnachtliches-forschungsdaten-escape-game-fur-studierende",
+      "title": "Weihnachtliches Forschungsdaten-Escape-Game f\u00fcr Studierende",
+      "communities": [],
+      "description": "Die Ver\u00f6ffentlichung umfasst alle Materialien f\u00fcr ein selbst entwickeltes Escape-Game zum Forschungsdatenmanagement (FDM) von Mitarbeitenden der Universit\u00e4ts- und Landesbibliothek M\u00fcnster mit weihnachtlichem Thema. Studierende werden herausgefordert, innerhalb von 30 Minuten R\u00e4tsel und Aufgaben zu l\u00f6sen, um rechtzeitig vor den Feiertagen aus der Einrichtung zu entkommen. Das Spiel dient als spielerisches Lernformat zur F\u00f6rderung von Teamarbeit, Probleml\u00f6sungsf\u00e4higkeiten und kreativem Denken. Studierende befassen sich durch das Spiel niedrigschwellig mit Aspekten des FDMs (Lebenszyklus, Bedeutung von Metadaten, Dateibenennungen und -formate sowie der 3-2-1-Back-up-Regelung). \nMit der Publikation werden die Anleitung zum Spiel, die Materialliste sowie die Aufgabenzettel zur Nachnutzung angeboten.",
+      "authors": [
+        {
+          "firstname": "Wibke",
+          "firstName": "Wibke",
+          "lastname": "Fellermann",
+          "lastName": "Fellermann",
+          "orcid": "0000-0002-6085-8354",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Adienne",
+          "firstName": "Adienne",
+          "lastname": "Karsten-Welker",
+          "lastName": "Karsten-Welker",
+          "orcid": "0000-0002-0562-7393",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Nicole",
+          "firstName": "Nicole",
+          "lastname": "Roloff",
+          "lastName": "Roloff",
+          "orcid": "0009-0007-7873-7095",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.17879/78868607726",
+      "image": null,
+      "likes": 0,
+      "views": 6,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "FDM",
+        "Escape Game",
+        "Studierende",
+        "Veranstaltung",
+        "Gamification",
+        "Forschungsdatenmanagement",
+        "Hochschulbildung",
+        "spielbasiertes Lernen"
+      ],
+      "related_works": [
+        {
+          "type": {
+            "label": "is identical to",
+            "value": "isIdenticalTo"
+          },
+          "link": "https://nbn-resolving.org/urn:nbn:de:hbz:6-78868593235"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Workshop",
+          "value": "http://purl.org/ontology/bibo/Workshop"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Presentation",
+          "value": "https://schema.org/PresentationDigitalDocument"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Interdisciplinary",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n0"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "Archivist",
+          "value": "http://purl.obolibrary.org/obo/OCCO_25401100"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Librarian",
+          "value": "http://purl.obolibrary.org/obo/OCCO_25402200"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        }
+      ],
+      "format": "PDF",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "CC-BY-4.0",
+        "link": null
+      },
+      "publication_date": "2026-06-22",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": "2.500 MB",
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "787da967-2855-46a7-bcda-7db208738342",
+      "slug": "building-confidence-with-research-metadata-at-scale-a-hands-on-datacite-rest-api-workshop-for-pid4nfdi",
+      "title": "Building Confidence with Research Metadata at Scale: A Hands-on DataCite REST API Workshop for PID4NFDI",
+      "communities": [
+        {
+          "id": "bb6d109a-7c41-461a-b0a8-f636eb05db70",
+          "slug": "pid4nfdi",
+          "title": "PID4NFDI",
+          "image": null,
+          "url": null,
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "This deposit contains the complete materials from the PID4NFDI online workshop \"Building Confidence with Research Metadata at Scale: A Hands-on DataCite REST API Workshop\", delivered on 15 June 2026.\n\nThe workshop introduced research-data managers, repository staff, data stewards and librarians to the DataCite REST API as a practical tool for assessing and improving metadata quality at scale, with no programming or terminal use required.\n\nThe core idea is that every metadata KPI can be expressed as one of two queries a present query (field:*) and a missing query (-(field:*))  and read off meta.total. Participants worked through their own repositories in the browser, scoping queries with client-id, building present/missing questions for licences, ORCIDs, affiliations and funders, turning counts into distributions with facets, and exporting result sets for downstream reporting.\nLearning outcomes\n\nBy the end of the workshop, participants are able to:\n\n    scope a DataCite API query to their own repository using client-id;\n    ask present/missing questions about any DataCite metadata field;\n    read meta.total as the number that answers a KPI question;\n    turn one number into a distribution by enabling facets;\n    export a result set as JSON or a single record in a citation format via content negotiation; and\n    explain the difference between Commons (clickable), the Dashboard (snapshot completeness) and the API (precise queries + missing-records worklists).\n\nAudience\n\nBeginners: research-data and repository staff, data stewards, librarians, curators. No prior coding required; the entire workshop runs in a web browser.\nHow to reuse this material\n\nThe materials are released so other communities can run the same workshop or adapt the activities for their own training. The workbook is structured so each task is one URL the participant edits, which makes it easy to localise to a single repository or research area.\nRelated work\n\n    DataCite Metadata Monitoring Framework v1.1 the KPI definitions that the workshop is built around \u2014 https://doi.org/10.5281/zenodo.19659989\n    DataCite Metadata Schema v4.7 https://schema.datacite.org/\n    DataCite REST API documentation https://support.datacite.org/docs/api\n    DataCite Commons (clickable counterpart) https://commons.datacite.org\n    DataCite Metadata Dashboard https://metadata.datacite.org",
+      "authors": [
+        {
+          "firstname": "Sara",
+          "firstName": "Sara",
+          "lastname": "El-Gebali",
+          "lastName": "El-Gebali",
+          "orcid": "0000-0003-1378-5495",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Paul",
+          "firstName": "Paul",
+          "lastname": "Vierkant",
+          "lastName": "Vierkant",
+          "orcid": "0000-0003-4448-3844",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Stephanie",
+          "firstName": "Stephanie",
+          "lastname": "Hagemann-Wilholt",
+          "lastName": "Hagemann-Wilholt",
+          "orcid": "0000-0002-0474-2410",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "B\u00f6hm",
+          "firstName": "B\u00f6hm",
+          "lastname": "Jana",
+          "lastName": "Jana",
+          "orcid": "0009-0004-9802-113X",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Torsten",
+          "firstName": "Torsten",
+          "lastname": "Kahlert",
+          "lastName": "Kahlert",
+          "orcid": "0009-0003-3264-5006",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Frederik",
+          "firstName": "Frederik",
+          "lastname": "Springer",
+          "lastName": "Springer",
+          "orcid": "0000-0001-5379-0059",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Antonia",
+          "firstName": "Antonia",
+          "lastname": "Schrader",
+          "lastName": "Schrader",
+          "orcid": "0000-0001-7080-634X",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Robin",
+          "firstName": "Robin",
+          "lastname": "Kraus",
+          "lastName": "Kraus",
+          "orcid": "0009-0008-7705-7407",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.5281/zenodo.20793638",
+      "image": null,
+      "likes": 0,
+      "views": 11,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "workshop",
+        "DataCite",
+        "REST API",
+        "research metadata",
+        "metadata quality",
+        "persistent identifiers",
+        "PID",
+        "NFDI",
+        "DOI",
+        "ORCID",
+        "ROR",
+        "open science",
+        "FAIR data"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Video",
+          "value": "https://w3id.org/kim/hcrt/video"
+        },
+        {
+          "label": "Course",
+          "value": "https://w3id.org/kim/hcrt/course"
+        },
+        {
+          "label": "Lesson Plan",
+          "value": "https://w3id.org/kim/hcrt/lesson_plan"
+        },
+        {
+          "label": "Slide",
+          "value": "https://w3id.org/kim/hcrt/slide"
+        },
+        {
+          "label": "Worksheet",
+          "value": "https://w3id.org/kim/hcrt/worksheet"
+        },
+        {
+          "label": "Workshop",
+          "value": "http://purl.org/ontology/bibo/Workshop"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Presentation",
+          "value": "https://schema.org/PresentationDigitalDocument"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        },
+        {
+          "label": "Video",
+          "value": "https://schema.org/VideoObject"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Agricultural Science, Food- And Beverage Technology (n58)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n58"
+        },
+        {
+          "label": "Agricultural Science/Agriculture (n003)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n003"
+        },
+        {
+          "label": "Agricultural, Forest and Nutritional Sciences, Veterinary medicine",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n7"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        },
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "DOCX, MP4, PPTX",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "CC-BY-4.0",
+        "link": null
+      },
+      "publication_date": "2026-05-26",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "f8fa8690-3dbb-4cae-96f6-bd26eebca245",
+      "slug": "from-field-data-to-fair-data-how-to-manage-your-agrosystem-research-data-trainingmaterial",
+      "title": "From Field Data to FAIR Data: How to Manage Your Agrosystem Research Data - Trainingmaterial",
+      "communities": [
+        {
+          "id": "a8598584-30f0-41f9-a9a0-182343d3eaec",
+          "slug": "fairagro",
+          "title": "FAIRagro",
+          "image": null,
+          "url": "https://id.dalia.education/community/f6e6a7fc-552b-4d75-9fca-8e2b1b8ad624",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "This publication contains the training material for the four-hour online introductory training course on research data management for agricultural scientists.\n\nThe following materials are included:\n\n    Teaching script (xlsx)\n\n    Presentation slides (pptx)\n\n    Worksheets (docx)\n\n    Link collection to share with participants (docx)\n\n    Announcement text (docx)\n\n    Recording of the non-interactive parts of a training delivered by FAIRagro Data Stewards (mp4)\n\nThis training workshop was created using FAIRagros modular training material by Bo\u00dfe et al 2025 (DOI: https://doi.org/10.4126/FRL01-006527953) [Titel anhand dieser DOI in Citavi-Projekt \u00fcbernehmen] .\n\nIf you require this training material in open format or PDF, it is also available as part of the modular training material by Bo\u00dfe et al. (2025, DOI: https://doi.org/10.4126/FRL01-006527953).\nAcknowledgements\n\nMany of the slides are based on templates and prior work by Justine Vandendorp. We gratefully acknowledge her contributions to the development of these materials.\n\nWe also extend our sincere thanks to Hafssa Zainou and Anna Schlimbach for their valuable assistance in the structuring and formatting of the materials. \n\nThis work was created as part of the NFDI consortium FAIRagro (www.fairagro.net). We gratefully acknowledge the financial support of the German Research Foundation (DFG) \u2013 project number 501899475\n\nDiscipline\nAgrosystem Science Research\n\nTarget Group\nTargetgroup of the trainingsworkshop are agricultural researcher",
+      "authors": [
+        {
+          "firstname": "Sophie",
+          "firstName": "Sophie",
+          "lastname": "Bo\u00dfe",
+          "lastName": "Bo\u00dfe",
+          "orcid": "0009-0002-6461-8291",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Elena",
+          "firstName": "Elena",
+          "lastname": "Rey Maz\u00f3n",
+          "lastName": "Rey Maz\u00f3n",
+          "orcid": "0000-0003-4813-5927",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Wahib",
+          "firstName": "Wahib",
+          "lastname": "Sahwan",
+          "lastName": "Sahwan",
+          "orcid": "0000-0002-6503-5525",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Lea Sophie",
+          "firstName": "Lea Sophie",
+          "lastname": "Singson",
+          "lastName": "Singson",
+          "orcid": "0009-0004-9978-8703",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Lucia",
+          "firstName": "Lucia",
+          "lastname": "Vedder",
+          "lastName": "Vedder",
+          "orcid": "0000-0002-8924-9800",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.5281/ZENODO.20393694",
+      "image": null,
+      "likes": 0,
+      "views": 7,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "FAIRagro",
+        "Open Educational Resources",
+        "Research Data Management",
+        "Agrosystem Sciences",
+        "Training Material"
+      ],
+      "related_works": [
+        {
+          "type": {
+            "label": "is part of",
+            "value": "isPartOf"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006527953"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Educational Game",
+          "value": "https://w3id.org/kim/hcrt/educational_game"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Presentation",
+          "value": "https://schema.org/PresentationDigitalDocument"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Chemistry (n032)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n032"
+        },
+        {
+          "label": "Chemistry (n40)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n40"
+        },
+        {
+          "label": "Mathematics, Natural Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n4"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        },
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "PDF, PPTX, TXT",
+      "license": {
+        "id": "CC0-1.0",
+        "name": "CC0-1.0",
+        "link": null
+      },
+      "publication_date": "2026-05-06",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": "1.000 MB",
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "11f2a837-fe69-495c-9a7e-d0751f14ba3e",
+      "slug": "smartclue-the-nfdi4chem-guessing-game",
+      "title": "SmartClue - The NFDI4Chem Guessing Game",
+      "communities": [
+        {
+          "id": "5a1a99fb-8ade-4bed-a25c-9497deb91600",
+          "slug": "nfdi4chem",
+          "title": "NFDI4Chem",
+          "image": null,
+          "url": "https://id.dalia.education/community/bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "NFDI4Chem presents its research data management (RDM) guessing game SmartClue, featuring general and chemistry-specific terms. The game encourages researchers to engage with RDM in a fun way. SmartClue is based on our open educational resource (OER) \u2018FAIR Chemistry Data: A Research Data Management Workshop Concept\u2019. \nWhat is inside the data publication?\n\nThe data publication includes the SmartClue card game template in .pptx and .pdf file format for reuse. Every slide in the .pptx file (or page in the .pdf file) corresponds to a single side of a card. In the files the front and the back of every single card are in an alternating order. The files are provided in the corporate colour scheme (NFDI4Chem petrol, Hex: #009CBC) and font (IBM Plex Sans semibold or light) of NFDI4Chem. The design is given and can be adjusted in the slide master in the .pptx file.\n\nEvery playing card includes a number (\"M01\", \"M02\", \"M03\", or \"M04\") on the back belonging to the four modules of the corresponding OER:\n\n    M01: Basics of research data management\n    M02: Documentation\n    M03: Electronic laboratory notebooks\n    M04: Data preservation\n\nSmartClue contains 62 cards in total (cover card, \"How to play?\" card, and 60 playing cards) provided in landscape format in the size of standard playing cards (91 x 59 mm), thus fitting into a standard playing card holder (66 x 97 x 25 mm). Some shops might ask for a bleed margin when printing the card game, which is not included in the given files.\n\nFor more information on the content and reuse of this data publication, have a look at the provided README file.\nHow to play?\n\nShuffle the cards and place them face down between the players. The first player draws a card and tries to explain the term on it without mentioning the term or any parts of it. Once the other players have correctly guessed the term, the next player draws a card. To increase the difficulty, skipping cards is not allowed! If several teams are playing against each other, set a time limit of 10 minutes. After this time, the team with the most guessed cards wins. \n\nHave fun!",
+      "authors": [
+        {
+          "firstname": "Annett",
+          "firstName": "Annett",
+          "lastname": "Schr\u00f6ter",
+          "lastName": "Schr\u00f6ter",
+          "orcid": "0000-0002-2542-0867",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Fabian",
+          "firstName": "Fabian",
+          "lastname": "Fink",
+          "lastName": "Fink",
+          "orcid": "0000-0002-1863-2087",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Ann-Christin",
+          "firstName": "Ann-Christin",
+          "lastname": "Andres",
+          "lastName": "Andres",
+          "orcid": "0000-0001-9496-7906",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.5281/zenodo.19694961",
+      "image": null,
+      "likes": 3,
+      "views": 15,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "NFDI4Chem",
+        "RDM",
+        "research data management",
+        "FAIR",
+        "gamification"
+      ],
+      "related_works": [
+        {
+          "type": {
+            "label": "is based on",
+            "value": "isBasedOn"
+          },
+          "link": "https://doi.org/10.5281/zenodo.19084778"
+        },
+        {
+          "type": {
+            "label": "is based on",
+            "value": "isBasedOn"
+          },
+          "link": "https://doi.org/10.5281/zenodo.13353020"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Lesson Plan",
+          "value": "https://w3id.org/kim/hcrt/lesson_plan"
+        },
+        {
+          "label": "Script",
+          "value": "https://w3id.org/kim/hcrt/script"
+        },
+        {
+          "label": "Slide",
+          "value": "https://w3id.org/kim/hcrt/slide"
+        },
+        {
+          "label": "Worksheet",
+          "value": "https://w3id.org/kim/hcrt/worksheet"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Presentation",
+          "value": "https://schema.org/PresentationDigitalDocument"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        },
+        {
+          "label": "Video",
+          "value": "https://schema.org/VideoObject"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Agricultural Science, Food- And Beverage Technology (n58)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n58"
+        },
+        {
+          "label": "Agricultural Science/Agriculture (n003)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n003"
+        },
+        {
+          "label": "Agricultural, Forest and Nutritional Sciences, Veterinary medicine",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n7"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        },
+        {
+          "label": "Teacher (higher Education)",
+          "value": "https://purl.org/ontology/modalia#TeacherHigherEducation"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        },
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent"
+        },
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "DOCX, MP4, ODP, ODT, PDF, PPTX, XLSX",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "CC-BY-4.0",
+        "link": null
+      },
+      "publication_date": "2026-04-30",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "6f9381b9-9e0a-4ffd-afe7-37eb36268cad",
+      "slug": "research-data-management-for-agrosystem-sciences-modular-training-material-for-reuse",
+      "title": "Research Data Management for Agrosystem Sciences - Modular Training Material for Reuse",
+      "communities": [
+        {
+          "id": "a8598584-30f0-41f9-a9a0-182343d3eaec",
+          "slug": "fairagro",
+          "title": "FAIRagro",
+          "image": null,
+          "url": "https://id.dalia.education/community/f6e6a7fc-552b-4d75-9fca-8e2b1b8ad624",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "This is an extensive Open Educational Resource (OER) comprising training materials designed to help you plan, create and conduct training events on Research Data Management (RDM) for agrosystem science researchers. These resources include presentation slides, presenter notes, teaching scripts with learning objectives, worksheets and a recording of an RDM training session, as well as a guide on how to create a training session. All resources are structured and described in accordance with the EduBrick concept, whereby the teaching resources are broken down into the smallest didactic unit, called 'Bricks', which can be used to create targeted learning/teaching units for training events tailored to the respective needs. To enhance reusability, all materials are provided in multiple formats and are openly licensed.\n\nWe also provide an example of how the Bricks could be used to create a four-hour online training course, including a teaching script, presentation slides, worksheets and a video recording of the training course.\nIntended Use\n\nThis publication is designed to:\n\n    Enable flexible reuse and recombination\n\n    Support trainers in different institutional contexts\n\n    Facilitate adaptation to specific target groups\n\n    Encourage collaborative use without structural modification\n\nThe modular design ensures that content can be tailored to specific formats, disciplines, and levels of expertise while maintaining didactical coherence.\nHow to Use\n\nThis publication includes three 7z files, each of which contains a complex folder structure with over 270 individual files.\nTherefore, we recommend\n\n1) first reviewing the READ ME file, which provides information about the content and structure of the training material.\n2) You can also look at the \"How to Create a Training\" file for detailed instructions on how to create a training using this material.\n3) Then, decide which format you prefer (Microsoft Office if you want to use PowerPoint; LibreOffice if you want to use open-source solutions like LibreOffice Impress; or PDF if you want to use this format, but be aware that these don't include presentation notes).\n4) Download the respective .7z file and unpack it using 7-Zip (recommended), Zip, or another suitable tool by right-clicking on the file.\n5) Make sure the files are sorted by name - regardless of file type (if your system allows that). This makes it easier to navigate the folderstructure\nContent\n\nThis publication includes:\n\n    READ ME file (pdf)\n\n    \u201cHow to create a training\u201d Guide (pdf)\n\n    Recording of an four hour example training session (mp4)\n\n    Three Zip folders containing all training materials (presentation slides, teaching scripts, worksheets) in multiple formats:\n\n        \u201cBricks_pdf\u201d: all materials in pdf formats (excluding presenters notes)\n\n        \u201cBricks_MicrosoftOffice\u201d: presentation slides as pptx, teachingscript as xlsx, worksheets as docx\n\n        \u201cBricks_LibreOffice\u201d: presentation slides as odp, teaching script as ods, worksheets as odt\n\nWe recommend using Microsoft Office or LibreOffice, depending on your system, rather than using PDF files. \nTarget Group\n\nThe target group of this resource are RDM professionals, data stewards, and teachers in agrosystem science, who want to conduct discipline-specific RDM training for researchers within the agrosystem sciences.\nDiscipline\n\nAgrosystem Science Research\nLanguage\n\nEnglish\nAcknowledgements\n\nMany of the slides are based on templates and prior work by Justine Vandendorp. We gratefully acknowledge her contributions to the development of these materials.\n\nWe also extend our sincere thanks to Hafssa Zainou and Anna Schlimbach for their valuable assistance in the structuring and formatting of the materials. \n\nThis work was created as part of the NFDI consortium FAIRagro (www.fairagro.net). We gratefully acknowledge the financial support of the German Research Foundation (DFG) \u2013 project number 501899475",
+      "authors": [
+        {
+          "firstname": "Sophie",
+          "firstName": "Sophie",
+          "lastname": "Bo\u00dfe",
+          "lastName": "Bo\u00dfe",
+          "orcid": "0009-0002-6461-8291",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Elena",
+          "firstName": "Elena",
+          "lastname": "Rey Maz\u00f3n",
+          "lastName": "Rey Maz\u00f3n",
+          "orcid": "0000-0003-4813-5927",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Wahib",
+          "firstName": "Wahib",
+          "lastname": "Sahwan",
+          "lastName": "Sahwan",
+          "orcid": "0000-0002-6503-5525",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Lea Sophie",
+          "firstName": "Lea Sophie",
+          "lastname": "Singson",
+          "lastName": "Singson",
+          "orcid": "0009-0004-9978-8703",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Lucia",
+          "firstName": "Lucia",
+          "lastname": "Vedder",
+          "lastName": "Vedder",
+          "orcid": "0000-0002-8924-9800",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://zenodo.org/records/20055188",
+      "image": null,
+      "likes": 0,
+      "views": 8,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "FAIRagro",
+        "Open Educational Resources",
+        "Research Data Management",
+        "EduBricks",
+        "Agrosystem Sciences",
+        "Training Material"
+      ],
+      "related_works": [
+        {
+          "type": {
+            "label": "references",
+            "value": "references"
+          },
+          "link": "https://doi.org/10.5281/ZENODO.1215376"
+        },
+        {
+          "type": {
+            "label": "references",
+            "value": "references"
+          },
+          "link": "https://doi.org/10.52825/cordi.v1i.267"
+        },
+        {
+          "type": {
+            "label": "references",
+            "value": "references"
+          },
+          "link": "https://doi.org/10.5281/ZENODO.15846806"
+        },
+        {
+          "type": {
+            "label": "has part",
+            "value": "hasPart"
+          },
+          "link": "https://doi.org/10.5281/ZENODO.21871110"
+        },
+        {
+          "type": {
+            "label": "has part",
+            "value": "hasPart"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006402743"
+        },
+        {
+          "type": {
+            "label": "has part",
+            "value": "hasPart"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006428881"
+        },
+        {
+          "type": {
+            "label": "has part",
+            "value": "hasPart"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006428850"
+        },
+        {
+          "type": {
+            "label": "has part",
+            "value": "hasPart"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006426818"
+        },
+        {
+          "type": {
+            "label": "is identical to",
+            "value": "isIdenticalTo"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006527953"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Workshop",
+          "value": "http://purl.org/ontology/bibo/Workshop"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Presentation",
+          "value": "https://schema.org/PresentationDigitalDocument"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Chemistry (n032)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n032"
+        },
+        {
+          "label": "Chemistry (n40)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n40"
+        },
+        {
+          "label": "Mathematics, Natural Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n4"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "DOCX, MD, PDF, TXT, XLSX, ZIP",
+      "license": {
+        "id": "CC0-1.0",
+        "name": "CC0-1.0",
+        "link": null
+      },
+      "publication_date": "2026-03-25",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": "250.000 MB",
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "142ea652-eb86-4e6b-8f09-eda6e35c89bf",
+      "slug": "fair-chemistry-data-a-research-data-management-workshop-concept",
+      "title": "FAIR Chemistry Data: A Research Data Management Workshop Concept",
+      "communities": [
+        {
+          "id": "5a1a99fb-8ade-4bed-a25c-9497deb91600",
+          "slug": "nfdi4chem",
+          "title": "NFDI4Chem",
+          "image": null,
+          "url": "https://id.dalia.education/community/bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "This open educational resource (OER) is based on the workshop 'FAIR Research Data Management: Basics for Chemists', which has been delivered over 40 times to more than 800 participants within the NFDI4Chem framework since 2022. NFDI4Chem is the chemistry consortium of the National Research Data Infrastructure (NFDI) in Germany.\r\n\r\nThe workshop introduces the fundamentals of research data management (RDM) to researchers working in chemistry and related disciplines, and therefore includes many examples specific to chemistry. We demonstrate how good RDM can be applied in practice, highlighting chemistry-specific features and introducing relevant tools and services. The target group is primarily early career researchers, such as doctoral candidates and postdoctoral researchers. Our workshop concept is intended for reuse, adaptation and further development by instructors, trainers, and educators from different institutions and (chemistry-related) disciplines.\r\n\r\nThe workshop concept package includes a modularised slide deck in both NFDI4Chem and plain designs, including comprehensive speaker notes and additional reading material, an introduction file, a detailed training concept file, a file describing the exercises and several example files. Together, these provide conceptual input, RDM knowledge and interactive elements that can be combined, modified or expanded according to specific learning objectives, target groups and the time available.\r\n\r\nBased on four modules (M01-M04), the following topics are covered:\r\n\r\n    M01: Basics of research data management\r\n    M02: Documentation\r\n    M03: Electronic laboratory notebooks\r\n    M04: Data preservation",
+      "authors": [
+        {
+          "firstname": "Ann-Christin",
+          "firstName": "Ann-Christin",
+          "lastname": "Andres",
+          "lastName": "Andres",
+          "orcid": "0000-0001-9496-7906",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Annett",
+          "firstName": "Annett",
+          "lastname": "Schr\u00f6ter",
+          "lastName": "Schr\u00f6ter",
+          "orcid": "0000-0002-2542-0867",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Benjamin",
+          "firstName": "Benjamin",
+          "lastname": "Golub-Overbeck",
+          "lastName": "Golub-Overbeck",
+          "orcid": "0000-0003-4374-909X",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Fabian",
+          "firstName": "Fabian",
+          "lastname": "Fink",
+          "lastName": "Fink",
+          "orcid": "0000-0002-1863-2087",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.5281/zenodo.19084779",
+      "image": null,
+      "likes": 0,
+      "views": 16,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "NFDI4Chem",
+        "OER",
+        "RDM",
+        "open educational resource",
+        "research data management",
+        "workshop",
+        "training",
+        "research data",
+        "FAIR"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Assessment",
+          "value": "https://w3id.org/kim/hcrt/assessment"
+        },
+        {
+          "label": "Code Notebook",
+          "value": "https://purl.org/ontology/modalia#CodeNotebook"
+        },
+        {
+          "label": "Tutorial",
+          "value": "https://purl.org/ontology/modalia#Tutorial"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Code",
+          "value": "https://purl.org/ontology/modalia#Code"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Social Sciences (n148)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n148"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        }
+      ],
+      "format": "QMD",
+      "license": {
+        "id": "CC-BY-NC-4.0",
+        "name": "CC-BY-NC-4.0",
+        "link": null
+      },
+      "publication_date": "2026-03-04",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "6d736e67-283e-49c6-b908-7543671c4a63",
+      "slug": "resquin",
+      "title": "Resquin",
+      "communities": [
+        {
+          "id": "95d552dd-ee2f-478b-891f-9e31e85fa9bc",
+          "slug": "kodaqs",
+          "title": "KODAQS",
+          "image": null,
+          "url": null,
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "Resquin is a tool for assessing response quality and careless responding in multi-item scales. This tool gives an overview on the assessment of response quality in multi-item scales and guides you through the quality analysis with replicable R-code. It introduces key response quality indicators along with code examples for their calculation, shows how to interpret the different response quality indicators, and assesses their suitability for different question types and response scales. The tool also briefly evaluates different caveats of selected response quality indicators.\n\nFurther information: This tool was developed as part of the KODAQS project, a partnership between GESIS, the University of Mannheim, and LMU Munich.",
+      "authors": [
+        {
+          "firstname": "Fabienne",
+          "firstName": "Fabienne",
+          "lastname": "Kraemer",
+          "lastName": "Kraemer",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Arjin",
+          "firstName": "Arjin",
+          "lastname": "Eser",
+          "lastName": "Eser",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "\u00c7a\u011fla",
+          "firstName": "\u00c7a\u011fla",
+          "lastname": "Y\u0131ld\u0131z",
+          "lastName": "Y\u0131ld\u0131z",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Matthias",
+          "firstName": "Matthias",
+          "lastname": "Roth",
+          "lastName": "Roth",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://kodaqs-toolbox.gesis.org/github.com/kraemefe/resquin-tool-application/Resquin_Tool/",
+      "image": null,
+      "likes": 0,
+      "views": 3,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "survey data"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Assessment",
+          "value": "https://w3id.org/kim/hcrt/assessment"
+        },
+        {
+          "label": "Code Notebook",
+          "value": "https://purl.org/ontology/modalia#CodeNotebook"
+        },
+        {
+          "label": "Tutorial",
+          "value": "https://purl.org/ontology/modalia#Tutorial"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Code",
+          "value": "https://purl.org/ontology/modalia#Code"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Social Sciences (n148)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n148"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        }
+      ],
+      "format": "QMD",
+      "license": {
+        "id": "CC-BY-NC-4.0",
+        "name": "CC-BY-NC-4.0",
+        "link": null
+      },
+      "publication_date": "2026-03-04",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "aa02c51a-65c3-469e-9bd5-d67ffc7bd731",
+      "slug": "resquin",
+      "title": "Resquin",
+      "communities": [
+        {
+          "id": "95d552dd-ee2f-478b-891f-9e31e85fa9bc",
+          "slug": "kodaqs",
+          "title": "KODAQS",
+          "image": null,
+          "url": null,
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "Resquin is a tool for assessing response quality and careless responding in multi-item scales. This tool gives an overview on the assessment of response quality in multi-item scales and guides you through the quality analysis with replicable R-code. It introduces key response quality indicators along with code examples for their calculation, shows how to interpret the different response quality indicators, and assesses their suitability for different question types and response scales. The tool also briefly evaluates different caveats of selected response quality indicators.\n\nFurther information: This tool was developed as part of the KODAQS project, a partnership between GESIS, the University of Mannheim, and LMU Munich.",
+      "authors": [
+        {
+          "firstname": "Fabienne",
+          "firstName": "Fabienne",
+          "lastname": "Kraemer",
+          "lastName": "Kraemer",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Arjin",
+          "firstName": "Arjin",
+          "lastname": "Eser",
+          "lastName": "Eser",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "\u00c7a\u011fla",
+          "firstName": "\u00c7a\u011fla",
+          "lastname": "Y\u0131ld\u0131z",
+          "lastName": "Y\u0131ld\u0131z",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Matthias",
+          "firstName": "Matthias",
+          "lastname": "Roth",
+          "lastName": "Roth",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://kodaqs-toolbox.gesis.org/github.com/kraemefe/resquin-tool-application/Resquin_Tool/",
+      "image": null,
+      "likes": 0,
+      "views": 5,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "survey data"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Workshop",
+          "value": "http://purl.org/ontology/bibo/Workshop"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Presentation",
+          "value": "https://schema.org/PresentationDigitalDocument"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Chemistry (n032)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n032"
+        },
+        {
+          "label": "Chemistry (n40)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n40"
+        },
+        {
+          "label": "Mathematics, Natural Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n4"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        },
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent"
+        }
+      ],
+      "format": "CSV, PDF, PPTX, TXT, XLSX",
+      "license": {
+        "id": "CC0-1.0",
+        "name": "CC0-1.0",
+        "link": null
+      },
+      "publication_date": "2026-02-12",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": "45.000 MB",
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "d4ce9c8c-d023-4657-8c17-8e5b3625ca04",
+      "slug": "dmp-writing-made-easy-a-hands-on-workshop-for-chemists",
+      "title": "DMP Writing Made Easy: A Hands-on Workshop for Chemists",
+      "communities": [
+        {
+          "id": "5a1a99fb-8ade-4bed-a25c-9497deb91600",
+          "slug": "nfdi4chem",
+          "title": "NFDI4Chem",
+          "image": null,
+          "url": "https://id.dalia.education/community/bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "This Open Educational Resource (OER) is part of the Data Management Plan (DMP) workshop, \"DMP Writing Made Easy: A Hands-on Workshop for Chemists,\" which was developed by the Chemistry Consortium of the National Research Data Infrastructure in Germany (NFDI4Chem). The workshop was first offered online on January 21, 2026. The workshop concept was developed as an incubator project of NFDI4Chem during the integration phase of the NFDI basic service on data management plans (DMP4NFDI). This publication directly contributes to the deliverable 2.1, \"Concept for outreach support,\" of the DMP4NFDI integration phase proposal.\r\n\r\nThe workshop materials intended for reuse by others consist of a set of slides used during the workshop, including comprehensive speaker notes and additional reading material, a detailed concept for conducting the workshop, and a README file.",
+      "authors": [
+        {
+          "firstname": "Ann-Christin",
+          "firstName": "Ann-Christin",
+          "lastname": "Andres",
+          "lastName": "Andres",
+          "orcid": "0000-0001-9496-7906",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Annett",
+          "firstName": "Annett",
+          "lastname": "Schr\u00f6ter",
+          "lastName": "Schr\u00f6ter",
+          "orcid": "0000-0002-2542-0867",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Fabian",
+          "firstName": "Fabian",
+          "lastname": "Fink",
+          "lastName": "Fink",
+          "orcid": "0000-0002-1863-2087",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.5281/zenodo.18349877",
+      "image": null,
+      "likes": 0,
+      "views": 12,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "chemistry",
+        "dmp",
+        "dmp4nfdi",
+        "data management plan",
+        "nfdi4chem",
+        "oer",
+        "open educational resource",
+        "rdm",
+        "rdmo",
+        "research data management",
+        "workshop material"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Assessment",
+          "value": "https://w3id.org/kim/hcrt/assessment"
+        },
+        {
+          "label": "Code Notebook",
+          "value": "https://purl.org/ontology/modalia#CodeNotebook"
+        },
+        {
+          "label": "Tutorial",
+          "value": "https://purl.org/ontology/modalia#Tutorial"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Code",
+          "value": "https://purl.org/ontology/modalia#Code"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Social Sciences (n148)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n148"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent"
+        },
+        {
+          "label": "Proficient",
+          "value": "https://purl.org/ontology/modalia#Proficient"
+        }
+      ],
+      "format": "QMD",
+      "license": {
+        "id": "CC-BY-NC-4.0",
+        "name": "CC-BY-NC-4.0",
+        "link": null
+      },
+      "publication_date": "2026-01-08",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "243cf4eb-1834-48d3-97d4-e50a1a8ad1af",
+      "slug": "subdata",
+      "title": "SubData",
+      "communities": [
+        {
+          "id": "95d552dd-ee2f-478b-891f-9e31e85fa9bc",
+          "slug": "kodaqs",
+          "title": "KODAQS",
+          "image": null,
+          "url": null,
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "The SubData tool, implemented as a Python library, evaluates the alignment between large language models (LLMs) and human perspectives in subjective annotation tasks. It is particularly relevant during data preprocessing, where it helps to improve data quality by harmonizing heterogeneous datasets, providing standardized keyword mappings and taxonomies, and enabling theory-driven analyses of perspective alignment. In addition, SubData includes ten curated datasets that can be used to identify model biases, test generalizability, and contextualize hate speech datasets within the broader literature.\n\nFurther information: This tool was developed as part of the KODAQS project, a partnership between GESIS, the University of Mannheim, and LMU Munich.",
+      "authors": [
+        {
+          "firstname": "Siyu",
+          "firstName": "Siyu",
+          "lastname": "Zhang",
+          "lastName": "Zhang",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Leon",
+          "firstName": "Leon",
+          "lastname": "Fr\u00f6hling",
+          "lastName": "Fr\u00f6hling",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://kodaqs-toolbox.gesis.org/github.com/SiyuZ-00/DQ_Tool_SubData/index/",
+      "image": null,
+      "likes": 0,
+      "views": 9,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "digtal behavioral data"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Assessment",
+          "value": "https://w3id.org/kim/hcrt/assessment"
+        },
+        {
+          "label": "Code Notebook",
+          "value": "https://purl.org/ontology/modalia#CodeNotebook"
+        },
+        {
+          "label": "Tutorial",
+          "value": "https://purl.org/ontology/modalia#Tutorial"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Code",
+          "value": "https://purl.org/ontology/modalia#Code"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Social Sciences (n148)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n148"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent"
+        },
+        {
+          "label": "Proficient",
+          "value": "https://purl.org/ontology/modalia#Proficient"
+        }
+      ],
+      "format": "QMD",
+      "license": {
+        "id": "CC-BY-NC-4.0",
+        "name": "CC-BY-NC-4.0",
+        "link": null
+      },
+      "publication_date": "2026-01-08",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "bb953f70-b257-417f-adc1-c0f3222d2045",
+      "slug": "subdata",
+      "title": "SubData",
+      "communities": [
+        {
+          "id": "95d552dd-ee2f-478b-891f-9e31e85fa9bc",
+          "slug": "kodaqs",
+          "title": "KODAQS",
+          "image": null,
+          "url": null,
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "The SubData tool, implemented as a Python library, evaluates the alignment between large language models (LLMs) and human perspectives in subjective annotation tasks. It is particularly relevant during data preprocessing, where it helps to improve data quality by harmonizing heterogeneous datasets, providing standardized keyword mappings and taxonomies, and enabling theory-driven analyses of perspective alignment. In addition, SubData includes ten curated datasets that can be used to identify model biases, test generalizability, and contextualize hate speech datasets within the broader literature.\n\nFurther information: This tool was developed as part of the KODAQS project, a partnership between GESIS, the University of Mannheim, and LMU Munich.",
+      "authors": [
+        {
+          "firstname": "Siyu",
+          "firstName": "Siyu",
+          "lastname": "Zhang",
+          "lastName": "Zhang",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Leon",
+          "firstName": "Leon",
+          "lastname": "Fr\u00f6hling",
+          "lastName": "Fr\u00f6hling",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://kodaqs-toolbox.gesis.org/github.com/SiyuZ-00/DQ_Tool_SubData/index/",
+      "image": null,
+      "likes": 0,
+      "views": 5,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "digtal behavioral data"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Podcast Series",
+          "value": "https://schema.org/PodcastSeries"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Audio",
+          "value": "https://schema.org/AudioObject"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Art History, Art Theory",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n092"
+        }
+      ],
+      "target_groups": [],
+      "proficiency_levels": [],
+      "format": "MP3",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0 International",
+        "link": "https://creativecommons.org/licenses/by/4.0/legalcode"
+      },
+      "publication_date": "2025-12-18",
+      "links": null,
+      "languages": [
+        "German"
+      ],
+      "file_size": "77.16 MB",
+      "publisher": null,
+      "doi": null,
+      "learning_time": 10,
+      "versions": null,
+      "source": "fuseki",
+      "id": "ea1e868c-4f6f-46a7-b48f-eaa4c6b93e09",
+      "slug": "folge-17-memorandum-forschungsdaten-in-der-kunstgeschichte-10-thesen",
+      "title": "Folge 17: Memorandum \"Forschungs\u00addaten in der Kunst\u00adgeschichte: 10 Thesen\"",
+      "communities": [],
+      "description": "In dieser Folge spricht Jacqueline Klusik-Eckert mit Maria Effinger, Ulrich Pfisterer, Georg Schelbert und Kerstin Thomas, die als Initiator*innen des Memorandums einen Einblick in die aktuellen Herausforderungen und Chancen der kunsthistorischen Forschungsdaten geben. Link zum Memorandum und zum Zeichnen: https://kunstgeschichte.org/10-thesen-zu-forschungsdaten-in-der-kunstgeschichte/ Das Gespr\u00e4ch beginnt mit der Genese des Memorandums, beleuchtet die Motivationen und den dringenden Bedarf, der zu diesem wichtigen Schritt f\u00fcr das Fach Kunstgeschichte gef\u00fchrt hat. Es wird deutlich, dass die Definition, die Art und der Umgang mit Forschungsdaten in der Kunstgeschichte so vielschichtig sind wie die Disziplin selbst. Gemeinsam schauen sie mit unterschiedlichen Perspektiven auf die Notwendigkeit, Forschungsdaten nicht nur zu sammeln, sondern sie so aufzubereiten, dass sie zug\u00e4nglich und nutzbar gemacht werden k\u00f6nnen. Dabei geht es auch um die institutionelle Verantwortung, Strukturen zu schaffen, die sowohl die Archivierung als auch die Beratung und Vernetzung unterst\u00fctzen. Ein wichtiger Diskussionspunkt ist die Rolle der K\u00fcnstlichen Intelligenz in der Forschung und wie das Memorandum darauf abzielt, KI-Strategien und -Richtlinien zu entwickeln, die es der kunsthistorischen Forschung erm\u00f6glichen, auf Augenh\u00f6he mit aktuellen technologischen Entwicklungen zu bleiben. Abschlie\u00dfend reflektieren die G\u00e4ste \u00fcber die n\u00e4chsten Schritte, die die Community unternehmen sollte, um die im Memorandum skizzierten Ziele zu erreichen, und welche wissenschaftspolitischen Ma\u00dfnahmen erforderlich sind. \u200b\u200bDr. Maria Effinger von der Universit\u00e4tsbibliothek Heidelberg ist Leiterin der Abteilung \"Publikationsdienste\" und von \"arthistoricum.net - Fachinformationsdienst Kunst, Fotografie, Design sowie Co-Spokesperson von NFDI4Culture. Prof. Dr. Ulrich Pfisterer ist Professor f\u00fcr Kunstgeschichte an der Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen und Direktor des Zentralinstituts f\u00fcr Kunstgeschichte, M\u00fcnchen. Dr. Georg Schelbert, Leiter der Photothek und Digital Humanities am Zentralinstitut f\u00fcr Kunstgeschichte, M\u00fcnchen, sowie Sprecher des Arbeitskreis Digitale Kunstgeschichte. Prof. Dr. Kerstin Thomas ist Professorin f\u00fcr Kunstgeschichte an der Universit\u00e4t Stuttgart und erste Vorsitzende des Deutschen Verbands f\u00fcr Kunstgeschichte.",
+      "authors": [
+        {
+          "firstname": "Jacqueline",
+          "firstName": "Jacqueline",
+          "lastname": "Klusik-Eckert",
+          "lastName": "Klusik-Eckert",
+          "orcid": "https://orcid.org/0000-0002-0969-2520",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Maria",
+          "firstName": "Maria",
+          "lastname": "Effinger",
+          "lastName": "Effinger",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Ulrich",
+          "firstName": "Ulrich",
+          "lastname": "Pfisterer",
+          "lastName": "Pfisterer",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Georg",
+          "firstName": "Georg",
+          "lastname": "Schelbert",
+          "lastName": "Schelbert",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Kerstin",
+          "firstName": "Kerstin",
+          "lastname": "Thomas",
+          "lastName": "Thomas",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.11588/heidicon/23938908",
+      "image": null,
+      "likes": 0,
+      "views": 5,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "NFDI4Culture",
+        "Forschungsdaten",
+        "NFDI4Memory",
+        "Kunstgeschichte <Fach>"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Assessment",
+          "value": "https://w3id.org/kim/hcrt/assessment"
+        },
+        {
+          "label": "Code Notebook",
+          "value": "https://purl.org/ontology/modalia#CodeNotebook"
+        },
+        {
+          "label": "Tutorial",
+          "value": "https://purl.org/ontology/modalia#Tutorial"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Code",
+          "value": "https://purl.org/ontology/modalia#Code"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Social Sciences (n148)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n148"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent"
+        },
+        {
+          "label": "Proficient",
+          "value": "https://purl.org/ontology/modalia#Proficient"
+        }
+      ],
+      "format": "RMD",
+      "license": {
+        "id": "CC-BY-NC-4.0",
+        "name": "CC-BY-NC-4.0",
+        "link": null
+      },
+      "publication_date": "2025-11-28",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "42901939-436f-408b-a4a7-4e208bd9f085",
+      "slug": "topling",
+      "title": "TopLing",
+      "communities": [],
+      "description": "The TopLing tool enables researchers to evaluate the quality of machine translation as a consolidation strategy for multilingual topic modeling in R It provides a framework to assess how translation decisions affect downstream topic modeling, identify topics distorted by translation artifacts, and apply dedicated metrics to evaluate translation suitability. By making translation-induced inconsistencies visible, TopLing helps mitigate potential measurement errors during preprocessing and analysis. As a hands-on example, the accompanying tutorial demonstrates its use on a German-language United Nations corpus (Eisele and Chen, 2010). \n\nFurther information: This tool was developed as part of the KODAQS project, a partnership between GESIS, the University of Mannheim, and LMU Munich.",
+      "authors": [
+        {
+          "firstname": "Nadezhda (Nadja)",
+          "firstName": "Nadezhda (Nadja)",
+          "lastname": "Ozornina",
+          "lastName": "Ozornina",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Yannik",
+          "firstName": "Yannik",
+          "lastname": "Peters",
+          "lastName": "Peters",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Mario",
+          "firstName": "Mario",
+          "lastname": "Haim",
+          "lastName": "Haim",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://kodaqs-toolbox.gesis.org/github.com/NadezhdaOzornina/TopLing/index/",
+      "image": null,
+      "likes": 0,
+      "views": 7,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "digtal behavioral data"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Assessment",
+          "value": "https://w3id.org/kim/hcrt/assessment"
+        },
+        {
+          "label": "Code Notebook",
+          "value": "https://purl.org/ontology/modalia#CodeNotebook"
+        },
+        {
+          "label": "Tutorial",
+          "value": "https://purl.org/ontology/modalia#Tutorial"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Code",
+          "value": "https://purl.org/ontology/modalia#Code"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Social Sciences (n148)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n148"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent"
+        },
+        {
+          "label": "Proficient",
+          "value": "https://purl.org/ontology/modalia#Proficient"
+        }
+      ],
+      "format": "RMD",
+      "license": {
+        "id": "CC-BY-NC-4.0",
+        "name": "CC-BY-NC-4.0",
+        "link": null
+      },
+      "publication_date": "2025-11-28",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "a9be2007-8086-450c-a28f-342dcd355e19",
+      "slug": "topling",
+      "title": "TopLing",
+      "communities": [],
+      "description": "The TopLing tool enables researchers to evaluate the quality of machine translation as a consolidation strategy for multilingual topic modeling in R It provides a framework to assess how translation decisions affect downstream topic modeling, identify topics distorted by translation artifacts, and apply dedicated metrics to evaluate translation suitability. By making translation-induced inconsistencies visible, TopLing helps mitigate potential measurement errors during preprocessing and analysis. As a hands-on example, the accompanying tutorial demonstrates its use on a German-language United Nations corpus (Eisele and Chen, 2010). \n\nFurther information: This tool was developed as part of the KODAQS project, a partnership between GESIS, the University of Mannheim, and LMU Munich.",
+      "authors": [
+        {
+          "firstname": "Nadezhda (Nadja)",
+          "firstName": "Nadezhda (Nadja)",
+          "lastname": "Ozornina",
+          "lastName": "Ozornina",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Yannik",
+          "firstName": "Yannik",
+          "lastname": "Peters",
+          "lastName": "Peters",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Mario",
+          "firstName": "Mario",
+          "lastname": "Haim",
+          "lastName": "Haim",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://kodaqs-toolbox.gesis.org/github.com/NadezhdaOzornina/TopLing/index/",
+      "image": null,
+      "likes": 0,
+      "views": 6,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "digtal behavioral data"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Text",
+          "value": "https://w3id.org/kim/hcrt/text"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Agricultural Science, Food- And Beverage Technology (n58)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n58"
+        },
+        {
+          "label": "Agricultural Science/Agriculture (n003)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n003"
+        },
+        {
+          "label": "Agricultural, Forest and Nutritional Sciences, Veterinary medicine",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n7"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        },
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "DOCX, ODT, PDF",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "CC-BY-4.0",
+        "link": null
+      },
+      "publication_date": "2025-11-18",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "29bcedff-7420-4be4-8182-b2407677e92d",
+      "slug": "metadata-guide-for-agrosystem-science",
+      "title": "Metadata Guide for agrosystem science",
+      "communities": [
+        {
+          "id": "a8598584-30f0-41f9-a9a0-182343d3eaec",
+          "slug": "fairagro",
+          "title": "FAIRagro",
+          "image": null,
+          "url": "https://id.dalia.education/community/f6e6a7fc-552b-4d75-9fca-8e2b1b8ad624",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "This practical guide to collecting metadata in agricultural research provides an easy, practical introduction to data documentation. It offers a straightforward, generic, working-level overview of the needs, issues, and processes related to metadata collection and creation in research. \r\nFAIRagro adapted the guide to the typical data types in agrosystem research. This guide can be used in combination with an interactive decision tree to clarify personal working steps for proper data documentation.",
+      "authors": [
+        {
+          "firstname": "Sophie",
+          "firstName": "Sophie",
+          "lastname": "Bo\u00dfe",
+          "lastName": "Bo\u00dfe",
+          "orcid": "0009-0002-6461-8291",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Anne",
+          "firstName": "Anne",
+          "lastname": "Sennhenn",
+          "lastName": "Sennhenn",
+          "orcid": "0009-0006-3814-8774",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Lucia",
+          "firstName": "Lucia",
+          "lastname": "Vedder",
+          "lastName": "Vedder",
+          "orcid": "0000-0002-8924-9800",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Elena",
+          "firstName": "Elena",
+          "lastname": "Rey Maz\u00f3n",
+          "lastName": "Rey Maz\u00f3n",
+          "orcid": "0000-0003-4813-5927",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Gabriel",
+          "firstName": "Gabriel",
+          "lastname": "Schneider",
+          "lastName": "Schneider",
+          "orcid": "0000-0001-6573-3115",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://zenodo.org/records/17640538",
+      "image": null,
+      "likes": 0,
+      "views": 6,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "oer",
+        "research data management",
+        "agricultural research data",
+        "data documentation",
+        "metadata",
+        "open educational resources"
+      ],
+      "related_works": [
+        {
+          "type": {
+            "label": "references",
+            "value": "references"
+          },
+          "link": "https://doi.org/10.5281/zenodo.6459832"
+        },
+        {
+          "type": {
+            "label": "is part of",
+            "value": "isPartOf"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006490238"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Other resource type",
+          "value": "https://w3id.org/kim/hcrt/other"
+        },
+        {
+          "label": "Questionnaire",
+          "value": "https://w3id.org/kim/hcrt/questionnaire"
+        },
+        {
+          "label": "Text",
+          "value": "https://w3id.org/kim/hcrt/text"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Agricultural Science, Food- And Beverage Technology (n58)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n58"
+        },
+        {
+          "label": "Agricultural Science/Agriculture (n003)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n003"
+        },
+        {
+          "label": "Agricultural, Forest and Nutritional Sciences, Veterinary medicine",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n7"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        },
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "DOCX, ODT, PDF",
+      "license": {
+        "id": "CC-BY-4.0",
+        "name": "CC-BY-4.0",
+        "link": null
+      },
+      "publication_date": "2025-11-17",
+      "links": [],
+      "languages": [
+        "German",
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "14819561-7734-402e-9f8b-2965bd14c0ab",
+      "slug": "metadata-in-agrosystem-research-practice",
+      "title": "Metadata in agrosystem research practice",
+      "communities": [
+        {
+          "id": "a8598584-30f0-41f9-a9a0-182343d3eaec",
+          "slug": "fairagro",
+          "title": "FAIRagro",
+          "image": null,
+          "url": "https://id.dalia.education/community/f6e6a7fc-552b-4d75-9fca-8e2b1b8ad624",
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "This practical guide to collecting metadata in agricultural research aims to provide an easy and practice-oriented introduction to the world of data documentation. A decision tree guides researchers with simple, practical questions through the topics: 1 Why data should be documented; 2 Which forms and formats are appropriate for data documentation in your own project; 3 Which metadata should be collected for your own research data; 4 How the metadata can be created; 5 Which forms of storage and linking with the research data should be considered; and 6 How the quality of the metadata can be ensured.\nIn addition to the decision tree, this document also contains brief explanations of terms (Appendix I) that should be understood in order to answer the questions in the decision tree meaningfully. In addition, a metadata guide (Appendix II) with many agricultural science examples provides an overview of metadata, metadata schemas, terminologies and various forms of metadata collection and storage. Internal links in the decision tree refer to specific term explanations or further explanations in the metadata guide.\nThe decision tree and the explanation of terms are available in German and English. For a proper reusability, both versions (German and english) are available in different formats (odt, docx, pdf).\nAn interactive version of the decision tree was made by Justus Schneider: https://fairagro.github.io/metadata_decision_tree/index.html",
+      "authors": [
+        {
+          "firstname": "Sophie",
+          "firstName": "Sophie",
+          "lastname": "Bo\u00dfe",
+          "lastName": "Bo\u00dfe",
+          "orcid": "0009-0002-6461-8291",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Elena",
+          "firstName": "Elena",
+          "lastname": "Rey Maz\u00f3n",
+          "lastName": "Rey Maz\u00f3n",
+          "orcid": "0000-0003-4813-5927",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Anne",
+          "firstName": "Anne",
+          "lastname": "Sennhenn",
+          "lastName": "Sennhenn",
+          "orcid": "0009-0006-3814-8774",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Lucia",
+          "firstName": "Lucia",
+          "lastname": "Vedder",
+          "lastName": "Vedder",
+          "orcid": "0000-0002-8924-9800",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Gabriel",
+          "firstName": "Gabriel",
+          "lastname": "Schneider",
+          "lastName": "Schneider",
+          "orcid": "0000-0001-6573-3115",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://zenodo.org/records/17640212",
+      "image": null,
+      "likes": 0,
+      "views": 6,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "OER",
+        "Open Educational Resources",
+        "Research Data Management",
+        "Metadata",
+        "Data Documentation",
+        "Agricultural Research Data",
+        "Decision Tree"
+      ],
+      "related_works": [
+        {
+          "type": {
+            "label": "references",
+            "value": "references"
+          },
+          "link": "https://doi.org/10.5281/zenodo.6459832"
+        },
+        {
+          "type": {
+            "label": "has part",
+            "value": "hasPart"
+          },
+          "link": "https://doi.org/10.4126/FRL01-006511267"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Course",
+          "value": "https://w3id.org/kim/hcrt/course"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Image",
+          "value": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Multipart",
+          "value": "https://purl.org/ontology/modalia#Multipart"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        },
+        {
+          "label": "Video",
+          "value": "https://schema.org/VideoObject"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Biology (n026)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n026"
+        },
+        {
+          "label": "Biology (n42)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n42"
+        },
+        {
+          "label": "Mathematics, Natural Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n4"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        },
+        {
+          "label": "Teacher (higher Education)",
+          "value": "https://purl.org/ontology/modalia#TeacherHigherEducation"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner"
+        },
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice"
+        }
+      ],
+      "format": "HTML, JSON, PNG, ZIP",
+      "license": {
+        "id": "CC-BY-SA-4.0",
+        "name": "CC-BY-SA-4.0",
+        "link": null
+      },
+      "publication_date": "2025-11-11",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": "20.000 MB",
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "43554b69-c043-48d4-a65b-9584a170676e",
+      "slug": "nfdi4biodiversity-self-paced-online-course-research-data-management-for-biodiversity-data",
+      "title": "NFDI4Biodiversity Self-Paced Online Course - Research Data Management for Biodiversity Data",
+      "communities": [],
+      "description": "In NFDI4Biodiversity, we developed a self-paced online course on research data management for both students and researchers specializing in biodiversity and environmental sciences. This course is based on the online course HeFDI Data OER: Forschungsdatenmanagement - eine Online-Einf\u00fchrung (https://doi.org/10.5281/zenodo.6373596) of the Hessian Research Data Infrastructures (HeFDI, https://www.uni-marburg.de/en/hefdi). Developed in collaboration between several partners within NFDI4Biodiversity, this course offers essential domain-specific knowledge in research data management. \n\nWe offer this course in different formats to facilitate accessibility and re-usability:\n*    LiaScript course (Markdown, available on GitHub): https://github.com/NFDI4Biodiversity/nfdi4biodiversity-sle\n*    OER section of Marburg University Ilias (LiaScript import, SCORM1.2, certificate for successful completion): https://ilias.uni-marburg.de/goto.php/crs/3219917\n*    Document (text and figure, no questions): https://doi.org/10.5281/zenodo.10377867\n\nHere, we additionally offer import files to use this course in your local Ilias or Moodle. If you are using a different learning management system (LMS) or if you want to adapt the course, you are free to clone the corresponding GitHub repository, adapt the course, and export it in a format suitable to your needs.\n\nPlease note the following characteristics (different from GitHub sourced online version):\n*    SCORM1.2 format\n*    mastery score 100 \u2013 learners need to achieve 100% correct answers in all questions. You can change this value in the Ilias/Moodle course settings after importing the course, or during the LiaScript export.\n*    Unlimited trials to answer questions correctly, but no solution button\n\nThis course is subject to regular maintenance and updates. You can find the most up-to-date version on GitHub: https://github.com/NFDI4Biodiversity/nfdi4biodiversity-sle\n\nFor inquiries or additional information, please feel free to reach out to us: NFDI4Biodiversity Helpdesk (helpdesk@nfdi4biodiversity.org).\n\n* Prerequisites - No previous knowledge is required for this course. The chapters build on each other thematically but can also be worked through individually. If information from other chapters is needed, they are linked.\n* Target audience - Graduate students, PhD students, and researchers in the field of biology and environmental sciences, especially those working with biodiversity data, who are looking for a first introduction to research data management.\n* Learning objectives - After completing this self-paced course, you will be able to understand the content and purpose of research data management and apply it in the field of biology. The detailed learning objectives are given at the beginning of each chapter.\n* Content - If you prefer to read, you can access the content of this unit through the text only. However, the embedded videos offer further access to the topic, so those who work well with video explanations will find the content presented here in a different way.\n* Duration - If you concentrate on reading all the texts, you can expect to spend about 4-5 hours on the course. If you also watch the videos or follow the links, you will need more time. And remember to take breaks.\n* Licensing \u2013 This course is licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). Please note that third-party content remains under its original licenses or copyright.\n\nPrivacy:\n* Embedded videos \u2013 Videos from YouTube are embedded in this course. When the videos are called up, Google/YouTube uses, processes and possibly passes on cookies and other data. Information on data protection and terms of use of the service can be found following the link. The use of the online course requires corresponding consent.\n* Google Translate - This course uses Google Translate to translate content into different languages. Please note that when you use this function, data is transmitted to Google and processed there. Further information can be found in Google's Privacy Policy. However, translation is not necessary to use this course.",
+      "authors": [
+        {
+          "firstname": "Marlen",
+          "firstName": "Marlen",
+          "lastname": "Fischer",
+          "lastName": "Fischer",
+          "orcid": "0000-0003-3491-740X",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Juliane",
+          "firstName": "Juliane",
+          "lastname": "R\u00f6der",
+          "lastName": "R\u00f6der",
+          "orcid": "0000-0002-4692-2700",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Johannes",
+          "firstName": "Johannes",
+          "lastname": "Signer",
+          "lastName": "Signer",
+          "orcid": "0000-0002-1771-7775",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Daniel",
+          "firstName": "Daniel",
+          "lastname": "Tschink",
+          "lastName": "Tschink",
+          "orcid": "0000-0001-8683-2534",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Tanja",
+          "firstName": "Tanja",
+          "lastname": "Weibulat",
+          "lastName": "Weibulat",
+          "orcid": "0000-0003-2976-2300",
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Ortrun",
+          "firstName": "Ortrun",
+          "lastname": "Brand",
+          "lastName": "Brand",
+          "orcid": "0000-0002-6850-5123",
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://doi.org/10.5281/zenodo.17582795",
+      "image": null,
+      "likes": 0,
+      "views": 5,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [],
+      "related_works": [
+        {
+          "type": {
+            "label": "is version of",
+            "value": "isVersionOf"
+          },
+          "link": "https://doi.org/10.5281/zenodo.10377867"
+        },
+        {
+          "type": {
+            "label": "is version of",
+            "value": "isVersionOf"
+          },
+          "link": "https://ilias.uni-marburg.de/goto.php/crs/3219917"
+        },
+        {
+          "type": {
+            "label": "is version of",
+            "value": "isVersionOf"
+          },
+          "link": "https://github.com/NFDI4Biodiversity/nfdi4biodiversity-sle"
+        }
+      ],
+      "type": "Resource"
+    },
+    {
+      "learning_resource_types": [
+        {
+          "label": "Assessment",
+          "value": "https://w3id.org/kim/hcrt/assessment"
+        },
+        {
+          "label": "Code Notebook",
+          "value": "https://purl.org/ontology/modalia#CodeNotebook"
+        },
+        {
+          "label": "Tutorial",
+          "value": "https://purl.org/ontology/modalia#Tutorial"
+        }
+      ],
+      "media_types": [
+        {
+          "label": "Code",
+          "value": "https://purl.org/ontology/modalia#Code"
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text"
+        }
+      ],
+      "disciplines": [
+        {
+          "label": "Social Sciences (n148)",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n148"
+        }
+      ],
+      "target_groups": [
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent"
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent"
+        },
+        {
+          "label": "Data Steward",
+          "value": "http://purl.obolibrary.org/obo/T4FS_0000178"
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent"
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher"
+        }
+      ],
+      "proficiency_levels": [
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent"
+        },
+        {
+          "label": "Proficient",
+          "value": "https://purl.org/ontology/modalia#Proficient"
+        }
+      ],
+      "format": "QMD",
+      "license": {
+        "id": "CC-BY-NC-4.0",
+        "name": "CC-BY-NC-4.0",
+        "link": null
+      },
+      "publication_date": "2025-08-15",
+      "links": [],
+      "languages": [
+        "English"
+      ],
+      "file_size": null,
+      "publisher": null,
+      "doi": null,
+      "learning_time": null,
+      "versions": null,
+      "source": "postgres",
+      "id": "803f810d-4ed9-4d19-be0c-6d84c55d8c21",
+      "slug": "tubecleanr",
+      "title": "tubecleanR",
+      "communities": [
+        {
+          "id": "95d552dd-ee2f-478b-891f-9e31e85fa9bc",
+          "slug": "kodaqs",
+          "title": "KODAQS",
+          "image": null,
+          "url": null,
+          "social_media": null,
+          "about": null,
+          "likes": null,
+          "views": null,
+          "followers": null
+        }
+      ],
+      "description": "The tubecleanR tool implemented as R package provides functions for cleaning and preprocessing YouTube comment data collected using the R packages tuber or vosonSML. It addresses potential measurement errors by offering structured routines for handling typical challenges, such as separating text, emoticons, and paradata. This helps researchers prepare high-quality datasets for analysis. A tutorial demonstrates its use on a synthetic dataset generated with Google Gemini, replicating the structure of real YouTube comment data.\n\nFurther information: This tool was developed as part of the KODAQS project, a partnership between GESIS, the University of Mannheim, and LMU Munich.",
+      "authors": [
+        {
+          "firstname": "Johannes",
+          "firstName": "Johannes",
+          "lastname": "Breuer",
+          "lastName": "Breuer",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        },
+        {
+          "firstname": "Julan",
+          "firstName": "Julan",
+          "lastname": "Kohne",
+          "lastName": "Kohne",
+          "orcid": null,
+          "authorType": "PersonAuthor"
+        }
+      ],
+      "url": "https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/#discussion",
+      "image": null,
+      "likes": 0,
+      "views": 6,
+      "comments": 0,
+      "is_bookmarked": false,
+      "is_liked": false,
+      "tags": [
+        "digtal behavioral data"
+      ],
+      "related_works": [],
+      "type": "Resource"
+    }
+  ],
+  "facets": [
+    {
+      "facetCategory": {
+        "label": "Target Group",
+        "name": "https://purl.org/ontology/modalia#TargetGroup"
+      },
+      "facetItems": [
+        {
+          "label": "Student (School)",
+          "value": "https://purl.org/ontology/modalia#StudentSchool",
+          "active": false,
+          "count": 63,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Bachelor Student",
+          "value": "https://purl.org/ontology/modalia#BachelorStudent",
+          "active": false,
+          "count": 140,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Master's Student",
+          "value": "https://purl.org/ontology/modalia#MastersStudent",
+          "active": false,
+          "count": 127,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PhD Student",
+          "value": "https://purl.org/ontology/modalia#PhDStudent",
+          "active": false,
+          "count": 186,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Data Steward",
+          "value": "https://purl.org/ontology/modalia#DataSteward",
+          "active": false,
+          "count": 119,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Teacher (School)",
+          "value": "https://purl.org/ontology/modalia#TeacherSchool",
+          "active": false,
+          "count": 66,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Teacher (Higher Education)",
+          "value": "https://purl.org/ontology/modalia#TeacherHighEducation",
+          "active": false,
+          "count": 91,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Researcher",
+          "value": "https://purl.org/ontology/modalia#Researcher",
+          "active": false,
+          "count": 195,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Content provider",
+          "value": "https://purl.org/ontology/modalia#ContentProvider",
+          "active": false,
+          "count": 65,
+          "children": null,
+          "hasChildren": null
+        }
+      ]
+    },
+    {
+      "facetCategory": {
+        "label": "Media Type",
+        "name": "https://purl.org/ontology/modalia#MediaType"
+      },
+      "facetItems": [
+        {
+          "label": "Audio",
+          "value": "https://schema.org/AudioObject",
+          "active": false,
+          "count": 57,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Code",
+          "value": "https://purl.org/ontology/modalia#Code",
+          "active": false,
+          "count": 30,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Image",
+          "value": "https://schema.org/ImageObject",
+          "active": false,
+          "count": 38,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Multipart",
+          "value": "https://purl.org/ontology/modalia#Multipart",
+          "active": false,
+          "count": 27,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Presentation",
+          "value": "https://schema.org/PresentationDigitalDocument",
+          "active": false,
+          "count": 119,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Text",
+          "value": "https://schema.org/Text",
+          "active": false,
+          "count": 171,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Video",
+          "value": "https://schema.org/VideoObject",
+          "active": false,
+          "count": 210,
+          "children": null,
+          "hasChildren": null
+        }
+      ]
+    },
+    {
+      "facetCategory": {
+        "label": "Learning Resource Type",
+        "name": "https://purl.org/ontology/modalia#LearningResourceType"
+      },
+      "facetItems": [
+        {
+          "label": "Article",
+          "value": "http://purl.org/ontology/bibo/Article",
+          "active": false,
+          "count": 26,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Assessment",
+          "value": "https://w3id.org/kim/hcrt/assessment",
+          "active": false,
+          "count": 29,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Best Practices",
+          "value": "https://purl.org/ontology/modalia#BestPractices",
+          "active": false,
+          "count": 3,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Book",
+          "value": "http://purl.org/ontology/bibo/Book",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Case Study",
+          "value": "https://w3id.org/kim/hcrt/case_study",
+          "active": false,
+          "count": 11,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Code",
+          "value": "https://schema.org/SoftwareSourceCode",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Code Notebook",
+          "value": "https://purl.org/ontology/modalia#CodeNotebook",
+          "active": false,
+          "count": 22,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Cookbook",
+          "value": "https://purl.org/ontology/modalia#Cookbook",
+          "active": false,
+          "count": 8,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Course",
+          "value": "https://w3id.org/kim/hcrt/course",
+          "active": false,
+          "count": 18,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Diagram",
+          "value": "https://w3id.org/kim/hcrt/diagram",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Drill and Practice",
+          "value": "https://w3id.org/kim/hcrt/drill_and_practice",
+          "active": false,
+          "count": 6,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Lecture",
+          "value": "https://purl.org/ontology/modalia#Lecture",
+          "active": false,
+          "count": 121,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Lesson Plan",
+          "value": "https://w3id.org/kim/hcrt/lesson_plan",
+          "active": false,
+          "count": 12,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Other resource type",
+          "value": "https://w3id.org/kim/hcrt/other",
+          "active": false,
+          "count": 7,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PodcastSeries",
+          "value": "https://schema.org/PodcastSeries",
+          "active": false,
+          "count": 54,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Poster",
+          "value": "https://purl.org/ontology/modalia#Poster",
+          "active": false,
+          "count": 29,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Reference Work",
+          "value": "https://w3id.org/kim/hcrt/index",
+          "active": false,
+          "count": 5,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Report",
+          "value": "http://purl.org/ontology/bibo/Report",
+          "active": false,
+          "count": 10,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Textbook",
+          "value": "https://w3id.org/kim/hcrt/textbook",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Tutorial",
+          "value": "https://purl.org/ontology/modalia#Tutorial",
+          "active": false,
+          "count": 46,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Web page",
+          "value": "http://purl.org/ontology/bibo/Webpage",
+          "active": false,
+          "count": 53,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Worksheet",
+          "value": "https://w3id.org/kim/hcrt/worksheet",
+          "active": false,
+          "count": 7,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Workshop",
+          "value": "https://purl.org/ontology/modalia#Workshop",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        }
+      ]
+    },
+    {
+      "facetCategory": {
+        "label": "Language",
+        "name": "http://www.w3.org/2001/XMLSchema#language"
+      },
+      "facetItems": [
+        {
+          "label": "English",
+          "value": "http://lexvo.org/id/iso639-3/eng",
+          "active": false,
+          "count": 484,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "French",
+          "value": "http://lexvo.org/id/iso639-3/fra",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "German",
+          "value": "http://lexvo.org/id/iso639-3/deu",
+          "active": false,
+          "count": 184,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Spanish",
+          "value": "http://lexvo.org/id/iso639-3/spa",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        }
+      ]
+    },
+    {
+      "facetCategory": {
+        "label": "Proficiency Level",
+        "name": "https://purl.org/ontology/modalia#Proficiency"
+      },
+      "facetItems": [
+        {
+          "label": "Novice",
+          "value": "https://purl.org/ontology/modalia#Novice",
+          "active": false,
+          "count": 198,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Advanced Beginner",
+          "value": "https://purl.org/ontology/modalia#Beginner",
+          "active": false,
+          "count": 212,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Competent",
+          "value": "https://purl.org/ontology/modalia#Competent",
+          "active": false,
+          "count": 152,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Proficient",
+          "value": "https://purl.org/ontology/modalia#Proficient",
+          "active": false,
+          "count": 69,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Expert",
+          "value": "https://purl.org/ontology/modalia#Expert",
+          "active": false,
+          "count": 35,
+          "children": null,
+          "hasChildren": null
+        }
+      ]
+    },
+    {
+      "facetCategory": {
+        "label": "Discipline",
+        "name": "http://purl.org/spar/fabio/Discipline"
+      },
+      "facetItems": [
+        {
+          "label": "Interdisciplinary",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n0",
+          "active": false,
+          "count": 29,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Humanities",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n1",
+          "active": false,
+          "count": 71,
+          "children": null,
+          "hasChildren": true
+        },
+        {
+          "label": "Sports",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n2",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": true
+        },
+        {
+          "label": "Law, Economics and Social Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n3",
+          "active": false,
+          "count": 36,
+          "children": null,
+          "hasChildren": true
+        },
+        {
+          "label": "Mathematics, Natural Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n4",
+          "active": false,
+          "count": 94,
+          "children": null,
+          "hasChildren": true
+        },
+        {
+          "label": "Human Medicine / Health Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n5",
+          "active": false,
+          "count": 4,
+          "children": null,
+          "hasChildren": true
+        },
+        {
+          "label": "Agricultural, Forest and Nutritional Sciences, Veterinary medicine",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n7",
+          "active": false,
+          "count": 26,
+          "children": null,
+          "hasChildren": true
+        },
+        {
+          "label": "Engineering Sciences",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n8",
+          "active": false,
+          "count": 60,
+          "children": null,
+          "hasChildren": true
+        },
+        {
+          "label": "Art, Art Theory",
+          "value": "https://w3id.org/kim/hochschulfaechersystematik/n9",
+          "active": false,
+          "count": 44,
+          "children": null,
+          "hasChildren": true
+        }
+      ]
+    },
+    {
+      "facetCategory": {
+        "label": "License",
+        "name": "http://purl.org/dc/terms/LicenseDocument"
+      },
+      "facetItems": [
+        {
+          "label": "Proprietary",
+          "value": "https://purl.org/ontology/modalia#ProprietaryLicense",
+          "active": false,
+          "count": 168,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC0 1.0 (Public Domain)",
+          "value": "http://spdx.org/licenses/CC0-1.0",
+          "active": false,
+          "count": 29,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY 3.0",
+          "value": "http://spdx.org/licenses/CC-BY-3.0",
+          "active": false,
+          "count": 84,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY 4.0",
+          "value": "http://spdx.org/licenses/CC-BY-4.0",
+          "active": false,
+          "count": 254,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-SA 3.0 DE",
+          "value": "http://spdx.org/licenses/CC-BY-SA-3.0-DE",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-SA 4.0",
+          "value": "http://spdx.org/licenses/CC-BY-SA-4.0",
+          "active": false,
+          "count": 78,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-NC 2.0",
+          "value": "http://spdx.org/licenses/CC-BY-NC-2.0",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-NC 4.0",
+          "value": "http://spdx.org/licenses/CC-BY-NC-4.0",
+          "active": false,
+          "count": 31,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-NC-SA 3.0",
+          "value": "http://spdx.org/licenses/CC-BY-NC-SA-3.0",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-NC-SA 3.0 DE",
+          "value": "http://spdx.org/licenses/CC-BY-NC-SA-3.0-DE",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-NC-SA 4.0",
+          "value": "http://spdx.org/licenses/CC-BY-NC-SA-4.0",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-NC-ND 2.0",
+          "value": "http://spdx.org/licenses/CC-BY-NC-ND-2.0",
+          "active": false,
+          "count": 3,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CC BY-NC-ND 4.0",
+          "value": "http://spdx.org/licenses/CC-BY-NC-ND-4.0",
+          "active": false,
+          "count": 4,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PDDL 1.0",
+          "value": "http://spdx.org/licenses/PDDL-1.0",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "MIT License",
+          "value": "http://spdx.org/licenses/MIT",
+          "active": false,
+          "count": 4,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Apache 2.0",
+          "value": "http://spdx.org/licenses/Apache-2.0",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "GPL 3.0",
+          "value": "http://spdx.org/licenses/GPL-3.0-only",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "BSD 2-Clause",
+          "value": "http://spdx.org/licenses/BSD-2-Clause",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        }
+      ]
+    },
+    {
+      "facetCategory": {
+        "label": "File Format",
+        "name": "http://purl.org/dc/terms/FileFormat"
+      },
+      "facetItems": [
+        {
+          "label": "PDF",
+          "value": "PDF",
+          "active": false,
+          "count": 191,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "HTML",
+          "value": "HTML",
+          "active": false,
+          "count": 48,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "HTML",
+          "value": "HMTL",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Markdown",
+          "value": "MD",
+          "active": false,
+          "count": 10,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Word Document",
+          "value": "DOCX",
+          "active": false,
+          "count": 12,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PowerPoint",
+          "value": "PPTX",
+          "active": false,
+          "count": 29,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Excel",
+          "value": "XLSX",
+          "active": false,
+          "count": 12,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Excel",
+          "value": "XLXS",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "OpenDocument Presentation",
+          "value": "ODP",
+          "active": false,
+          "count": 9,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ZIP Archive",
+          "value": "ZIP",
+          "active": false,
+          "count": 11,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "JSON",
+          "value": "JSON",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Text",
+          "value": "TXT",
+          "active": false,
+          "count": 7,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "LaTeX",
+          "value": "TEX",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Rich Text",
+          "value": "RTB",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Jupyter Notebook",
+          "value": "IPYNB",
+          "active": false,
+          "count": 7,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "R Markdown",
+          "value": "RMD",
+          "active": false,
+          "count": 3,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Keynote",
+          "value": "KEY",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Numbers",
+          "value": "NUMBERS",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Google Sheets",
+          "value": "GSHEET",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PNG Image",
+          "value": "PNG",
+          "active": false,
+          "count": 9,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "JPEG Image",
+          "value": "JPG",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "MP4 Video",
+          "value": "MP4",
+          "active": false,
+          "count": 9,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "MP3 Audio",
+          "value": "MP3",
+          "active": false,
+          "count": 53,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Moodle Backup",
+          "value": "MBZ",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "YAML",
+          "value": "YML",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        }
+      ]
+    },
+    {
+      "facetCategory": {
+        "label": "Community",
+        "name": "https://purl.org/ontology/modalia#Community"
+      },
+      "facetItems": [
+        {
+          "label": "Access 2 Perspectives",
+          "value": "https://id.dalia.education/community/c94721cb-6b35-4764-bc05-ac9a03e062c2",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ACDH",
+          "value": "https://id.dalia.education/community/e669d80e-4855-42c6-bc8c-e6fa511f2d7a",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "AfricArXiv",
+          "value": "https://id.dalia.education/community/9fec1552-54af-4645-a4b6-6e8917111f3f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Ag Data Commons",
+          "value": "https://id.dalia.education/community/c898571a-3dfd-46af-8395-85a09c89019a",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "AgroKnow",
+          "value": "https://id.dalia.education/community/729814ff-78dc-4d9f-ac7a-7414bdcbdd4e",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "AidData",
+          "value": "https://id.dalia.education/community/26d0d86d-e812-481b-a5f4-6c5751ffd94c",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ARTEMIS",
+          "value": "https://id.dalia.education/community/69e97483-725c-41c9-9d5e-c5bfb4cf5898",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Base4NFDI",
+          "value": "https://id.dalia.education/community/8cd01866-7560-4701-ba4a-da3c939b9061",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "BERD@NFDI",
+          "value": "https://id.dalia.education/community/7ecf1a3e-e377-4f5c-ac70-78d498951843",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Berlin University Alliance",
+          "value": "https://id.dalia.education/community/4c0b5c36-5310-4250-bf7f-361522ae3c35",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Bonares",
+          "value": "https://id.dalia.education/community/761c4ea5-d7f1-4710-bf11-19b6ff8f001f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "BY-COVID",
+          "value": "https://id.dalia.education/community/53a0fc8e-4dc6-4bc6-b153-119ddca1430a",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CGIAR",
+          "value": "https://id.dalia.education/community/75afe191-da5c-430a-9c17-cfb62705a3d8",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CIAT",
+          "value": "https://id.dalia.education/community/7ef51017-23ef-4ff8-a466-c41ff8a7666d",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CLS INFRA",
+          "value": "https://id.dalia.education/community/6752d73a-ed1f-4fe7-abb9-9324bec8a2be",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "CODATA",
+          "value": "https://id.dalia.education/community/37c8a8e5-db18-4009-bf41-da7319ee4d1d",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DALIA",
+          "value": "https://id.dalia.education/community/e2f3c328-8e02-431e-be81-dd2e9857445c",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DANUBIUS-RI",
+          "value": "https://id.dalia.education/community/0caed690-8f1a-4ba1-ae30-239d2f25194c",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DAPHNE4NFDI",
+          "value": "https://id.dalia.education/community/0393d642-340d-4641-8c1f-e9c8b27199bf",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DARIAH",
+          "value": "https://id.dalia.education/community/0757cc61-bb48-4d30-a1f7-196ab6141d41",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DARIAH Friday Frontiers",
+          "value": "https://id.dalia.education/community/fb5bc5c2-5ac2-4a30-9b30-a7f9d3882890",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Data Carpentry",
+          "value": "https://id.dalia.education/community/51340f34-d6fc-4ed5-b37d-b00a4d6f663a",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Data Center for the Humanities der Universit\u00e4t zu K\u00f6ln",
+          "value": "https://id.dalia.education/community/789c0f5f-b987-4491-8507-3997a3ab1bc1",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Data Science Center of the University of Bremen",
+          "value": "https://id.dalia.education/community/d996c08b-e39d-49d0-a492-7cb30d99c2b7",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DataCite",
+          "value": "https://id.dalia.education/community/d07e40ad-3cf6-4db7-8fc1-bff425d1a13f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DataPLANT",
+          "value": "https://id.dalia.education/community/fa16b39f-4bc1-4f48-beaf-cbd030d5a7b4",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DCC",
+          "value": "https://id.dalia.education/community/44de8ad8-4ad2-47ba-97e2-cadcccbd5408",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DCMI",
+          "value": "https://id.dalia.education/community/a5151e34-43d0-4e80-bb45-a4e8f613073f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DDI",
+          "value": "https://id.dalia.education/community/1715aaa2-2f31-439d-8f8c-f89043e32c98",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Delft University of Technology",
+          "value": "https://id.dalia.education/community/891a5dfb-b1d7-465f-922b-de0fa24b0bbc",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DemoCommunity",
+          "value": "https://id.dalia.education/community/65e55748-56f7-4fe7-b7d0-46f618736b77",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DESIR",
+          "value": "https://id.dalia.education/community/c1ef6c6b-f6c7-442b-9ab4-87adf19eda07",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DGPhil-AG",
+          "value": "https://id.dalia.education/community/1dedeccf-7c84-47f6-a340-08083aba585f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DHd",
+          "value": "https://id.dalia.education/community/23ea6f8c-9f01-44f9-a65e-2017e51c5bb9",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Digital Curation Centre",
+          "value": "https://id.dalia.education/community/45ae6028-3118-45a7-a960-af562ff58a16",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Digital Humanities",
+          "value": "https://id.dalia.education/community/319ecd4e-3edf-484b-85ae-9246f23b72a8",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Digital Preservation",
+          "value": "https://id.dalia.education/community/21b5baf0-5fc7-4ff9-aa99-80a0d9e2d5a4",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "DINI",
+          "value": "https://id.dalia.education/community/859f3605-fcfe-46f1-8423-b128bd6c8212",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EATRIS",
+          "value": "https://id.dalia.education/community/9fb8ddf3-429f-4479-a702-470f88cc8ba3",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ECRIN",
+          "value": "https://id.dalia.education/community/6fa134a5-98f0-456d-a794-b6404b10b8f0",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EGU",
+          "value": "https://id.dalia.education/community/6452b59c-5a7a-424f-a630-423c3fff7979",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EHRI",
+          "value": "https://id.dalia.education/community/369dd953-a8ff-4825-bbce-a4da7f934fc0",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ELIXIR",
+          "value": "https://id.dalia.education/community/c5d22eff-ec20-409d-b8d3-aa4e9cc2d6cb",
+          "active": false,
+          "count": 4,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ELIXIR FAIR training focus group",
+          "value": "https://id.dalia.education/community/8856b3e9-da54-463c-b32f-7d66356ea862",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ELIXIR-UK",
+          "value": "https://id.dalia.education/community/c597fd1d-8b1c-47a2-9af8-6091e43233c5",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EMCC",
+          "value": "https://id.dalia.education/community/1298485f-ec94-4228-9dc7-3d4bed667856",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EMMC ASBL",
+          "value": "https://id.dalia.education/community/510da40e-2344-42da-9684-ab4ac47b3f6f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ENVRI",
+          "value": "https://id.dalia.education/community/8597b95e-f4d1-4f0a-98d6-7c151296de1a",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EPFL",
+          "value": "https://id.dalia.education/community/3d40c737-ee11-4ecf-be15-54011259dc8f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ERINHA",
+          "value": "https://id.dalia.education/community/05f60aa0-6555-40c6-96df-aef79c507fb1",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ESIP",
+          "value": "https://id.dalia.education/community/84e067d8-96cb-42b5-a042-7d53fe145f91",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EU Open Research Repository",
+          "value": "https://id.dalia.education/community/9c246802-c881-4b92-af95-6a610cfc535a",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Euro-BioImaging ERIC",
+          "value": "https://id.dalia.education/community/5576a126-23a2-45ca-859d-e792dbebd458",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EVA",
+          "value": "https://id.dalia.education/community/d7191b99-3927-479a-aa5d-c58c16f93f2b",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "EVORA",
+          "value": "https://id.dalia.education/community/6abdd8a8-94ba-4249-bdfe-966cd02fdbbc",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FAIRagro",
+          "value": "https://id.dalia.education/community/f6e6a7fc-552b-4d75-9fca-8e2b1b8ad624",
+          "active": false,
+          "count": 40,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FAIRmat",
+          "value": "https://id.dalia.education/community/ead5f570-c467-402c-bf06-85b80920a7a9",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FAIRplus",
+          "value": "https://id.dalia.education/community/a685d534-d4a2-413c-9bec-e2ae8366f69b",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FAIRsFAIR",
+          "value": "https://id.dalia.education/community/eb67b524-e912-4af0-82b8-720a84d11009",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FAIRsharing",
+          "value": "https://id.dalia.education/community/aeb38e79-bdd4-44f0-8353-599b01e6ece1",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FAO",
+          "value": "https://id.dalia.education/community/b3e33fca-1a80-4175-9ec2-0468aa084337",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FDM-BB",
+          "value": "https://id.dalia.education/community/e26f5af3-96e5-43ce-9e36-c61a1e513a1b",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "fdm.nrw",
+          "value": "https://id.dalia.education/community/c6f20f38-ac86-469e-b56b-157148d6a679",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FDMentor",
+          "value": "https://id.dalia.education/community/fe3c4630-9fca-4488-ad4e-64e071f447ce",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FDZ @ UB Mannheim",
+          "value": "https://id.dalia.education/community/dafe707a-bc32-4547-82c9-11a4659c3678",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "FEdA",
+          "value": "https://id.dalia.education/community/b9702905-c36f-4c4d-be93-63b19920dd0f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Forschungsdatenmanagement Bayern",
+          "value": "https://id.dalia.education/community/5325a576-7bfa-4f8e-8eae-55c551165059",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Fraunhofer IAIS",
+          "value": "https://id.dalia.education/community/6f99643d-deb7-4d89-b711-f6238f91cc40",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Galaxy Training Materials",
+          "value": "https://id.dalia.education/community/9586f157-dfef-4524-aa1a-4ce2c13f2663",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "GBV",
+          "value": "https://id.dalia.education/community/09699409-f93d-483c-8af6-8402f46ae71b",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "GFAiR",
+          "value": "https://id.dalia.education/community/3fb48e77-7ad9-4c4b-85db-75ce90b2263f",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "GFBio",
+          "value": "https://id.dalia.education/community/a2e2bcff-0784-4df2-9f4f-0af47972efb7",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "GHGA",
+          "value": "https://id.dalia.education/community/1441a407-fd44-4ed7-a15d-7a1eb37da39e",
+          "active": false,
+          "count": 84,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "H2020 project OYSTER",
+          "value": "https://id.dalia.education/community/bdf3c25b-cb67-4d91-a868-c98bc819f451",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "HeFDI",
+          "value": "https://id.dalia.education/community/88c0500a-97d3-4e69-8413-42b4ab7167fe",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "HeFDI - Hessische Forschungsdateninfrastrukturen",
+          "value": "https://id.dalia.education/community/72456510-c4a0-4121-984c-cb14acb23dfc",
+          "active": false,
+          "count": 4,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Helmholtz Metadata Collaboration",
+          "value": "https://id.dalia.education/community/01be5eb5-6d0a-4319-99aa-98d1883d4f18",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Hochschulbibliothekszentrum des Landes Nordrhein-Westfalen (hbz)",
+          "value": "https://id.dalia.education/community/2f19ddfe-0241-455e-af70-29ac517a76fb",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Horizon 2020",
+          "value": "https://id.dalia.education/community/133633d2-a58a-464d-8067-7216ef99e7fb",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Humboldt University of Berlin",
+          "value": "https://id.dalia.education/community/89e6505f-020c-43f2-8f7d-e27d16121a66",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "iMagine",
+          "value": "https://id.dalia.education/community/da3731c2-b2ed-46a2-aa95-6406db5d649b",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Information Service Engineering @ FIZ Karlsruhe",
+          "value": "https://id.dalia.education/community/b3a4eb26-ba0f-432e-a3ef-10e3b5c7b44e",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "IPK",
+          "value": "https://id.dalia.education/community/43615707-afa9-492f-9824-9a95f49d3230",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Junge T\u00fcftler*innen",
+          "value": "https://id.dalia.education/community/b3302bdf-0e32-47fc-8ec7-1a989350cb9b",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "KI-Campus",
+          "value": "https://id.dalia.education/community/8d76eb0b-df0f-43ca-975f-435729508d9c",
+          "active": false,
+          "count": 5,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "KODAQS",
+          "value": "https://id.dalia.education/community/95d552dd-ee2f-478b-891f-9e31e85fa9bc",
+          "active": false,
+          "count": 22,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "KonsortSWD",
+          "value": "https://id.dalia.education/community/ca42e106-dc0e-44ae-bb87-417195fd7d39",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "MaRDI",
+          "value": "https://id.dalia.education/community/d5a5a668-ba2c-4d70-a037-33137ffad786",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "MIRRI-ERIC",
+          "value": "https://id.dalia.education/community/37113481-7ac6-40e4-a9da-98bcbf9b50b2",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NanoSolveIT",
+          "value": "https://id.dalia.education/community/20cebd3c-d213-4f5f-9f23-932832e14020",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Nationale Forschungsdateninfrastruktur (NFDI)",
+          "value": "https://id.dalia.education/community/3dc37495-59bb-4505-851f-e09c5df8e356",
+          "active": false,
+          "count": 7,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI",
+          "value": "https://id.dalia.education/community/7b1aba29-f046-4b2d-93e5-ceb5732ab493",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI-MatWerk",
+          "value": "https://id.dalia.education/community/d4f4ac7d-58d0-42c0-a320-58fb6fcbbd70",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Biodiversity",
+          "value": "https://id.dalia.education/community/aac7b1be-cf00-4fdc-a26a-e8e0e1410b18",
+          "active": false,
+          "count": 39,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4BIOIMAGE",
+          "value": "https://id.dalia.education/community/6d469cf2-5b97-47a9-88e2-f2ca96456cd2",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Cat",
+          "value": "https://id.dalia.education/community/7783f91b-2496-4c1b-97ef-9db578d237ca",
+          "active": false,
+          "count": 6,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Chem",
+          "value": "https://id.dalia.education/community/bead62a8-c3c2-46d6-9eb1-ffeaba38d5bf",
+          "active": false,
+          "count": 113,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Culture",
+          "value": "https://id.dalia.education/community/6a21dd4a-200c-44e3-85b8-68fb31d510af",
+          "active": false,
+          "count": 19,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4DataScience",
+          "value": "https://id.dalia.education/community/2040c8ce-b62c-4cb7-be94-85cb8eeaa0f8",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Earth",
+          "value": "https://id.dalia.education/community/2156f39a-e2f4-4386-893c-4ecf4e8a6630",
+          "active": false,
+          "count": 2,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Energy",
+          "value": "https://id.dalia.education/community/f5ab031c-777d-44c9-9244-f707d3cb9ddc",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Health",
+          "value": "https://id.dalia.education/community/7c45de27-5996-40b5-8e0e-24afdfe148e5",
+          "active": false,
+          "count": 3,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Immuno",
+          "value": "https://id.dalia.education/community/d746f9ec-6ae3-467d-ace6-54095dc60602",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4ING",
+          "value": "https://id.dalia.education/community/4f646323-756e-41d0-bdb6-0767411a14b5",
+          "active": false,
+          "count": 4,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Memory",
+          "value": "https://id.dalia.education/community/d3d6ec0c-0c42-4ba3-9316-a99ed0b169c5",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDI4Microbiota",
+          "value": "https://id.dalia.education/community/6c357a15-95a9-43bc-ad88-8528aa1ac23d",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "NFDIxCS",
+          "value": "https://id.dalia.education/community/17ae490c-466c-40ee-9e91-027bd062979d",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "OER.DigiChem.NRW",
+          "value": "https://id.dalia.education/community/47b9d41c-2040-4986-afcb-8be1d54d49ca",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "orca.nrw",
+          "value": "https://id.dalia.education/community/e210181e-a28e-4273-a0b6-bc5743cf6ec2",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "OSCARS",
+          "value": "https://id.dalia.education/community/5bf8ac76-0332-47f9-91c8-bd8f74a75e33",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "OSTrails",
+          "value": "https://id.dalia.education/community/bda5d6ea-e226-4b44-a06e-f93397563617",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PANGAEA",
+          "value": "https://id.dalia.education/community/827c6f33-4e30-4b29-826e-408d41075005",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PARTHENOS",
+          "value": "https://id.dalia.education/community/71d0cc6e-aae7-4457-9422-079fd2ca35b0",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PID4NFDI",
+          "value": "https://id.dalia.education/community/bb6d109a-7c41-461a-b0a8-f636eb05db70",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Programming Historian",
+          "value": "https://id.dalia.education/community/9a1cae7b-bb8b-4fb5-86f4-7a56c6005e41",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PUNCH Young Academy",
+          "value": "https://id.dalia.education/community/4f2264c8-ff83-491a-bcc0-9b0d187624f3",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PUNCH Young Academy (PYA)",
+          "value": "https://id.dalia.education/community/3b75e62d-5964-4a5b-b5e0-9e3f9be29a15",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "PUNCH4NFDI",
+          "value": "https://id.dalia.education/community/616d9b09-1f05-4847-b269-510479dec39b",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "RADAR",
+          "value": "https://id.dalia.education/community/0957e041-54d9-4f72-812c-013fcc48c2f3",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Ranke2.lu",
+          "value": "https://id.dalia.education/community/a69377b3-e170-4d09-b836-566db61b3107",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "RDM Training Materials for the Engineering Sciences",
+          "value": "https://id.dalia.education/community/f3173835-4a1c-4195-998d-8cbd1d8b8576",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "RDMO",
+          "value": "https://id.dalia.education/community/977cd734-1e55-49d7-b0aa-444fd035c18e",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Research data management (RDM) open training materials",
+          "value": "https://id.dalia.education/community/8314e28d-a147-4103-82a7-2a55a695281e",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Research Data Network",
+          "value": "https://id.dalia.education/community/fa5ee419-550a-47fe-bad9-44c648292305",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Research Data Service of the University of Kassel",
+          "value": "https://id.dalia.education/community/ed9d050e-2b14-4299-bec0-890a439e53b8",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "SaxFDM",
+          "value": "https://id.dalia.education/community/34256810-2259-4398-9778-92f73381b6a6",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "SIB",
+          "value": "https://id.dalia.education/community/3098a3a2-78e6-4c37-b2b7-1084cddaa4c7",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Text+",
+          "value": "https://id.dalia.education/community/f010e202-91ed-4e27-9595-355ec352527e",
+          "active": false,
+          "count": 1,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "The University of Helsinki Data Support",
+          "value": "https://id.dalia.education/community/7f1d27d3-73b1-41ad-ae0d-f25c8a34b716",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "TKFDM",
+          "value": "https://id.dalia.education/community/dd31b154-6717-49ac-9809-61ae6296e80c",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "TRIPLE",
+          "value": "https://id.dalia.education/community/2b6e7c3d-4797-4ffb-903b-4fcd5b4753af",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "TU Munich",
+          "value": "https://id.dalia.education/community/27c148f2-4336-4892-af58-8e2066e82d90",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Uni Marburg",
+          "value": "https://id.dalia.education/community/5250e17c-1a8d-44ae-a23e-a123aa5ce585",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "University of Cambridge",
+          "value": "https://id.dalia.education/community/536d0460-3730-4022-9549-ecffdb244e88",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "USDA ARS",
+          "value": "https://id.dalia.education/community/503c9094-fe8d-4ca3-934d-29627ee9ef62",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "VLIZ Open Science",
+          "value": "https://id.dalia.education/community/91c39fa0-a492-41fb-b779-0a507bdb74b7",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "Wageningen University & Research",
+          "value": "https://id.dalia.education/community/8d0366d1-c557-41e4-a53b-69ac1bf791f1",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "WUR",
+          "value": "https://id.dalia.education/community/6e458013-6a35-4fe1-bc73-453f7d417f19",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ZALF",
+          "value": "https://id.dalia.education/community/bea08fac-a7fa-4615-8e46-d792664fbd77",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        },
+        {
+          "label": "ZB Med",
+          "value": "https://id.dalia.education/community/07bfd993-8747-4f98-8279-30261f575bc9",
+          "active": false,
+          "count": 0,
+          "children": null,
+          "hasChildren": null
+        }
+      ]
+    }
+  ]
+}

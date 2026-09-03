@@ -1,6 +1,7 @@
 """Client to DALIA website."""
 
 import datetime
+import json
 import logging
 import uuid
 from collections.abc import Iterable
@@ -311,16 +312,61 @@ class Client:
         res.raise_for_status()
         return res
 
-    def get_resources(self, *, page_size: int | None = None) -> list[dict[str, Any]]:
+    def _v1_search(
+        self,
+        *,
+        query: str | None = None,
+        timeout: TimeoutHint = None,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> requests.Response:
+        """Run the search over the V1 of the API, returning just results from the preload."""
+        if limit is None:
+            limit = 1_000
+        if offset is None:
+            offset = 0
+        url = f"{self.base}/api/dalia/v1/items/"
+        if query is None:
+            query = "*"
+        res = self.session.post(
+            url, data={"limit": limit, "offset": offset, "query": query}, timeout=timeout
+        )
+        res.raise_for_status()
+        return res
+
+    def _get_items_uuid(self, *, query: str | None = None, timeout: TimeoutHint = None):
+        res = self._v1_search(query=query, timeout=timeout)
+        uuid_to_title = {result["id"]: result["title"] for result in res.json()["results"]}
+        return uuid_to_title
+
+    def get_resources(self) -> list[dict[str, Any]]:
         """Get all resources."""
-        if page_size is None:
-            page_size = 1_000
-        oers = []
-        next_url = f"{self.base}/api/curation/resource-contents/"
+        records = []
+        next_url = f"{self.base}/api/curation/resources/"
+        counter = 0
         while next_url:
-            res = self.session.get(next_url, params={"page_size": page_size})
+            res = self.session.get(next_url)
             res.raise_for_status()
             res_json = res.json()
+            counter += 1
+            with Path.home().joinpath("Desktop", f"{counter}.json").open("w") as f:
+                json.dump(res_json, f, indent=2)
+            records.extend(res_json["results"])
+            next_url = res_json.get("next")
+        return records
+
+    def get_resource_contents(self) -> list[dict[str, Any]]:
+        """Get all resource contents."""
+        oers = []
+        next_url = f"{self.base}/api/curation/resource-contents/"
+        counter = 0
+        while next_url:
+            res = self.session.get(next_url)
+            res.raise_for_status()
+            res_json = res.json()
+            counter += 1
+            with Path.home().joinpath("Desktop", f"{counter}.json").open("w") as f:
+                json.dump(res_json, f, indent=2)
             oers.extend(res_json["results"])
             next_url = res_json.get("next")
         return oers
@@ -506,7 +552,7 @@ class Client:
         return res
 
     def _delete_made_by_charlie(self) -> None:
-        oers = self.get_resources()
+        oers = self.get_resource_contents()
         for oer in tqdm(oers, desc="deleting OERs"):
             if oer["created_by"]["username"] == "cthoyt":
                 self.soft_delete(oer["uuid"])
@@ -553,24 +599,41 @@ def _explore() -> None:
 
 
 def _demo() -> None:
+    import json
+
     directory = Path("/Users/cthoyt/dev/dalia-curation")
-    path = directory.joinpath("curation", "KODAQS_curation.csv")
+    # path = directory.joinpath("curation", "KODAQS_curation.csv")
     # load example DIF13 data
 
     communities_path = directory.joinpath("communities.csv")
     communities = read_communities(communities_path)
 
     client = Client()
-    client._delete_made_by_charlie()
-    resources = dalia_dif.dif13.read_dif13(
-        path, ignore_missing_description=True, communities=communities
-    )
+    # client._delete_made_by_charlie() # do this first
+
+    resources = client.get_resources()
+    output_path = Path.home().joinpath("Desktop", "resources.json")
+    with open(output_path, "w") as f:
+        json.dump(resources, f, indent=2, ensure_ascii=False)
+
+    title_to_resource = {}
     for resource in resources:
-        res = client.upload_dif13(resource, publish=True, communities=communities)
-        res_json = res.json()
-        click.echo(f"Resource UUID: {res_json['resource_uuid']}")
-    # TODO the resource page https://search.dalia.education/admin/curation/resource/
-    #  does not have it as published yet
+        title_to_resource[resource["title"]] = resource
+
+    for path in directory.joinpath("curation").glob("*.csv"):
+        resources = dalia_dif.dif13.read_dif13(
+            path, ignore_missing_description=True, communities=communities
+        )
+        for resource in resources:
+            if resource.title in title_to_resource:
+                click.echo(
+                    f"[{path.name}] skipping re-uploading {resource.title} ({resource.uuid})"
+                )
+                continue
+
+            # res = client.upload_dif13(resource, publish=True, communities=communities)
+            # res_json = res.json()
+            # click.echo(f"Resource UUID: {res_json['resource_uuid']}")
 
 
 def _explore_communities() -> None:
