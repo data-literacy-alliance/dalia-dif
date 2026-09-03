@@ -511,7 +511,13 @@ def _process_communities(
     supporting, recommending = [], []
     for community in _pop_split(row, "Community"):
         match = COMMUNITY_RELATION_RE.search(community)
-        if not match:
+        if match:
+            name = match.group("name").strip()
+            relation = match.group("relation")
+        elif community in communities:
+            name = community
+            relation = "S"
+        else:
             _log(
                 file_name,
                 line,
@@ -519,9 +525,6 @@ def _process_communities(
                 error_accumulator=error_accumulator,
             )
             continue
-
-        name = match.group("name").strip()
-        relation = match.group("relation")
 
         community_uuid = communities.get(name, None)
         if not community_uuid:
