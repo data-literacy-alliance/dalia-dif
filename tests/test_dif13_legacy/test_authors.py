@@ -148,8 +148,8 @@ def test_add_authors_to_lr_with_examples_from_dif() -> None:
         ),
         (
             "ABC, Mr. : {https://orcid.org/1234}\n ACME : {organization http://www.wikidata.org/entity/Q288523}",
-            'Could not match regex for organization "ABC, Mr. : {https://orcid.org/1234}\n'
-            ' ACME : {organization http://www.wikidata.org/entity/Q288523}"',
+            ('Could not match regex for organization "ABC, Mr. : {https://orcid.org/1234}\n'
+            ' ACME : {organization http://www.wikidata.org/entity/Q288523}"'),
         ),
     ],
 )

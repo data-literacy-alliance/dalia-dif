@@ -83,7 +83,7 @@ def parse_dif13_row_legacy(
                 fg="yellow",
             )
         )
-        return None
+        return
 
     uuid = UUID(lr_id)  # Validation: may rise ValueError
     lr_node = DALIA_OER[str(uuid)]
@@ -120,4 +120,4 @@ def parse_dif13_row_legacy(
     add_size_to_lr(g, lr_node, row[constants.DIF_HEADER_SIZE])
     add_version_to_lr(g, lr_node, row[constants.DIF_HEADER_VERSION])
 
-    return None
+    return

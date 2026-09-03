@@ -13,6 +13,7 @@ import pystow
 import requests
 from pydantic import UUID4, AnyHttpUrl, BaseModel, Field
 from pydantic_extra_types.language_code import _index_by_alpha2
+from pystow.constants import TimeoutHint
 from tqdm import tqdm
 from typing_extensions import Self
 from unidecode import unidecode
@@ -96,7 +97,7 @@ class DALIAUploadRequest(BaseModel):
     main_url: AnyHttpUrl
     publication_date: datetime.date | None = None
     description: str | None = None
-    size_mb: Annotated[str | None, Field(examples=["-9707."])] = None  #
+    size_mb: Annotated[str | None, Field(examples=["-9707."])] = None
     submitted_for_review: bool = True
     submitted_at: Annotated[datetime.datetime, Field(default_factory=datetime.datetime.now)]
     version: int | None = None  # does this need to be set?
@@ -311,6 +312,33 @@ class Client:
         res.raise_for_status()
         return res
 
+    def _v1_search(
+        self,
+        *,
+        query: str | None = None,
+        timeout: TimeoutHint = None,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> requests.Response:
+        """Run the search over the V1 of the API, returning just results from the preload."""
+        if limit is None:
+            limit = 1_000
+        if offset is None:
+            offset = 0
+        url = f"{self.base}/api/dalia/v1/items/"
+        if query is None:
+            query = "*"
+        res = self.session.post(
+            url, data={"limit": limit, "offset": offset, "query": query}, timeout=timeout
+        )
+        res.raise_for_status()
+        return res
+
+    def _get_items_uuid(self, *, query: str | None = None, timeout: TimeoutHint = None):
+        res = self._v1_search(query=query, timeout=timeout)
+        uuid_to_title = {result["id"]: result["title"] for result in res.json()["results"]}
+        return uuid_to_title
+
     def get_resources(self) -> list[dict[str, Any]]:
         """Get all resources."""
         records = []
@@ -407,9 +435,7 @@ class Client:
         media_types = _ll(self.media_types, r.media_types, "media types")
 
         licenses = []
-        if r.license is None:
-            pass
-        elif str(r.license) in {
+        if r.license is None or str(r.license) in {
             "http://spdx.org/licenses/unlicensed",
         }:
             pass

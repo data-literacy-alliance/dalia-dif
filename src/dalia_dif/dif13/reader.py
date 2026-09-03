@@ -110,7 +110,7 @@ def read_dif13(
     elif isinstance(communities, list):
         communities = make_communities_dict(communities)
 
-    if isinstance(path, str) and (path.startswith("http://") or path.startswith("https://")):
+    if isinstance(path, str) and (path.startswith(("http://", "https://"))):
         from io import StringIO
 
         import requests
@@ -431,17 +431,13 @@ def _process_target_groups(
 
 
 def _bad_given_name(s: str) -> bool:
-    if s.startswith("Dr ") or s.startswith("Dr. "):
+    if s.startswith(("Dr ", "Dr. ")):
         return True
-    if "*" in s or "," in s:
-        return True
-    return False
+    return bool("*" in s or "," in s)
 
 
 def _bad_family_name(s: str) -> bool:
-    if "*" in s or "," in s:
-        return True
-    return False
+    return bool("*" in s or "," in s)
 
 
 def _process_size(row: dict[str, str]) -> str | None:
